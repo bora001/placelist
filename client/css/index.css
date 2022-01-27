@@ -16,6 +16,9 @@ nav {
   background-color: black;
   color: #fff;
 }
+nav .logo a {
+  color: #fff;
+}
 nav .menu a {
   color: #fff;
   margin-left: 25px;
