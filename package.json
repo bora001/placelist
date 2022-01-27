@@ -1,0 +1,25 @@
+{
+  "name": "placelist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bora001/placelist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bora001/placelist/issues"
+  },
+  "dependencies": {
+    "parcel": "^2.2.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.2.1"
+  }
+}

@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: initial;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 25px;
+  background-color: black;
+  color: #fff;
+  .menu {
+    a {
+      color: #fff;
+      margin-left: 25px;
+    }
+  }
+}
