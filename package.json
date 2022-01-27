@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "concurrently \"nodemon index.js\" \"npm start --prefix client\"",
     "build": "parcel build index.html"
   },
   "repository": {
@@ -17,7 +17,9 @@
     "url": "https://github.com/bora001/placelist/issues"
   },
   "dependencies": {
-    "parcel": "^2.2.1"
+    "concurrently": "^7.0.0",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.2.1"

@@ -1,3 +1,4 @@
 /dist
 /node_modules
 /.parcel-cache
+/client/node_modules
