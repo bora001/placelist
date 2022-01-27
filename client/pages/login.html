@@ -6,17 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Account</title>
     <link rel="stylesheet" href="/css/index.css" />
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
   </head>
   <body>
-    <nav>
-      <div class="logo"><a href="/">PlaceList</a></div>
-
-      <div class="menu">
-        <a href="/new">Post Place</a>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-      </div>
-    </nav>
+    <div w3-include-html="/pages/nav.html"></div>
+    <script>
+      w3.includeHTML();
+    </script>
     Login
   </body>
 </html>
