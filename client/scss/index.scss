@@ -30,10 +30,10 @@ nav {
   }
 }
 
-#section_new {
+.section {
   width: 100vw;
   height: 100vh;
-  .form_new {
+  .form_box {
     position: relative;
     justify-content: space-between;
     top: 50%;
@@ -83,42 +83,15 @@ nav {
 }
 
 #section_login {
-  width: 100vw;
-  height: 100vh;
-
   .form_login {
-    position: relative;
-    justify-content: space-around;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(244, 232, 255);
-    border-radius: 20px;
     width: 300px;
     height: 250px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 5px 5px 5px rgba(83, 81, 85, 0.384);
+  }
+}
 
-    h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    input {
-      border-radius: 5px;
-      border: none;
-      letter-spacing: 1px;
-      text-indent: 10px;
-      height: 25px;
-    }
-
-    button {
-      border: none;
-      height: 30px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+#section_register {
+  .form_register {
+    width: 300px;
+    height: 250px;
   }
 }

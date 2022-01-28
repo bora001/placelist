@@ -26,11 +26,11 @@ nav .menu a {
   margin-left: 25px;
 }
 
-#section_new {
+.section {
   width: 100vw;
   height: 100vh;
 }
-#section_new .form_new {
+.section .form_box {
   position: relative;
   justify-content: space-between;
   top: 50%;
@@ -44,11 +44,11 @@ nav .menu a {
   display: flex;
   flex-direction: column;
 }
-#section_new .form_new h2 {
+.section .form_box h2 {
   font-size: 28px;
   margin-bottom: 10px;
 }
-#section_new .form_new input {
+.section .form_box input {
   border-radius: 5px;
   border: none;
   box-shadow: 5px 5px 5px rgba(83, 81, 85, 0.384);
@@ -56,58 +56,31 @@ nav .menu a {
   text-indent: 10px;
   height: 25px;
 }
-#section_new .form_new input[type=file] {
+.section .form_box input[type=file] {
   box-shadow: none;
 }
-#section_new .form_new textarea {
+.section .form_box textarea {
   border: none;
   border-radius: 5px;
   letter-spacing: 1px;
   padding: 7px;
   font-weight: 600;
 }
-#section_new .form_new button {
+.section .form_box button {
   border: none;
   height: 30px;
   cursor: pointer;
   margin-top: 10px;
 }
 
-#section_login {
-  width: 100vw;
-  height: 100vh;
-}
 #section_login .form_login {
-  position: relative;
-  justify-content: space-around;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #f4e8ff;
-  border-radius: 20px;
   width: 300px;
   height: 250px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 5px 5px 5px rgba(83, 81, 85, 0.384);
 }
-#section_login .form_login h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-#section_login .form_login input {
-  border-radius: 5px;
-  border: none;
-  letter-spacing: 1px;
-  text-indent: 10px;
-  height: 25px;
-}
-#section_login .form_login button {
-  border: none;
-  height: 30px;
-  cursor: pointer;
-  margin-top: 10px;
+
+#section_register .form_register {
+  width: 300px;
+  height: 250px;
 }
 
 /*# sourceMappingURL=index.css.map */
