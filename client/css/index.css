@@ -73,4 +73,41 @@ nav .menu a {
   margin-top: 10px;
 }
 
+#section_login {
+  width: 100vw;
+  height: 100vh;
+}
+#section_login .form_login {
+  position: relative;
+  justify-content: space-around;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f4e8ff;
+  border-radius: 20px;
+  width: 300px;
+  height: 250px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 5px rgba(83, 81, 85, 0.384);
+}
+#section_login .form_login h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+#section_login .form_login input {
+  border-radius: 5px;
+  border: none;
+  letter-spacing: 1px;
+  text-indent: 10px;
+  height: 25px;
+}
+#section_login .form_login button {
+  border: none;
+  height: 30px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
 /*# sourceMappingURL=index.css.map */
