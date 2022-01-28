@@ -9,6 +9,8 @@ a {
 }
 
 nav {
+  position: fixed;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   padding: 15px 25px;
@@ -24,6 +26,58 @@ nav {
     a {
       color: #fff;
       margin-left: 25px;
+    }
+  }
+}
+
+#section_new {
+  width: 100vw;
+  height: 100vh;
+  .form_new {
+    position: relative;
+    justify-content: space-between;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(244, 232, 255);
+    border-radius: 20px;
+    width: 350px;
+    height: 450px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    input {
+      border-radius: 5px;
+      border: none;
+      box-shadow: 5px 5px 5px rgba(83, 81, 85, 0.384);
+      letter-spacing: 1px;
+      text-indent: 10px;
+      height: 25px;
+
+      &[type="file"] {
+        box-shadow: none;
+      }
+    }
+
+    textarea {
+      border: none;
+      border-radius: 5px;
+      letter-spacing: 1px;
+      padding: 7px;
+      font-weight: 600;
+    }
+
+    button {
+      border: none;
+      height: 30px;
+      cursor: pointer;
+      margin-top: 10px;
     }
   }
 }
