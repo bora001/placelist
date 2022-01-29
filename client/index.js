@@ -16,18 +16,17 @@ formBtn.forEach((btn) => {
 const registerForm = () => {
   console.log("register!");
 
-  const arr = Array.from(formInput, (input) => [input.name, input.value]);
-  if (arr[1] == arr[2]) {
-    console.log("correct");
-  }
-  console.log(arr);
-
-  let arr = [];
+  let pw;
+  let data = [];
   for (let v of Object.values(formInput)) {
-    console.log(v.name, v.value);
     let obj = new Object();
     obj[v.name] = v.value;
-    arr.push(obj);
+    v.name == "password" ? (pw = v.value) : "";
+    v.name !== "password confirm" ? data.push(obj) : "";
+    if (v.name == "password confirm" && pw !== v.value) {
+      alert("Incorrect Password");
+      return;
+    }
   }
-  console.log(arr);
+  console.log(data);
 };
