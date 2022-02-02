@@ -15,11 +15,16 @@
     </script>
 
     <div id="section_login" class="section">
-      <form class="form_login form_box">
+      <form class="form_login form_box" method="post" onsubmit="return false;">
         <h2>Login</h2>
-        <input type="text" placeholder="Name" name="name" />
-        <input type="password" placeholder="password" name="password" />
-        <button>Login</button>
+        <input type="text" placeholder="Name" name="name" required />
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          required
+        />
+        <input type="submit" class="btn_submit" value="login" />
       </form>
     </div>
   </body>

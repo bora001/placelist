@@ -1,27 +1,38 @@
 //register
-
-const formBtn = document.querySelectorAll(".form_box button");
+const formBtn = document.querySelectorAll(".form_box .btn_submit");
 const formInput = document.querySelectorAll(".form_box input");
-
-formBtn.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    switch (e.target.innerText) {
-      case "Register":
-        registerForm();
-        break;
-      case "Login":
-        loginForm();
-        break;
-      default:
-        break;
-    }
+const inputValidCheck = () => {
+  formInput.forEach((input) => {
+    input.addEventListener("invalid", () => {
+      console.log("in");
+      console.log(input.validity);
+    });
   });
-});
+};
+
+// formBtn.forEach((btn) => {
+//   btn.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     console.log(e.target.value);
+//     switch (e.target.value) {
+//       case "Register":
+//         registerForm();
+//         inputValidCheck();
+//         break;
+//       case "Login":
+//         loginForm();
+//         inputValidCheck();
+
+//         break;
+//       default:
+//         break;
+//     }
+//   });
+// });
+
+inputValidCheck();
 
 const registerForm = () => {
-  console.log("register!");
   let pw;
   let data = [];
   for (let v of Object.values(formInput)) {
