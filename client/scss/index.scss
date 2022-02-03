@@ -53,6 +53,7 @@ nav {
     }
 
     input {
+      position: relative;
       border-radius: 5px;
       border: none;
       box-shadow: 5px 5px 5px rgba(83, 81, 85, 0.384);
@@ -62,6 +63,12 @@ nav {
 
       &[type="file"] {
         box-shadow: none;
+      }
+
+      &:invalid {
+        background-color: rgba(255, 0, 149, 0.26);
+        // position: absolute;
+        // content: "✅";
       }
     }
 
