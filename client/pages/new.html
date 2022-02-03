@@ -15,16 +15,27 @@
     </script>
 
     <div id="section_new" class="section">
-      <form class="form_new form_box">
+      <form class="form_new form_box" method="post" onsubmit="return false;">
         <h2>New PlaceList</h2>
-        <input type="text" placeholder="Name" name="name" />
-        <input type="text" placeholder="Location" name="location" />
-        <input type="number" placeholder="Price" name="price/>
+        <input type="text" placeholder="Name" name="name" required />
+        <input type="text" placeholder="Location" name="location" required />
+        <input type="number" placeholder="Price" name="price" required />
         <label for="input_desc">Description</label>
-        <textarea name="desc" id="input_desc" cols="30" rows="5"></textarea>
+        <textarea
+          name="desc"
+          id="input_desc"
+          cols="30"
+          rows="5"
+          required
+        ></textarea>
         <label for="input_img">Image</label>
-        <input type="file" id="input_img" />
-        <button>Create New PlaceList</button>
+        <input type="file" id="input_img" name="img" required />
+        <input
+          type="submit"
+          class="btn_submit"
+          value="Create New PlaceList"
+          name="type"
+        />
       </form>
     </div>
   </body>

@@ -2,18 +2,18 @@
 const formBtn = document.querySelectorAll(".form_box .btn_submit");
 const formInput = document.querySelectorAll(".form_box input");
 
-const inputValidCheck = () => {
-  formInput.forEach((input) => {
-    input.addEventListener("invalid", () => {
-      console.log("invalid", input.validity);
-    });
-  });
-};
+// const inputValidCheck = () => {
+//   formInput.forEach((input) => {
+//     input.addEventListener("invalid", () => {
+//       console.log("invalid", input.validity);
+//     });
+//   });
+// };
 
 const formSubmit = () => {
   formBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      inputValidCheck();
+      // inputValidCheck();
       const inputArray = Array.from(formInput);
       if (inputArray.every((input) => input.validity.valid)) {
         switch (e.target.value) {
@@ -22,6 +22,9 @@ const formSubmit = () => {
             break;
           case "Login":
             loginForm();
+            break;
+          case "Create New PlaceList":
+            createForm();
             break;
           default:
             break;
@@ -33,12 +36,12 @@ const formSubmit = () => {
 
 const registerForm = () => {
   let pw;
-  let data = [];
+  let data = {};
   for (let v of Object.values(formInput)) {
-    let obj = new Object();
-    obj[v.name] = v.value;
+    // let obj = new Object();
+
     v.name == "password" ? (pw = v.value) : "";
-    v.name !== "password confirm" ? data.push(obj) : "";
+    v.name !== "password confirm" ? (data[v.name] = v.value) : "";
     if (v.name == "password confirm" && pw !== v.value) {
       alert("Incorrect Password");
       return;
@@ -48,13 +51,20 @@ const registerForm = () => {
 };
 
 const loginForm = () => {
-  let data = [];
+  let data = {};
   for (let v of Object.values(formInput)) {
-    let obj = new Object();
-    obj[v.name] = v.value;
-    data.push(obj);
+    data[v.name] = v.value;
+    console.log(data);
   }
-  console.log(data);
+};
+
+const createForm = () => {
+  console.log("create");
+  let data = {};
+  for (let v of Object.values(formInput)) {
+    data[v.name] = v.value;
+    console.log(data);
+  }
 };
 
 formSubmit();
