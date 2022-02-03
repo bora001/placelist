@@ -38,8 +38,6 @@ const registerForm = () => {
   let pw;
   let data = {};
   for (let v of Object.values(formInput)) {
-    // let obj = new Object();
-
     v.name == "password" ? (pw = v.value) : "";
     v.name !== "password confirm" ? (data[v.name] = v.value) : "";
     if (v.name == "password confirm" && pw !== v.value) {
@@ -54,8 +52,8 @@ const loginForm = () => {
   let data = {};
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;
-    console.log(data);
   }
+  console.log(data);
 };
 
 const createForm = () => {
@@ -63,8 +61,8 @@ const createForm = () => {
   let data = {};
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;
-    console.log(data);
   }
+  console.log(data);
 };
 
 formSubmit();
