@@ -37,18 +37,23 @@ app.post("/register", (req, res) => {
   User.findOne({ username: req.body.name }, function (err, user) {
     if (user) {
       if (err) return res.json({ success: false, err });
-
       return res
         .status(404)
         .json({ success: false, message: "The name is already exist" });
     } else {
-      newUser.save((err, userInfo) => {
-        if (err) return res.json({ success: false, err });
-        return res.status(200).json({
-          success: true,
-          message: "Thank you for register!",
-        });
+      if (err) return res.json({ success: false, err });
+
+      return res.status(200).json({
+        success: true,
+        message: "Thank you for register!",
       });
+      // newUser.save((err, userInfo) => {
+      //   if (err) return res.json({ success: false, err });
+      //   return res.status(200).json({
+      //     success: true,
+      //     message: "Thank you for register!",
+      //   });
+      // });
     }
   });
 });

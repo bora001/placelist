@@ -9,6 +9,38 @@ const formInput = document.querySelectorAll(".form_box input");
 //   });
 // };
 
+//form-reset
+const formReset = () => {
+  formInput.forEach((input) => {
+    input.value = "";
+  });
+};
+
+//modal
+const modalE = (status, msg) => {
+  const modal = document.querySelector(".modal");
+  const closeModal = document.querySelector(".modal .btn_close");
+  const modalTitle = document.querySelector(".modal .msg_box .txt_box h3");
+  const modalTxt = document.querySelector(".modal .msg_box .txt_box p");
+
+  if (status) {
+    modalTitle.innerHTML = "Welcome";
+    modalTxt.innerHTML = "✅" + msg;
+    setTimeout(() => {
+      formReset();
+      window.location.href = "/login";
+    }, 1500);
+  } else {
+    modalTitle.innerHTML = "Sorry";
+    modalTxt.innerHTML = "⚠️" + msg;
+  }
+
+  modal.classList.remove("off");
+  closeModal.addEventListener("click", () => {
+    modal.classList.add("off");
+  });
+};
+
 const formSubmit = () => {
   formBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -21,9 +53,11 @@ const formSubmit = () => {
             break;
           case "Login":
             loginForm();
+            formReset();
             break;
           case "Create New PlaceList":
             createForm();
+            formReset();
             break;
           default:
             break;
@@ -40,7 +74,7 @@ const registerForm = () => {
     v.name == "password" ? (pw = v.value) : "";
     v.name !== "password confirm" ? (data[v.name] = v.value) : "";
     if (v.name == "password confirm" && pw !== v.value) {
-      alert("Incorrect Password");
+      modalE(false, "Incorrect Password");
       return;
     }
   }
@@ -55,7 +89,9 @@ const registerForm = () => {
     body: JSON.stringify(data),
   })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      modalE(data.success, data.message);
+    })
     .catch((err) => console.log(err));
 };
 
