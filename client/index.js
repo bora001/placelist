@@ -53,7 +53,6 @@ const formSubmit = () => {
             break;
           case "Login":
             loginForm();
-            formReset();
             break;
           case "Create New PlaceList":
             createForm();
@@ -78,7 +77,6 @@ const registerForm = () => {
       return;
     }
   }
-  console.log(data);
 
   fetch("/register", {
     credentials: "include",
@@ -100,7 +98,31 @@ const loginForm = () => {
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;
   }
-  console.log(data);
+
+  fetch("/login", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      if (data.success) {
+        localStorage.setItem("x_auth", data.token);
+        setTimeout(() => {
+          formReset();
+          window.location.href = "/";
+        }, 1000);
+      } else {
+        modalE(data.success, data.message);
+      }
+
+      // modalE(data.success, data.message);
+    })
+    .catch((err) => console.log(err));
 };
 
 const createForm = () => {

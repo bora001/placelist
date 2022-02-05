@@ -31,7 +31,6 @@ app.use((req, res, next) => {
 
 app.post("/register", (req, res) => {
   const data = { username: req.body.name, password: req.body.password };
-  // console.log(data);
   const newUser = new User(data);
 
   User.findOne({ username: req.body.name }, function (err, user) {
@@ -42,19 +41,40 @@ app.post("/register", (req, res) => {
         .json({ success: false, message: "The name is already exist" });
     } else {
       if (err) return res.json({ success: false, err });
-
-      return res.status(200).json({
-        success: true,
-        message: "Thank you for register!",
+      newUser.save((err, userInfo) => {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).json({
+          success: true,
+          message: "Thank you for register!",
+        });
       });
-      // newUser.save((err, userInfo) => {
-      //   if (err) return res.json({ success: false, err });
-      //   return res.status(200).json({
-      //     success: true,
-      //     message: "Thank you for register!",
-      //   });
-      // });
     }
+  });
+});
+app.post("/login", (req, res) => {
+  const data = { username: req.body.name, password: req.body.password };
+  User.findOne({ username: req.body.name }, (err, user) => {
+    if (!user) {
+      return res.json({
+        loginSuccess: false,
+        message: "We can not find the username",
+      });
+    }
+    user.comparePassword(req.body.password, (err, isMatch) => {
+      if (!isMatch)
+        return res.json({
+          success: false,
+          message: "incorrect Password",
+        });
+      user.generateToken((err, user) => {
+        if (err) return res.status(400).send(err);
+        return res.status(200).json({
+          success: true,
+          token: user.token,
+          username: user.username,
+        });
+      });
+    });
   });
 });
 
