@@ -1,6 +1,9 @@
 //register
 const formBtn = document.querySelectorAll(".form_box .btn_submit");
 const formInput = document.querySelectorAll(".form_box input");
+
+w3.includeHTML();
+
 // const inputValidCheck = () => {
 //   formInput.forEach((input) => {
 //     input.addEventListener("invalid", () => {
@@ -8,6 +11,27 @@ const formInput = document.querySelectorAll(".form_box input");
 //     });
 //   });
 // };
+
+const logoutE = () => {
+  localStorage.removeItem("x_auth");
+  loginCheck();
+};
+
+//login_check
+const loginCheck = () => {
+  setTimeout(() => {
+    const loginSet = document.querySelector("nav .login_status");
+    const cookie = localStorage.getItem("x_auth");
+    if (cookie) {
+      loginSet.innerHTML = `<a href="/" onclick="logoutE()">logout</a>`;
+    } else {
+      loginSet.innerHTML = `
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+        `;
+    }
+  }, 100);
+};
 
 //form-reset
 const formReset = () => {
@@ -112,15 +136,11 @@ const loginForm = () => {
       console.log(data);
       if (data.success) {
         localStorage.setItem("x_auth", data.token);
-        setTimeout(() => {
-          formReset();
-          window.location.href = "/";
-        }, 1000);
+        formReset();
+        window.location.href = "/";
       } else {
         modalE(data.success, data.message);
       }
-
-      // modalE(data.success, data.message);
     })
     .catch((err) => console.log(err));
 };
@@ -135,3 +155,4 @@ const createForm = () => {
 };
 
 formSubmit();
+loginCheck();

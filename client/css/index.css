@@ -25,6 +25,9 @@ nav {
 nav .logo a {
   color: #fff;
 }
+nav .menu {
+  display: flex;
+}
 nav .menu a {
   color: #fff;
   margin-left: 25px;
