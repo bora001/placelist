@@ -20,10 +20,12 @@ const logoutE = () => {
 //login_check
 const loginCheck = () => {
   setTimeout(() => {
-    const loginSet = document.querySelector("nav .login_status");
+    const loginSet = document.querySelector("nav .menu");
     const cookie = localStorage.getItem("x_auth");
     if (cookie) {
-      loginSet.innerHTML = `<a href="/" onclick="logoutE()">logout</a>`;
+      loginSet.innerHTML = `
+      <a href="/new">Post Place</a>
+      <a href="/" onclick="logoutE()">logout</a>`;
     } else {
       loginSet.innerHTML = `
       <a href="/login">Login</a>
