@@ -32,14 +32,24 @@ app.use((req, res, next) => {
 app.post("/register", (req, res) => {
   const data = { username: req.body.name, password: req.body.password };
   // console.log(data);
-  const user = new User(data);
-  console.log(user);
-  user.save((err, userInfo) => {
-    if (err) return res.json({ success: false, err });
-    return res.status(200).json({
-      success: true,
-      userInfo,
-    });
+  const newUser = new User(data);
+
+  User.findOne({ username: req.body.name }, function (err, user) {
+    if (user) {
+      if (err) return res.json({ success: false, err });
+
+      return res
+        .status(404)
+        .json({ success: false, message: "The name is already exist" });
+    } else {
+      newUser.save((err, userInfo) => {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).json({
+          success: true,
+          message: "Thank you for register!",
+        });
+      });
+    }
   });
 });
 
