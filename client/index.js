@@ -1,7 +1,6 @@
 //register
 const formBtn = document.querySelectorAll(".form_box .btn_submit");
 const formInput = document.querySelectorAll(".form_box input");
-
 // const inputValidCheck = () => {
 //   formInput.forEach((input) => {
 //     input.addEventListener("invalid", () => {
@@ -46,6 +45,17 @@ const registerForm = () => {
     }
   }
   console.log(data);
+
+  fetch("/register", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
 };
 
 const loginForm = () => {
