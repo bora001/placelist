@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
 const mbxToken = process.env.mapToken;
-const geocoder = mbxGeo({ accessToken: mapToken });
+const geocoder = mbxGeo({ accessToken: mbxToken });
 
 //---------------------------------------------------------------------------------------//
 
@@ -54,6 +54,7 @@ app.post("/register", (req, res) => {
     }
   });
 });
+
 app.post("/login", (req, res) => {
   const data = { username: req.body.name, password: req.body.password };
   User.findOne({ username: req.body.name }, (err, user) => {
@@ -79,6 +80,10 @@ app.post("/login", (req, res) => {
       });
     });
   });
+});
+
+app.post("/create", (req, res) => {
+  console.log(req.body);
 });
 
 // app.get("/", (req, res) => {

@@ -24,7 +24,7 @@ const loginCheck = () => {
     const cookie = localStorage.getItem("x_auth");
     if (cookie) {
       loginSet.innerHTML = `
-      <a href="/new">Post Place</a>
+      <a href="/create">Post Place</a>
       <a href="/" onclick="logoutE()">logout</a>`;
     } else {
       loginSet.innerHTML = `
@@ -152,6 +152,21 @@ const createForm = () => {
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;
   }
+
+  fetch("/create", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => console.log(err));
+
   console.log(data);
 };
 
