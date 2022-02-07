@@ -4,8 +4,12 @@ const placeSchema = mongoose.Schema({
   name: {
     type: String,
   },
-  location: {
-    type: String,
+  geometry: {
+    type: { type: String, enum: ["Point"], required: true },
+    coordinates: {
+      type: [Number],
+      required: true,
+    },
   },
   price: {
     type: Number,
@@ -18,5 +22,5 @@ const placeSchema = mongoose.Schema({
   },
 });
 
-const User = mongoose.model("Place", placeSchema);
+const Place = mongoose.model("Place", placeSchema);
 module.exports = { Place };

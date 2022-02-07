@@ -5,6 +5,7 @@ const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
+const { Place } = require("./models/Place");
 const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
@@ -83,7 +84,27 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/create", (req, res) => {
-  console.log(req.body);
+  let data = {
+    name: req.body.name,
+    price: req.body.price,
+    img: req.body.img,
+    desc: req.body.desc,
+  };
+
+  const geoData = geocoder
+    .forwardGeocode({
+      query: req.body.location,
+      limit: 1,
+    })
+    .send()
+    .then((geo) => {
+      data.geometry = geo.body.features[0].geometry;
+      const newPlace = new Place(data);
+      newPlace.save();
+      return res.status(200).json({
+        success: true,
+      });
+    });
 });
 
 // app.get("/", (req, res) => {

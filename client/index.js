@@ -1,6 +1,8 @@
 //register
 const formBtn = document.querySelectorAll(".form_box .btn_submit");
-const formInput = document.querySelectorAll(".form_box input");
+const formInput = document.querySelectorAll(
+  ".form_box input, .form_box textarea"
+);
 
 w3.includeHTML();
 
@@ -81,7 +83,6 @@ const formSubmit = () => {
             break;
           case "Create New PlaceList":
             createForm();
-            formReset();
             break;
           default:
             break;
@@ -163,11 +164,14 @@ const createForm = () => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      if (data.success) {
+        formReset();
+        window.location.href = "/";
+      }
     })
     .catch((err) => console.log(err));
 
-  console.log(data);
+  // console.log(data);
 };
 
 formSubmit();
