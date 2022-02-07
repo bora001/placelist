@@ -5,6 +5,9 @@ const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
+const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
+const mbxToken = process.env.mapToken;
+const geocoder = mbxGeo({ accessToken: mapToken });
 
 //---------------------------------------------------------------------------------------//
 

@@ -29,8 +29,7 @@ const loginCheck = () => {
     } else {
       loginSet.innerHTML = `
       <a href="/login">Login</a>
-      <a href="/register">Register</a>
-        `;
+      <a href="/register">Register</a>`;
     }
   }, 100);
 };
