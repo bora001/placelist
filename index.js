@@ -106,6 +106,14 @@ app.post("/create", (req, res) => {
       });
     });
 });
+app.post("/", (req, res) => {
+  Place.find((err, data) => {
+    return res.json({
+      success: true,
+      data,
+    });
+  });
+});
 
 // app.get("/", (req, res) => {
 //   res.sendFile(path.join(__dirname + "/index.html"));

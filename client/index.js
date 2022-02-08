@@ -173,6 +173,35 @@ const createForm = () => {
 
   // console.log(data);
 };
+//getData
 
+const getData = () => {
+  fetch("/", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      setMap(data.data);
+    })
+    .catch((err) => console.log(err));
+};
+
+//map
+const setMap = (data) => {
+  console.log("data!", data);
+  mapboxgl.accessToken = key;
+  const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v11",
+    center: [151.20776, -33.86854],
+    zoom: 3,
+  });
+};
+
+getData();
 formSubmit();
 loginCheck();
