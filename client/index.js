@@ -22,7 +22,7 @@ const logoutE = () => {
 //login_check
 const loginCheck = () => {
   setTimeout(() => {
-    const loginSet = document.querySelector("nav .menu");
+    const loginSet = document.querySelector("nav .menu .login_box");
     const cookie = localStorage.getItem("x_auth");
     if (cookie) {
       loginSet.innerHTML = `
@@ -214,6 +214,7 @@ const setMap = (collection) => {
     center: [151.20776, -33.86854],
     zoom: 3,
   });
+  map.addControl(new mapboxgl.NavigationControl());
 
   console.log(collection);
   map.on("load", () => {
@@ -296,7 +297,7 @@ const setMap = (collection) => {
       // }
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`name: ${name}<br>price: ${price}`)
+        .setHTML(`${name}<br>$${price}`)
         .addTo(map);
     });
 

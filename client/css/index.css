@@ -13,24 +13,40 @@ a {
   display: none;
 }
 
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
 nav {
-  position: fixed;
   width: 100vw;
   display: flex;
   justify-content: space-between;
   padding: 15px 25px;
   background-color: black;
   color: #fff;
+  z-index: 999;
 }
 nav .logo a {
   color: #fff;
 }
 nav .menu {
   display: flex;
+  align-items: center;
+  text-align: center;
 }
 nav .menu a {
   color: #fff;
-  margin-left: 25px;
+  width: 100px;
+  align-items: center;
+}
+nav .menu .login_box {
+  display: flex;
+}
+nav .menu .login_box a {
+  display: inline-block;
+  width: 100px;
 }
 
 .modal {
@@ -67,6 +83,12 @@ nav .menu a {
   top: 20px;
   right: 20px;
   cursor: pointer;
+}
+
+#map {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .section {
