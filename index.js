@@ -114,7 +114,6 @@ app.post("/", (req, res) => {
     });
   });
 });
-
 // app.get("/", (req, res) => {
 //   res.sendFile(path.join(__dirname + "/index.html"));
 // });
@@ -123,6 +122,15 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + `/client/pages/${req.path}.html`));
 });
 
+app.post("/list", (req, res) => {
+  Place.find((err, data) => {
+    if ((err) => console.log(err))
+      return res.json({
+        success: true,
+        data,
+      });
+  });
+});
 const port = process.env.PORT || 3000;
 
 app.listen(port, (req, res) => {

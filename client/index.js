@@ -176,6 +176,9 @@ const createForm = () => {
 //getData
 
 const getData = () => {
+  if (window.location.pathname !== "/") {
+    return true;
+  }
   fetch("/", {
     credentials: "include",
     method: "POST",
@@ -202,6 +205,24 @@ const getData = () => {
       setMap(collection);
     })
     .catch((err) => console.log(err));
+};
+
+//list
+const getList = () => {
+  fetch("/list", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => renderList(data.data))
+    .catch((err) => console.log(err));
+};
+
+const renderList = (data) => {
+  console.log(data);
 };
 
 //map
@@ -309,6 +330,7 @@ const setMap = (collection) => {
     });
   });
 };
+getList();
 getData();
 formSubmit();
 loginCheck();
