@@ -89,6 +89,7 @@ app.post("/create", (req, res) => {
     price: req.body.price,
     img: req.body.img,
     desc: req.body.desc,
+    address: req.body.location,
   };
 
   const geoData = geocoder

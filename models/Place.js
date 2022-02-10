@@ -4,6 +4,9 @@ const placeSchema = mongoose.Schema({
   name: {
     type: String,
   },
+  address: {
+    type: String,
+  },
   geometry: {
     type: { type: String, enum: ["Point"], required: true },
     coordinates: {

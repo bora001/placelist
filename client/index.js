@@ -235,7 +235,7 @@ const renderList = (data) => {
           <div class="txt_box">
             <h3>${item.name}</h2>
             <p>${item.price}</p>
-            <p>location</p>
+            <p>${item.address}</p>
             <a href="/${item._id}" class="btn_view">View the place</a>
           </div>
         </div>

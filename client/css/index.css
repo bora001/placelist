@@ -156,6 +156,9 @@ section .form_box button {
   height: 250px;
 }
 
+.section_list {
+  overflow-y: scroll;
+}
 .section_list .list_box {
   width: 80%;
   margin: 0 auto;

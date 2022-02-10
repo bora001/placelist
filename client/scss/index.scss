@@ -166,6 +166,7 @@ section {
 }
 
 .section_list {
+  overflow-y: scroll;
   .list_box {
     width: 80%;
     margin: 0 auto;
