@@ -9,6 +9,10 @@ a {
   color: initial;
 }
 
+img {
+  width: 100%;
+}
+
 .off {
   display: none;
 }
@@ -91,11 +95,11 @@ nav .menu .login_box a {
   height: 100%;
 }
 
-.section {
+section {
   width: 100vw;
   height: 100vh;
 }
-.section .form_box {
+section .form_box {
   position: relative;
   justify-content: space-between;
   top: 50%;
@@ -109,11 +113,11 @@ nav .menu .login_box a {
   display: flex;
   flex-direction: column;
 }
-.section .form_box h2 {
+section .form_box h2 {
   font-size: 28px;
   margin-bottom: 10px;
 }
-.section .form_box input {
+section .form_box input {
   position: relative;
   border-radius: 5px;
   border: none;
@@ -122,34 +126,74 @@ nav .menu .login_box a {
   text-indent: 10px;
   height: 25px;
 }
-.section .form_box input[type=file] {
+section .form_box input[type=file] {
   box-shadow: none;
 }
-.section .form_box input:invalid {
+section .form_box input:invalid {
   background-color: rgba(255, 0, 149, 0.26);
 }
-.section .form_box textarea {
+section .form_box textarea {
   border: none;
   border-radius: 5px;
   letter-spacing: 1px;
   padding: 7px;
   font-weight: 600;
 }
-.section .form_box button {
+section .form_box button {
   border: none;
   height: 30px;
   cursor: pointer;
   margin-top: 10px;
 }
 
-#section_login .form_login {
+.section_login .form_login {
   width: 300px;
   height: 250px;
 }
 
-#section_register .form_register {
+.section_register .form_register {
   width: 300px;
   height: 250px;
+}
+
+.section_list .list_box {
+  width: 80%;
+  margin: 0 auto;
+}
+.section_list .list_box .list_item {
+  display: flex;
+  align-items: center;
+  height: auto;
+  margin: 20px;
+  background-color: rgba(231, 198, 223, 0.295);
+}
+.section_list .list_box .list_item .img_box {
+  width: 50%;
+}
+.section_list .list_box .list_item .txt_box {
+  width: 50%;
+  padding: 5%;
+  height: auto;
+}
+.section_list .list_box .list_item .txt_box h3 {
+  font-size: 24px;
+}
+.section_list .list_box .list_item .txt_box p {
+  font-size: 16px;
+  line-height: 28px;
+}
+.section_list .list_box .list_item .txt_box .btn_view {
+  display: block;
+  width: 150px;
+  line-height: 40px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #caa8e9;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.26);
 }
 
 /*# sourceMappingURL=index.css.map */

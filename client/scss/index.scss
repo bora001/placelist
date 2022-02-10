@@ -7,7 +7,9 @@ a {
   text-decoration: none;
   color: initial;
 }
-
+img {
+  width: 100%;
+}
 .off {
   display: none;
 }
@@ -90,7 +92,7 @@ nav {
   width: 100%;
   height: 100%;
 }
-.section {
+section {
   width: 100vw;
   height: 100vh;
   .form_box {
@@ -149,16 +151,59 @@ nav {
   }
 }
 
-#section_login {
+.section_login {
   .form_login {
     width: 300px;
     height: 250px;
   }
 }
 
-#section_register {
+.section_register {
   .form_register {
     width: 300px;
     height: 250px;
+  }
+}
+
+.section_list {
+  .list_box {
+    width: 80%;
+    margin: 0 auto;
+    .list_item {
+      display: flex;
+      align-items: center;
+      height: auto;
+      margin: 20px;
+      background-color: rgba(231, 198, 223, 0.295);
+
+      .img_box {
+        width: 50%;
+      }
+      .txt_box {
+        width: 50%;
+        padding: 5%;
+        height: auto;
+        h3 {
+          font-size: 24px;
+        }
+        p {
+          font-size: 16px;
+          line-height: 28px;
+        }
+        .btn_view {
+          display: block;
+          width: 150px;
+          line-height: 40px;
+          margin-top: 20px;
+          text-align: center;
+          border-radius: 5px;
+          color: #fff;
+          background-color: rgb(202, 168, 233);
+          font-size: 16px;
+          cursor: pointer;
+          box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.26);
+        }
+      }
+    }
   }
 }

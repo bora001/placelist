@@ -3,6 +3,7 @@ const formBtn = document.querySelectorAll(".form_box .btn_submit");
 const formInput = document.querySelectorAll(
   ".form_box input, .form_box textarea"
 );
+const listBox = document.querySelector(".section_list .list_box");
 
 w3.includeHTML();
 
@@ -222,7 +223,26 @@ const getList = () => {
 };
 
 const renderList = (data) => {
-  console.log(data);
+  for (let item of data) {
+    const html = `
+  <div class="list_item">
+          <div class="img_box">
+            <img
+              src="https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041_960_720.jpg"
+              alt=""
+            />
+          </div>
+          <div class="txt_box">
+            <h3>${item.name}</h2>
+            <p>${item.price}</p>
+            <p>location</p>
+            <a href="/${item._id}" class="btn_view">View the place</a>
+          </div>
+        </div>
+  `;
+
+    listBox.insertAdjacentHTML("beforeend", html);
+  }
 };
 
 //map
