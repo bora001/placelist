@@ -236,7 +236,7 @@ const renderList = (data) => {
             <h3>${item.name}</h2>
             <p>${item.price}</p>
             <p>${item.address}</p>
-            <a href="/${item._id}" class="btn_view">View the place</a>
+            <a href="/place/${item._id}" class="btn_view">View the place</a>
           </div>
         </div>
   `;
@@ -245,6 +245,20 @@ const renderList = (data) => {
   }
 };
 
+//item
+const getItem = () => {
+  fetch("/place/:id", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data.item))
+    .catch((err) => console.log(err));
+};
+getItem();
 //map
 
 const setMap = (collection) => {

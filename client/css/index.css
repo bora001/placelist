@@ -199,4 +199,9 @@ section .form_box button {
   box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.26);
 }
 
+.section_place {
+  width: 100%;
+  height: 100%;
+}
+
 /*# sourceMappingURL=index.css.map */

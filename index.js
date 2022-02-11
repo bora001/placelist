@@ -2,11 +2,14 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const placeRouter = require("./routes/place");
 const app = express();
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const { Place } = require("./models/Place");
 const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
+const { route } = require("express/lib/application");
+const req = require("express/lib/request");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
 
@@ -115,12 +118,20 @@ app.post("/", (req, res) => {
     });
   });
 });
+
 // app.get("/", (req, res) => {
 //   res.sendFile(path.join(__dirname + "/index.html"));
 // });
 
+//router
+app.use("/place", placeRouter);
+
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + `/client/pages/${req.path}.html`));
+  const link = req.path.split("/");
+  if (link.length < 3) {
+    res.sendFile(path.join(__dirname + `/client/pages/${req.path}.html`));
+  }
+  // res.sendFile(path.join(__dirname + `/client/pages/${req.path}.html`));
 });
 
 app.post("/list", (req, res) => {
@@ -132,6 +143,7 @@ app.post("/list", (req, res) => {
       });
   });
 });
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, (req, res) => {
