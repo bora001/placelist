@@ -12,7 +12,51 @@
     <div w3-include-html="/pages/nav.html"></div>
     <section class="section_place">
       <div class="place_box">
-        <h2>place!</h2>
+        <div class="item_box">
+          <div class="img_box">
+            <img
+              src="https://cdn.pixabay.com/photo/2017/07/10/10/06/mattress-2489615_960_720.jpg"
+              alt=""
+            />
+          </div>
+          <div class="txt_box">
+            <h3>Place Name</h3>
+            <p>location</p>
+            <p>Price</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+              auctor augue sit amet eros porta sollicitudin. Mauris dignissim
+              massa sed mattis laoreet. Donec ac ligula iaculis, tempus nulla
+              in, efficitur mi. Quisque malesuada non elit nec malesuada.
+              Pellentesque in semper quam. Sed tempor id felis eu ornare. Nam
+              sit amet dignissim felis. Nullam ultricies ut quam ac euismod.
+            </p>
+          </div>
+        </div>
+        <div class="review_box">
+          <form action="">
+            <div class="top_box">
+              <h3>Leave a Review</h3>
+              <div class="rate_input">
+                <span>★★★★★</span>
+                <span class="filled">★★★★★</span>
+                <input
+                  type="range"
+                  name="rate"
+                  min="1"
+                  max="5"
+                  step="0.5"
+                  value="3"
+                />
+              </div>
+            </div>
+            <div class="bottom_box">
+              <textarea name="comment" id=""></textarea>
+              <input type="submit" name="submit" />
+            </div>
+          </form>
+          <div class="review_list"></div>
+        </div>
       </div>
     </section>
   </body>

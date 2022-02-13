@@ -211,5 +211,79 @@ section {
 .section_place {
   width: 100%;
   height: 100%;
+  .place_box {
+    display: flex;
+    width: 80%;
+    border: 2px solid red;
+    margin: 0 auto;
+    .item_box {
+      width: 50%;
+      .img_box {
+      }
+      .txt_box {
+        h3 {
+        }
+        p {
+        }
+      }
+    }
+    .review_box {
+      width: 50%;
+      form {
+        position: relative;
+        margin: 0 auto;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        .top_box {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          .rate_input {
+            position: relative;
+            width: 180px;
+            height: 50px;
+            font-size: 36px;
+            span {
+              width: 100%;
+              position: absolute;
+              z-index: 1;
+              line-height: 35px;
+              color: rgb(190, 188, 188);
+            }
+            span.filled {
+              width: 100%;
+              overflow: hidden;
+              color: red;
+              z-index: 9;
+            }
+            input[name="rate"] {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              z-index: 99;
+              opacity: 0;
+              cursor: pointer;
+            }
+          }
+        }
+        .bottom_box {
+          textarea {
+            padding: 5%;
+            width: 100%;
+            height: 150px;
+          }
+
+          input[type="submit"] {
+            position: absolute;
+            width: 30%;
+            margin: 0 auto;
+            top: 80%;
+            right: 5%;
+          }
+        }
+      }
+    }
+  }
   // background-color: red;
 }

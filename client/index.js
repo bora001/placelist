@@ -368,3 +368,18 @@ getList();
 getData();
 formSubmit();
 loginCheck();
+
+//place-item
+//review
+
+const rateInput = document.querySelector(
+  ".section_place .review_box input[name='rate']"
+);
+const rateFilled = document.querySelector(
+  ".section_place .review_box .rate_input .filled"
+);
+
+rateInput.addEventListener("click", (e) => {
+  console.log("rate", e.target.value);
+  rateFilled.style.width = `${e.target.value * 20}%`;
+});

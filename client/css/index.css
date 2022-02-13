@@ -203,5 +203,68 @@ section .form_box button {
   width: 100%;
   height: 100%;
 }
+.section_place .place_box {
+  display: flex;
+  width: 80%;
+  border: 2px solid red;
+  margin: 0 auto;
+}
+.section_place .place_box .item_box {
+  width: 50%;
+}
+.section_place .place_box .review_box {
+  width: 50%;
+}
+.section_place .place_box .review_box form {
+  position: relative;
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.section_place .place_box .review_box form .top_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.section_place .place_box .review_box form .top_box .rate_input {
+  position: relative;
+  width: 180px;
+  height: 50px;
+  font-size: 36px;
+}
+.section_place .place_box .review_box form .top_box .rate_input span {
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  line-height: 35px;
+  color: #bebcbc;
+}
+.section_place .place_box .review_box form .top_box .rate_input span.filled {
+  width: 100%;
+  overflow: hidden;
+  color: red;
+  z-index: 9;
+}
+.section_place .place_box .review_box form .top_box .rate_input input[name=rate] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  opacity: 0;
+  cursor: pointer;
+}
+.section_place .place_box .review_box form .bottom_box textarea {
+  padding: 5%;
+  width: 100%;
+  height: 150px;
+}
+.section_place .place_box .review_box form .bottom_box input[type=submit] {
+  position: absolute;
+  width: 30%;
+  margin: 0 auto;
+  top: 80%;
+  right: 5%;
+}
 
 /*# sourceMappingURL=index.css.map */
