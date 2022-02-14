@@ -110,6 +110,37 @@ app.post("/create", (req, res) => {
       });
     });
 });
+
+app.post("/review", (req, res) => {
+  let data = {
+    // userId: req.body.id,
+    rate: req.body.rate,
+    comment: req.body.comment,
+  };
+
+  let token = req.body.user;
+  User.findByToken(token, (err, user) => {
+    Place.findOneAndUpdate(
+      { _id: req.body.id },
+      {
+        $push: {
+          review: {
+            userId: user._id,
+            rate: req.body.rate,
+            comment: req.body.comment,
+          },
+        },
+      },
+      function (err, update) {
+        console.log(update);
+        if (err) return res.status(200).json({ success: false, err });
+        return res.status(200).send({ success: true, update });
+      }
+    );
+  });
+  // console.log(req.body);
+});
+
 app.post("/", (req, res) => {
   Place.find((err, data) => {
     return res.json({

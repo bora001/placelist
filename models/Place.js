@@ -14,6 +14,18 @@ const placeSchema = mongoose.Schema({
       required: true,
     },
   },
+  review: {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    comment: {
+      type: String,
+    },
+    rate: {
+      type: Number,
+    },
+  },
   price: {
     type: Number,
   },

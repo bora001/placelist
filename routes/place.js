@@ -12,7 +12,8 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/:id", (req, res) => {
-  Place.findOne(req.params, function (err, item) {
+  let data = { _id: req.params.id };
+  Place.findOne(data, function (err, item) {
     return res.status(200).json({
       success: true,
       item,

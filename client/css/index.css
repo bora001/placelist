@@ -225,23 +225,23 @@ section .form_box button {
 .section_place .place_box .review_box form .top_box {
   display: flex;
   align-items: center;
-  justify-content: space-around;
 }
 .section_place .place_box .review_box form .top_box .rate_input {
   position: relative;
   width: 180px;
   height: 50px;
+  margin-left: 110px;
   font-size: 36px;
 }
 .section_place .place_box .review_box form .top_box .rate_input span {
-  width: 100%;
   position: absolute;
+  width: 100%;
   z-index: 1;
   line-height: 35px;
   color: #bebcbc;
 }
 .section_place .place_box .review_box form .top_box .rate_input span.filled {
-  width: 100%;
+  width: 50%;
   overflow: hidden;
   color: red;
   z-index: 9;

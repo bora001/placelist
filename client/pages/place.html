@@ -12,7 +12,7 @@
     <div w3-include-html="/pages/nav.html"></div>
     <section class="section_place">
       <div class="place_box">
-        <div class="item_box">
+        <!-- <div class="item_box">
           <div class="img_box">
             <img
               src="https://cdn.pixabay.com/photo/2017/07/10/10/06/mattress-2489615_960_720.jpg"
@@ -32,14 +32,14 @@
               sit amet dignissim felis. Nullam ultricies ut quam ac euismod.
             </p>
           </div>
-        </div>
+        </div> -->
         <div class="review_box">
-          <form action="">
+          <form action="" class="form_box" onsubmit="return false">
             <div class="top_box">
               <h3>Leave a Review</h3>
               <div class="rate_input">
-                <span>★★★★★</span>
-                <span class="filled">★★★★★</span>
+                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 <input
                   type="range"
                   name="rate"
@@ -51,8 +51,13 @@
               </div>
             </div>
             <div class="bottom_box">
-              <textarea name="comment" id=""></textarea>
-              <input type="submit" name="submit" />
+              <textarea name="comment" id="" required></textarea>
+              <input
+                type="submit"
+                name="type"
+                class="btn_submit"
+                value="Leave a Review"
+              />
             </div>
           </form>
           <div class="review_list"></div>

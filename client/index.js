@@ -4,7 +4,6 @@ const formInput = document.querySelectorAll(
   ".form_box input, .form_box textarea"
 );
 const listBox = document.querySelector(".section_list .list_box");
-
 w3.includeHTML();
 
 // const inputValidCheck = () => {
@@ -69,6 +68,21 @@ const modalE = (status, msg) => {
   });
 };
 
+//link-Address
+const addressCheck = () => {
+  let link = window.location.pathname.split("/");
+  console.log("addresscheck", link[1]);
+  switch (link[1]) {
+    case "list":
+      getList();
+      break;
+    case "place":
+      getItem(link[2]);
+      break;
+  }
+};
+
+//formSubmit
 const formSubmit = () => {
   formBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -85,6 +99,10 @@ const formSubmit = () => {
           case "Create New PlaceList":
             createForm();
             break;
+          case "Leave a Review":
+            createReview();
+            break;
+
           default:
             break;
         }
@@ -136,7 +154,6 @@ const loginForm = () => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       if (data.success) {
         localStorage.setItem("x_auth", data.token);
         formReset();
@@ -171,9 +188,8 @@ const createForm = () => {
       }
     })
     .catch((err) => console.log(err));
-
-  // console.log(data);
 };
+
 //getData
 
 const getData = () => {
@@ -246,8 +262,8 @@ const renderList = (data) => {
 };
 
 //item
-const getItem = () => {
-  fetch("/place/:id", {
+const getItem = (id) => {
+  fetch(`/place/${id}`, {
     credentials: "include",
     method: "POST",
     headers: {
@@ -255,12 +271,59 @@ const getItem = () => {
     },
   })
     .then((res) => res.json())
-    .then((data) => console.log(data.item))
+    .then((data) => {
+      renderItem(data.item);
+    })
     .catch((err) => console.log(err));
 };
-getItem();
-//map
 
+const renderItem = (data) => {
+  let placeBox = document.querySelector(".section_place .place_box");
+  let html = `<div class="item_box">
+          <div class="img_box">
+            <img
+              src="https://cdn.pixabay.com/photo/2017/07/10/10/06/mattress-2489615_960_720.jpg"
+              alt=""
+            />
+          </div>
+          <div class="txt_box">
+            <h3>${data.name}</h3>
+            <p>${data.address}</p>
+            <p>${data.price}</p>
+            <p>${data.desc}</p>
+          </div>
+        </div>`;
+  placeBox.insertAdjacentHTML("afterbegin", html);
+};
+
+const createReview = () => {
+  let data = {};
+  let link = window.location.pathname.split("/");
+  let user = localStorage.getItem("x_auth");
+  for (let v of Object.values(formInput)) {
+    data[v.name] = v.value;
+  }
+  let newData = Object.assign({}, data, { id: link[2], user });
+  fetch(`/review`, {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      // if (data.success) {
+      //   formReset();
+      //   window.location.href = "/";
+      // }
+    })
+    .catch((err) => console.log(err));
+};
+
+//map
 const setMap = (collection) => {
   mapboxgl.accessToken = key;
   const map = new mapboxgl.Map({
@@ -271,7 +334,6 @@ const setMap = (collection) => {
   });
   map.addControl(new mapboxgl.NavigationControl());
 
-  console.log(collection);
   map.on("load", () => {
     map.addSource("placelist", {
       type: "geojson",
@@ -325,7 +387,6 @@ const setMap = (collection) => {
       },
     });
 
-    // inspect a cluster on click
     map.on("click", "clusters", (e) => {
       const features = map.queryRenderedFeatures(e.point, {
         layers: ["clusters"],
@@ -364,14 +425,14 @@ const setMap = (collection) => {
     });
   });
 };
-getList();
 getData();
 formSubmit();
 loginCheck();
+addressCheck();
 
 //place-item
 //review
-
+// const reviewRate = () => {
 const rateInput = document.querySelector(
   ".section_place .review_box input[name='rate']"
 );
@@ -380,6 +441,7 @@ const rateFilled = document.querySelector(
 );
 
 rateInput.addEventListener("click", (e) => {
-  console.log("rate", e.target.value);
+  // console.log("rate", e.target.value);
   rateFilled.style.width = `${e.target.value * 20}%`;
 });
+// };
