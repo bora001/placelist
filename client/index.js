@@ -309,7 +309,9 @@ const renderReview = (data) => {
     const html = `<div class="review_item">
               <div class="review_rate">
                 <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                <span class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span style="width:${
+                  comment.rate * 20
+                }%"class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
               </div>
               <div class="review_txt">
                 <h3>${comment.username}</h3>
