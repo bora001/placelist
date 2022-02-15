@@ -34,33 +34,59 @@
           </div>
         </div> -->
         <div class="review_box">
-          <form action="" class="form_box" onsubmit="return false">
-            <div class="top_box">
-              <h3>Leave a Review</h3>
-              <div class="rate_input">
-                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                <span class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <div class="review_add">
+            <form action="" class="form_box" onsubmit="return false">
+              <div class="top_box">
+                <h3>Leave a Review</h3>
+                <div class="rate_input">
+                  <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <span class="filled"
+                    >&#9733;&#9733;&#9733;&#9733;&#9733;</span
+                  >
+                  <input
+                    type="range"
+                    name="rate"
+                    min="1"
+                    max="5"
+                    step="0.5"
+                    value="3"
+                  />
+                </div>
+              </div>
+              <div class="bottom_box">
+                <textarea name="comment" id="" required></textarea>
                 <input
-                  type="range"
-                  name="rate"
-                  min="1"
-                  max="5"
-                  step="0.5"
-                  value="3"
+                  type="submit"
+                  name="type"
+                  class="btn_submit"
+                  value="Leave a Review"
                 />
               </div>
+            </form>
+          </div>
+
+          <div class="review_list">
+            <div class="review_item">
+              <div class="review_rate">
+                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </div>
+              <div class="review_txt">
+                <h3>username</h3>
+                <p>comment</p>
+              </div>
             </div>
-            <div class="bottom_box">
-              <textarea name="comment" id="" required></textarea>
-              <input
-                type="submit"
-                name="type"
-                class="btn_submit"
-                value="Leave a Review"
-              />
+            <div class="review_item">
+              <div class="review_rate">
+                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </div>
+              <div class="review_txt">
+                <h3>username</h3>
+                <p>comment</p>
+              </div>
             </div>
-          </form>
-          <div class="review_list"></div>
+          </div>
         </div>
       </div>
     </section>

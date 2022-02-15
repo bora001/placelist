@@ -214,39 +214,47 @@ section .form_box button {
 }
 .section_place .place_box .review_box {
   width: 50%;
-}
-.section_place .place_box .review_box form {
-  position: relative;
-  margin: 0 auto;
-  width: 80%;
   display: flex;
   flex-direction: column;
 }
-.section_place .place_box .review_box form .top_box {
+.section_place .place_box .review_box .review_add {
+  position: relative;
+  margin: 20px auto;
+  width: 100%;
+  padding: 20px 30px;
+}
+.section_place .place_box .review_box .review_add form {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 250px;
+  flex-direction: column;
+}
+.section_place .place_box .review_box .review_add form .top_box {
   display: flex;
   align-items: center;
 }
-.section_place .place_box .review_box form .top_box .rate_input {
+.section_place .place_box .review_box .review_add form .top_box .rate_input {
   position: relative;
   width: 180px;
   height: 50px;
   margin-left: 110px;
   font-size: 36px;
 }
-.section_place .place_box .review_box form .top_box .rate_input span {
+.section_place .place_box .review_box .review_add form .top_box .rate_input span {
   position: absolute;
   width: 100%;
   z-index: 1;
   line-height: 35px;
   color: #bebcbc;
 }
-.section_place .place_box .review_box form .top_box .rate_input span.filled {
+.section_place .place_box .review_box .review_add form .top_box .rate_input span.filled {
   width: 50%;
   overflow: hidden;
   color: red;
   z-index: 9;
 }
-.section_place .place_box .review_box form .top_box .rate_input input[name=rate] {
+.section_place .place_box .review_box .review_add form .top_box .rate_input input[name=rate] {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -254,17 +262,53 @@ section .form_box button {
   opacity: 0;
   cursor: pointer;
 }
-.section_place .place_box .review_box form .bottom_box textarea {
+.section_place .place_box .review_box .review_add form .bottom_box textarea {
   padding: 5%;
   width: 100%;
   height: 150px;
 }
-.section_place .place_box .review_box form .bottom_box input[type=submit] {
+.section_place .place_box .review_box .review_add form .bottom_box input[type=submit] {
   position: absolute;
   width: 30%;
   margin: 0 auto;
-  top: 80%;
-  right: 5%;
+  top: 75%;
+  right: 10%;
+  cursor: pointer;
+}
+.section_place .place_box .review_box .review_list {
+  height: 300px;
+  padding: 20px 30px;
+  overflow-y: scroll;
+}
+.section_place .place_box .review_box .review_list .review_item {
+  position: relative;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: antiquewhite;
+}
+.section_place .place_box .review_box .review_list .review_item .review_rate {
+  position: absolute;
+  width: 85px;
+  right: 10px;
+}
+.section_place .place_box .review_box .review_list .review_item .review_rate span {
+  position: absolute;
+  color: #bebcbc;
+  font-size: 16px;
+  text-align: center;
+  line-height: 20px;
+  z-index: 1;
+}
+.section_place .place_box .review_box .review_list .review_item .review_rate span.filled {
+  color: red;
+  overflow: hidden;
+}
+.section_place .place_box .review_box .review_list .review_item .review_txt h3 {
+  font-size: 16px;
+}
+.section_place .place_box .review_box .review_list .review_item .review_txt p {
+  margin: 15px;
+  font-size: 16px;
 }
 
 /*# sourceMappingURL=index.css.map */
