@@ -213,7 +213,7 @@ const getData = () => {
         let obj = {
           geometry: place.geometry,
           properties: {
-            price: place.price,
+            rate: place.rate,
             name: place.name,
           },
         };
@@ -250,7 +250,7 @@ const renderList = (data) => {
           </div>
           <div class="txt_box">
             <h3>${item.name}</h2>
-            <p>${item.price}</p>
+            <p>${item.rate}</p>
             <p>${item.address}</p>
             <a href="/place/${item._id}" class="btn_view">View the place</a>
           </div>
@@ -293,7 +293,7 @@ const renderItem = (data) => {
           <div class="txt_box">
             <h3>${data.name}</h3>
             <p>${data.address}</p>
-            <p>${data.price}</p>
+            <p>${data.rate}</p>
             <p>${data.desc}</p>
           </div>
         </div>`;
@@ -343,7 +343,7 @@ const createReview = () => {
       console.log(data);
       if (data.success) {
         formReset();
-        //   window.location.href = "/";
+        window.location.href = `/place/${link[2]}`;
       }
     })
     .catch((err) => console.log(err));
@@ -433,13 +433,13 @@ const setMap = (collection) => {
     map.on("click", "unclustered-point", (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
       const name = e.features[0].properties.name;
-      const price = e.features[0].properties.price;
+      const rate = e.features[0].properties.rate;
       // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
       //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
       // }
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`${name}<br>$${price}`)
+        .setHTML(`${name}<br>$${rate}`)
         .addTo(map);
     });
 
@@ -459,12 +459,8 @@ addressCheck();
 //place-item
 //review
 // const reviewRate = () => {
-const rateInput = document.querySelector(
-  ".section_place .review_box input[name='rate']"
-);
-const rateFilled = document.querySelector(
-  ".section_place .review_box .rate_input .filled"
-);
+const rateInput = document.querySelector("input[name='rate']");
+const rateFilled = document.querySelector(".rate_input .filled");
 
 rateInput.addEventListener("click", (e) => {
   // console.log("rate", e.target.value);

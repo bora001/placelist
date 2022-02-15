@@ -30,7 +30,7 @@ const placeSchema = mongoose.Schema({
       type: Number,
     },
   },
-  price: {
+  rate: {
     type: Number,
   },
   desc: {

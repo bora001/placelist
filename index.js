@@ -89,7 +89,7 @@ app.post("/login", (req, res) => {
 app.post("/create", (req, res) => {
   let data = {
     name: req.body.name,
-    price: req.body.price,
+    rate: req.body.rate,
     img: req.body.img,
     desc: req.body.desc,
     address: req.body.location,
