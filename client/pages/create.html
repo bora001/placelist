@@ -11,7 +11,12 @@
   <body>
     <div w3-include-html="/pages/nav.html"></div>
     <section class="section_new">
-      <form class="form_new form_box" method="post" onsubmit="return false;">
+      <form
+        class="form_new form_box"
+        method="post"
+        onsubmit="return false;"
+        enctype="multipart/form-data"
+      >
         <h2>New PlaceList</h2>
         <input type="text" placeholder="Name" name="name" required />
         <input type="text" placeholder="Location" name="location" required />

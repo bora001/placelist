@@ -12,7 +12,8 @@ const { route } = require("express/lib/application");
 const req = require("express/lib/request");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
-
+const multer = require("multer");
+const uploads = multer({ dest: "uploads/" });
 //---------------------------------------------------------------------------------------//
 
 //mongodb
