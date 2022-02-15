@@ -278,6 +278,10 @@ const getItem = (id) => {
 };
 
 const renderItem = (data) => {
+  // console.log(data);
+  if (data.review) {
+    renderReview(data.review);
+  }
   let placeBox = document.querySelector(".section_place .place_box");
   let html = `<div class="item_box">
           <div class="img_box">
@@ -294,6 +298,26 @@ const renderItem = (data) => {
           </div>
         </div>`;
   placeBox.insertAdjacentHTML("afterbegin", html);
+};
+
+const renderReview = (data) => {
+  console.log(data);
+  let reviewList = document.querySelector(
+    ".section_place .review_box .review_list"
+  );
+  data.map((comment) => {
+    const html = `<div class="review_item">
+              <div class="review_rate">
+                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </div>
+              <div class="review_txt">
+                <h3>${comment.username}</h3>
+                <p>${comment.comment}</p>
+              </div>
+            </div>`;
+    reviewList.insertAdjacentHTML("afterbegin", html);
+  });
 };
 
 const createReview = () => {
@@ -315,10 +339,10 @@ const createReview = () => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      // if (data.success) {
-      //   formReset();
-      //   window.location.href = "/";
-      // }
+      if (data.success) {
+        formReset();
+        //   window.location.href = "/";
+      }
     })
     .catch((err) => console.log(err));
 };

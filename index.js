@@ -126,6 +126,7 @@ app.post("/review", (req, res) => {
         $push: {
           review: {
             userId: user._id,
+            username: user.username,
             rate: req.body.rate,
             comment: req.body.comment,
           },
