@@ -8,12 +8,23 @@ const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const { Place } = require("./models/Place");
 const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
-const { route } = require("express/lib/application");
-const req = require("express/lib/request");
+// const { route } = require("express/lib/application");
+// const req = require("express/lib/request");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
 const multer = require("multer");
-const uploads = multer({ dest: "uploads/" });
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(req, file, cb) {
+      cb(null, "uploads/");
+    },
+    filename(req, file, cb) {
+      cb(null, file.originalname);
+    },
+  }),
+});
+
 //---------------------------------------------------------------------------------------//
 
 //mongodb
@@ -28,7 +39,7 @@ mongoose
 //---------------------------------------------------------------------------------------//
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/client"));
 
 app.use((req, res, next) => {
@@ -87,30 +98,32 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.post("/create", (req, res) => {
+app.post("/create", upload.single("img"), (req, res) => {
   let data = {
     name: req.body.name,
     rate: req.body.rate,
-    img: req.body.img,
     desc: req.body.desc,
     address: req.body.location,
   };
 
-  const geoData = geocoder
-    .forwardGeocode({
-      query: req.body.location,
-      limit: 1,
-    })
-    .send()
-    .then((geo) => {
-      data.geometry = geo.body.features[0].geometry;
-      const newPlace = new Place(data);
-      newPlace.save();
-      return res.status(200).json({
-        success: true,
-      });
-    });
+  console.log(req.file);
+  // const geoData = geocoder
+  //   .forwardGeocode({
+  //     query: req.body.location,
+  //     limit: 1,
+  //   })
+  //   .send()
+  //   .then((geo) => {
+  //     data.geometry = geo.body.features[0].geometry;
+  //     const newPlace = new Place(data);
+  //     newPlace.save();
+  //     return res.status(200).json({
+  //       success: true,
+  //     });
+  //   });
 });
+
+//multer
 
 app.post("/review", (req, res) => {
   let data = {

@@ -170,24 +170,41 @@ const createForm = () => {
   let data = {};
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;
+    // console.log((data[v.name] = v.value));
   }
 
+  const form = document.querySelector(".form_new");
+  const formData = new FormData(form);
+  //  formData.append("email", event.target.email.value);
+  //  formData.append("pwd", event.target.pwd.value);
+  //  formData.append("profile_img", event.target.profile_img.files[0]);
+  //  formData.append("name", event.target.name.value);
+  //  formData.append("nickname", event.target.nickname.value);
+  //  formData.append("phone", event.target.phone.value);
+  console.log(formData);
   fetch("/create", {
-    credentials: "include",
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        formReset();
-        window.location.href = "/";
-      }
-    })
-    .catch((err) => console.log(err));
+    body: formData,
+  });
+
+  // fetch("/create", {
+  //   credentials: "include",
+  //   method: "POST",
+  //   //   headers: {
+  //   //     // "Content-Type": "application/json",
+  //   //     // "Content-Type": "multipart/form-data",
+  //   //   },
+  //   //   body: JSON.stringify(data),
+  // });
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //     // if (data.success) {
+  //     //   formReset();
+  //     //   window.location.href = "/";
+  //     // }
+  //   })
+  //   .catch((err) => console.log(err));
 };
 
 //getData
