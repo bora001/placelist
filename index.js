@@ -12,19 +12,28 @@ const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
 // const req = require("express/lib/request");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
-const multer = require("multer");
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination(req, file, cb) {
-      cb(null, "uploads/");
-    },
-    filename(req, file, cb) {
-      cb(null, file.originalname);
-    },
-  }),
+// multer
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
 });
 
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "placelist-img",
+    allowedFormats: ["jpeg", "jpg", "png"],
+    // format: async (req, file) => "png",
+    // public_id: (req, file) => "computed file name",
+  },
+});
+const upload = multer({ storage });
 //---------------------------------------------------------------------------------------//
 
 //mongodb
@@ -104,23 +113,23 @@ app.post("/create", upload.single("img"), (req, res) => {
     rate: req.body.rate,
     desc: req.body.desc,
     address: req.body.location,
+    img: req.file.filename,
   };
 
-  console.log(req.file);
-  // const geoData = geocoder
-  //   .forwardGeocode({
-  //     query: req.body.location,
-  //     limit: 1,
-  //   })
-  //   .send()
-  //   .then((geo) => {
-  //     data.geometry = geo.body.features[0].geometry;
-  //     const newPlace = new Place(data);
-  //     newPlace.save();
-  //     return res.status(200).json({
-  //       success: true,
-  //     });
-  //   });
+  const geoData = geocoder
+    .forwardGeocode({
+      query: req.body.location,
+      limit: 1,
+    })
+    .send()
+    .then((geo) => {
+      data.geometry = geo.body.features[0].geometry;
+      const newPlace = new Place(data);
+      newPlace.save();
+      return res.status(200).json({
+        success: true,
+      });
+    });
 });
 
 //multer
