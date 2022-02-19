@@ -175,36 +175,17 @@ const createForm = () => {
 
   const form = document.querySelector(".form_new");
   const formData = new FormData(form);
-  //  formData.append("email", event.target.email.value);
-  //  formData.append("pwd", event.target.pwd.value);
-  //  formData.append("profile_img", event.target.profile_img.files[0]);
-  //  formData.append("name", event.target.name.value);
-  //  formData.append("nickname", event.target.nickname.value);
-  //  formData.append("phone", event.target.phone.value);
-  console.log(formData);
   fetch("/create", {
     method: "POST",
     body: formData,
-  });
-
-  // fetch("/create", {
-  //   credentials: "include",
-  //   method: "POST",
-  //   //   headers: {
-  //   //     // "Content-Type": "application/json",
-  //   //     // "Content-Type": "multipart/form-data",
-  //   //   },
-  //   //   body: JSON.stringify(data),
-  // });
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //     // if (data.success) {
-  //     //   formReset();
-  //     //   window.location.href = "/";
-  //     // }
-  //   })
-  //   .catch((err) => console.log(err));
+  })
+    .then((data) => {
+      if (data.success) {
+        formReset();
+        window.location.href = "/";
+      }
+    })
+    .catch((err) => console.log(err));
 };
 
 //getData
@@ -261,7 +242,7 @@ const renderList = (data) => {
   <div class="list_item">
           <div class="img_box">
             <img
-              src="https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041_960_720.jpg"
+              src=${item.img}
               alt=""
             />
           </div>
@@ -303,7 +284,7 @@ const renderItem = (data) => {
   let html = `<div class="item_box">
           <div class="img_box">
             <img
-              src="https://cdn.pixabay.com/photo/2017/07/10/10/06/mattress-2489615_960_720.jpg"
+              src=${data.img}
               alt=""
             />
           </div>

@@ -113,7 +113,7 @@ app.post("/create", upload.single("img"), (req, res) => {
     rate: req.body.rate,
     desc: req.body.desc,
     address: req.body.location,
-    img: req.file.filename,
+    img: req.file.path,
   };
 
   const geoData = geocoder
