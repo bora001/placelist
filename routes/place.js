@@ -2,16 +2,20 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const { Place } = require("../models/Place");
+const cookieParser = require("cookie-parser");
 
 // router.get("/", (req, res) => {
 //   // res.sendFile(path.join(__dirname + `/../client/pages/place.html`));
 // });
+router.use(cookieParser());
 
 router.get("/:id", (req, res) => {
   res.sendFile(path.join(__dirname + `/../client/pages/place.html`));
 });
 
 router.post("/:id", (req, res) => {
+  console.log(req.cookies);
+
   let data = { _id: req.params.id };
   Place.findOne(data, function (err, item) {
     return res.status(200).json({

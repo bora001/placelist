@@ -270,13 +270,14 @@ const getItem = (id) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data, "----getItem");
       renderItem(data.item);
     })
     .catch((err) => console.log(err));
 };
 
 const renderItem = (data) => {
-  // console.log(data);
+  console.log(data, "-----renderItem");
   if (data.review) {
     renderReview(data.review);
   }
