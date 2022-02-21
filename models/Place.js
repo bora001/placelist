@@ -39,6 +39,9 @@ const placeSchema = mongoose.Schema({
   img: {
     type: String,
   },
+  imgName: {
+    type: String,
+  },
   writer: {
     type: mongoose.Schema.ObjectId,
   },

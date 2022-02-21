@@ -155,7 +155,7 @@ const loginForm = () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.success) {
-        // localStorage.setItem("x_auth", data.token);
+        localStorage.setItem("x_auth", data.token);
         formReset();
         window.location.href = "/";
       } else {
@@ -179,6 +179,7 @@ const createForm = () => {
     method: "POST",
     body: formData,
   })
+    .then((res) => res.json())
     .then((data) => {
       if (data.success) {
         formReset();
@@ -271,22 +272,44 @@ const getItem = (id) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data, "----getItem");
-      renderItem(data.item, data.writer);
+      renderItem(data.item);
+      deleteItem(data.writer, data.item._id);
     })
     .catch((err) => console.log(err));
 };
 
-const renderItem = (data, result) => {
-  console.log(result, "same writer");
+const deleteItem = (result, id) => {
+  const delBtn = document.querySelector(".section_place .del_place");
+  if (!result) {
+    delBtn.classList.add("off");
+  }
+  delBtn.addEventListener("click", () => {
+    if (window.confirm("Are you sure you want to delete this place ?")) {
+      fetch(`/place/${id}/delete`, {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            window.location.href = "/";
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  });
+};
+
+const renderItem = (data) => {
   console.log(data, "-----renderItem");
   if (data.review) {
     renderReview(data.review);
   }
   let itemBox = document.querySelector(".section_place .item_box");
-  let btnBox = document.querySelector(".section_place .btn_box");
-  if (!result) {
-    btnBox.classList.add("off");
-  }
+
   let html = `
           <div class="img_box">
             <img
@@ -466,8 +489,10 @@ addressCheck();
 const rateInput = document.querySelector("input[name='rate']");
 const rateFilled = document.querySelector(".rate_input .filled");
 
-rateInput.addEventListener("click", (e) => {
-  // console.log("rate", e.target.value);
-  rateFilled.style.width = `${e.target.value * 20}%`;
-});
+if (rateInput) {
+  rateInput.addEventListener("click", (e) => {
+    // console.log("rate", e.target.value);
+    rateFilled.style.width = `${e.target.value * 20}%`;
+  });
+}
 // };

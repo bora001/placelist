@@ -4,6 +4,7 @@ const path = require("path");
 const { User } = require("../models/User");
 const { Place } = require("../models/Place");
 const cookieParser = require("cookie-parser");
+const cloudinary = require("cloudinary").v2;
 
 // router.get("/", (req, res) => {
 //   // res.sendFile(path.join(__dirname + `/../client/pages/place.html`));
@@ -26,6 +27,16 @@ router.post("/:id", (req, res) => {
         item,
         writer,
       });
+    });
+  });
+});
+
+router.post("/:id/delete", (req, res) => {
+  let data = { _id: req.params.id };
+  Place.findOneAndDelete(data, function (err, item) {
+    cloudinary.uploader.destroy(item.imgName);
+    return res.status(200).json({
+      success: true,
     });
   });
 });

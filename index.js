@@ -117,6 +117,7 @@ app.post("/create", upload.single("img"), (req, res) => {
     desc: req.body.desc,
     address: req.body.location,
     img: req.file.path,
+    imgName: req.file.filename,
     writer: "",
   };
   User.findByToken(req.cookies.x_auth, (err, user) => {
