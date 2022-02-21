@@ -7,6 +7,7 @@ const app = express();
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const { Place } = require("./models/Place");
+const { Review } = require("./models/Review");
 const cookieParser = require("cookie-parser");
 const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
 // const { route } = require("express/lib/application");
@@ -143,33 +144,33 @@ app.post("/create", upload.single("img"), (req, res) => {
 
 app.post("/review", (req, res) => {
   let data = {
-    // userId: req.body.id,
+    userId: "",
+    username: "",
     rate: req.body.rate,
     comment: req.body.comment,
   };
 
   let token = req.body.user;
   User.findByToken(token, (err, user) => {
+    data.userId = user._id;
+    data.username = user.username;
+    const newReview = new Review(data);
+    const reviewId = newReview._id;
+    newReview.save();
+
     Place.findOneAndUpdate(
       { _id: req.body.id },
       {
         $push: {
-          review: {
-            userId: user._id,
-            username: user.username,
-            rate: req.body.rate,
-            comment: req.body.comment,
-          },
+          review: reviewId,
         },
       },
       function (err, update) {
-        console.log(update);
         if (err) return res.status(200).json({ success: false, err });
         return res.status(200).send({ success: true, update });
       }
     );
   });
-  // console.log(req.body);
 });
 
 app.post("/", (req, res) => {

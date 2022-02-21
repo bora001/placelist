@@ -271,8 +271,8 @@ const getItem = (id) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data, "----getItem");
       renderItem(data.item);
+      renderReview(data.item.review);
       deleteItem(data.writer, data.item._id);
     })
     .catch((err) => console.log(err));
@@ -304,10 +304,9 @@ const deleteItem = (result, id) => {
 };
 
 const renderItem = (data) => {
-  console.log(data, "-----renderItem");
-  if (data.review) {
-    renderReview(data.review);
-  }
+  // if (data.review) {
+  //   // renderReview(data.review);
+  // }
   let itemBox = document.querySelector(".section_place .item_box");
 
   let html = `
@@ -328,12 +327,12 @@ const renderItem = (data) => {
 };
 
 const renderReview = (data) => {
-  // console.log(data, "data");
-
+  // console.log(data);
   let reviewList = document.querySelector(
     ".section_place .review_box .review_list"
   );
   data.map((comment) => {
+    console.log(comment);
     const html = `<div class="review_item">
               <div class="review_rate">
                 <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -347,6 +346,7 @@ const renderReview = (data) => {
               </div>
             </div>`;
     reviewList.insertAdjacentHTML("afterbegin", html);
+    // <button class="del_review">❌</button>
   });
 };
 

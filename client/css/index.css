@@ -364,5 +364,13 @@ section .form_box .rate_input input[name=rate] {
   margin: 15px;
   font-size: 16px;
 }
+.section_place .place_box .review_box .review_list .review_item .del_review {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
 
 /*# sourceMappingURL=index.css.map */

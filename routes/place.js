@@ -19,15 +19,13 @@ router.post("/:id", (req, res) => {
   let data = { _id: req.params.id };
   User.findByToken(req.cookies.x_auth, (err, user) => {
     Place.findOne(data, function (err, item) {
-      // console.log(user, item);
       let writer = user._id.valueOf() == item.writer.valueOf();
-      // console.log(user._id.valueOf() == item.writer.valueOf());
       return res.status(200).json({
         success: true,
         item,
         writer,
       });
-    });
+    }).populate("review");
   });
 });
 

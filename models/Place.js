@@ -14,22 +14,12 @@ const placeSchema = mongoose.Schema({
       required: true,
     },
   },
-  review: {
-    userId: {
+  review: [
+    {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Review",
     },
-    username: {
-      type: String,
-    },
-
-    comment: {
-      type: String,
-    },
-    rate: {
-      type: Number,
-    },
-  },
+  ],
   rate: {
     type: Number,
   },
