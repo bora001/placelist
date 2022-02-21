@@ -146,11 +146,12 @@ app.post("/review", (req, res) => {
   let data = {
     userId: "",
     username: "",
+    placeId: req.body.id,
     rate: req.body.rate,
     comment: req.body.comment,
   };
-
   let token = req.body.user;
+  console.log(data);
   User.findByToken(token, (err, user) => {
     data.userId = user._id;
     data.username = user.username;

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Review } = require("./Review");
 
 const placeSchema = mongoose.Schema({
   name: {
@@ -35,6 +36,16 @@ const placeSchema = mongoose.Schema({
   writer: {
     type: mongoose.Schema.ObjectId,
   },
+});
+placeSchema.post("findOneAndDelete", async function (doc) {
+  // console.log(Review);
+  if (doc) {
+    await Review.deleteMany({
+      _id: {
+        $in: doc.review,
+      },
+    });
+  }
 });
 
 const Place = mongoose.model("Place", placeSchema);

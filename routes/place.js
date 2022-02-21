@@ -39,4 +39,18 @@ router.post("/:id/delete", (req, res) => {
   });
 });
 
+router.post("/:id/comment", (req, res) => {
+  let id = { _id: req.params.id };
+  User.findByToken(req.cookies.x_auth, (err, user) => {
+    let result = user._id.valueOf() == req.body.userId;
+    return res.status(200).json({
+      result,
+      id,
+    });
+  });
+});
+
+router.post("/:id/comment/delete", (req, res) => {
+  console.log(req.body);
+});
 module.exports = router;

@@ -326,13 +326,63 @@ const renderItem = (data) => {
   itemBox.insertAdjacentHTML("afterbegin", html);
 };
 
+const userCheck = (userId, commentId) => {
+  let link = window.location.pathname.split("/");
+  let id = link[2];
+  let reviewDel = document.querySelector(
+    ".section_place .review_box .del_review"
+  );
+  let data = { userId };
+  fetch(`/place/${id}/comment`, {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (!data.result) {
+        reviewDel.classList.add("off");
+      }
+      reviewDel.addEventListener("click", () => {
+        deleteReview(commentId, data.id._id);
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+const deleteReview = (commentId, id) => {
+  console.log("delll", commentId, id);
+  let data = {
+    placeId: id,
+    commentId,
+  };
+  if (window.confirm("Are you sure you want to delete this comment ?")) {
+    fetch(`/place/${id}/comment/delete`, {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          // window.location.href = `/place/${id}`;
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+};
 const renderReview = (data) => {
-  // console.log(data);
+  console.log(data);
   let reviewList = document.querySelector(
     ".section_place .review_box .review_list"
   );
   data.map((comment) => {
-    console.log(comment);
     const html = `<div class="review_item">
               <div class="review_rate">
                 <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -344,9 +394,10 @@ const renderReview = (data) => {
                 <h3>${comment.username}</h3>
                 <p>${comment.comment}</p>
               </div>
+              <button class="del_review">❌</button>
             </div>`;
     reviewList.insertAdjacentHTML("afterbegin", html);
-    // <button class="del_review">❌</button>
+    userCheck(comment.userId, comment._id);
   });
 };
 
