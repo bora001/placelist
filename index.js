@@ -7,6 +7,7 @@ const app = express();
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const { Place } = require("./models/Place");
+const cookieParser = require("cookie-parser");
 const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
 // const { route } = require("express/lib/application");
 // const req = require("express/lib/request");
@@ -50,6 +51,7 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/client"));
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", process.env.localUrl + ":5500");
@@ -115,8 +117,11 @@ app.post("/create", upload.single("img"), (req, res) => {
     desc: req.body.desc,
     address: req.body.location,
     img: req.file.path,
+    writer: "",
   };
-
+  User.findByToken(req.cookies.x_auth, (err, user) => {
+    data.writer = user._id;
+  });
   const geoData = geocoder
     .forwardGeocode({
       query: req.body.location,

@@ -239,6 +239,17 @@ section .form_box .rate_input input[name=rate] {
 .section_place .place_box .item_box {
   width: 50%;
 }
+.section_place .place_box .item_box .btn_box button {
+  margin-right: 5px;
+  font-size: 12px;
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  background-color: #c8f8ce;
+}
+.section_place .place_box .item_box .btn_box button.btn_del {
+  background-color: #f8e2c8;
+}
 .section_place .place_box .review_box {
   width: 50%;
   display: flex;

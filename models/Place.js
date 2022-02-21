@@ -39,6 +39,9 @@ const placeSchema = mongoose.Schema({
   img: {
     type: String,
   },
+  writer: {
+    type: mongoose.Schema.ObjectId,
+  },
 });
 
 const Place = mongoose.model("Place", placeSchema);

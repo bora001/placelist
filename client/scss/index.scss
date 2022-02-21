@@ -254,6 +254,19 @@ section {
         p {
         }
       }
+      .btn_box {
+        button {
+          margin-right: 5px;
+          font-size: 12px;
+          padding: 5px;
+          cursor: pointer;
+          border: none;
+          background-color: rgb(200, 248, 206);
+        }
+        button.btn_del {
+          background-color: rgb(248, 226, 200);
+        }
+      }
     }
     .review_box {
       width: 50%;

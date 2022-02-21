@@ -155,7 +155,7 @@ const loginForm = () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.success) {
-        localStorage.setItem("x_auth", data.token);
+        // localStorage.setItem("x_auth", data.token);
         formReset();
         window.location.href = "/";
       } else {
@@ -271,18 +271,23 @@ const getItem = (id) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data, "----getItem");
-      renderItem(data.item);
+      renderItem(data.item, data.writer);
     })
     .catch((err) => console.log(err));
 };
 
-const renderItem = (data) => {
+const renderItem = (data, result) => {
+  console.log(result, "same writer");
   console.log(data, "-----renderItem");
   if (data.review) {
     renderReview(data.review);
   }
-  let placeBox = document.querySelector(".section_place .place_box");
-  let html = `<div class="item_box">
+  let itemBox = document.querySelector(".section_place .item_box");
+  let btnBox = document.querySelector(".section_place .btn_box");
+  if (!result) {
+    btnBox.classList.add("off");
+  }
+  let html = `
           <div class="img_box">
             <img
               src=${data.img}
@@ -295,12 +300,13 @@ const renderItem = (data) => {
             <p>${data.rate}</p>
             <p>${data.desc}</p>
           </div>
-        </div>`;
-  placeBox.insertAdjacentHTML("afterbegin", html);
+        `;
+  itemBox.insertAdjacentHTML("afterbegin", html);
 };
 
 const renderReview = (data) => {
-  console.log(data);
+  // console.log(data, "data");
+
   let reviewList = document.querySelector(
     ".section_place .review_box .review_list"
   );
@@ -339,7 +345,6 @@ const createReview = () => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       if (data.success) {
         formReset();
         window.location.href = `/place/${link[2]}`;
