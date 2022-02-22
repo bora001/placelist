@@ -355,10 +355,12 @@ const userCheck = (userId, commentId) => {
 
 const deleteReview = (commentId, id) => {
   console.log("delll", commentId, id);
+
   let data = {
     placeId: id,
     commentId,
   };
+
   if (window.confirm("Are you sure you want to delete this comment ?")) {
     fetch(`/place/${id}/comment/delete`, {
       credentials: "include",
