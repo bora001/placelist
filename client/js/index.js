@@ -111,86 +111,7 @@ const formSubmit = () => {
   });
 };
 
-const registerForm = () => {
-  let pw;
-  let data = {};
-  for (let v of Object.values(formInput)) {
-    v.name == "password" ? (pw = v.value) : "";
-    v.name !== "password confirm" ? (data[v.name] = v.value) : "";
-    if (v.name == "password confirm" && pw !== v.value) {
-      modalE(false, "Incorrect Password");
-      return;
-    }
-  }
-
-  fetch("/register", {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      modalE(data.success, data.message);
-    })
-    .catch((err) => console.log(err));
-};
-
-const loginForm = () => {
-  let data = {};
-  for (let v of Object.values(formInput)) {
-    data[v.name] = v.value;
-  }
-
-  fetch("/login", {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        localStorage.setItem("x_auth", data.token);
-        formReset();
-        window.location.href = "/";
-      } else {
-        modalE(data.success, data.message);
-      }
-    })
-    .catch((err) => console.log(err));
-};
-
-const createForm = () => {
-  console.log("create");
-  let data = {};
-  for (let v of Object.values(formInput)) {
-    data[v.name] = v.value;
-    // console.log((data[v.name] = v.value));
-  }
-
-  const form = document.querySelector(".form_new");
-  const formData = new FormData(form);
-  fetch("/create", {
-    method: "POST",
-    body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        formReset();
-        window.location.href = "/";
-      }
-    })
-    .catch((err) => console.log(err));
-};
-
 //getData
-
 const getData = () => {
   if (window.location.pathname !== "/") {
     return true;
@@ -223,109 +144,6 @@ const getData = () => {
     .catch((err) => console.log(err));
 };
 
-//list
-const getList = () => {
-  fetch("/list", {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => renderList(data.data))
-    .catch((err) => console.log(err));
-};
-
-const renderList = (data) => {
-  for (let item of data) {
-    const html = `
-  <div class="list_item">
-          <div class="img_box">
-            <img
-              src=${item.img}
-              alt=""
-            />
-          </div>
-          <div class="txt_box">
-            <h3>${item.name}</h2>
-            <p>${item.rate}</p>
-            <p>${item.address}</p>
-            <a href="/place/${item._id}" class="btn_view">View the place</a>
-          </div>
-        </div>
-  `;
-
-    listBox.insertAdjacentHTML("beforeend", html);
-  }
-};
-
-//item
-const getItem = (id) => {
-  fetch(`/place/${id}`, {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      renderItem(data.item);
-      renderReview(data.item.review);
-      deleteItem(data.writer, data.item._id);
-    })
-    .catch((err) => console.log(err));
-};
-
-const deleteItem = (result, id) => {
-  const delBtn = document.querySelector(".section_place .del_place");
-  if (!result) {
-    delBtn.classList.add("off");
-  }
-  delBtn.addEventListener("click", () => {
-    if (window.confirm("Are you sure you want to delete this place ?")) {
-      fetch(`/place/${id}/delete`, {
-        credentials: "include",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success) {
-            window.location.href = "/";
-          }
-        })
-        .catch((err) => console.log(err));
-    }
-  });
-};
-
-const renderItem = (data) => {
-  // if (data.review) {
-  //   // renderReview(data.review);
-  // }
-  let itemBox = document.querySelector(".section_place .item_box");
-
-  let html = `
-          <div class="img_box">
-            <img
-              src=${data.img}
-              alt=""
-            />
-          </div>
-          <div class="txt_box">
-            <h3>${data.name}</h3>
-            <p>${data.address}</p>
-            <p>${data.rate}</p>
-            <p>${data.desc}</p>
-          </div>
-        `;
-  itemBox.insertAdjacentHTML("afterbegin", html);
-};
-
 const userCheck = (userId, commentId) => {
   let link = window.location.pathname.split("/");
   let id = link[2];
@@ -349,82 +167,6 @@ const userCheck = (userId, commentId) => {
       reviewDel.addEventListener("click", () => {
         deleteReview(commentId, data.id._id);
       });
-    })
-    .catch((err) => console.log(err));
-};
-
-const deleteReview = (commentId, id) => {
-  console.log("delll", commentId, id);
-
-  let data = {
-    placeId: id,
-    commentId,
-  };
-
-  if (window.confirm("Are you sure you want to delete this comment ?")) {
-    fetch(`/place/${id}/comment/delete`, {
-      credentials: "include",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          window.location.href = `/place/${id}`;
-        }
-      })
-      .catch((err) => console.log(err));
-  }
-};
-const renderReview = (data) => {
-  console.log(data);
-  let reviewList = document.querySelector(
-    ".section_place .review_box .review_list"
-  );
-  data.map((comment) => {
-    const html = `<div class="review_item">
-              <div class="review_rate">
-                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                <span style="width:${
-                  comment.rate * 20
-                }%"class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-              </div>
-              <div class="review_txt">
-                <h3>${comment.username}</h3>
-                <p>${comment.comment}</p>
-              </div>
-              <button class="del_review">❌</button>
-            </div>`;
-    reviewList.insertAdjacentHTML("afterbegin", html);
-    userCheck(comment.userId, comment._id);
-  });
-};
-
-const createReview = () => {
-  let data = {};
-  let link = window.location.pathname.split("/");
-  let user = localStorage.getItem("x_auth");
-  for (let v of Object.values(formInput)) {
-    data[v.name] = v.value;
-  }
-  let newData = Object.assign({}, data, { id: link[2], user });
-  fetch(`/review`, {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newData),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        formReset();
-        window.location.href = `/place/${link[2]}`;
-      }
     })
     .catch((err) => console.log(err));
 };
@@ -531,21 +273,8 @@ const setMap = (collection) => {
     });
   });
 };
+
 getData();
 formSubmit();
 loginCheck();
 addressCheck();
-
-//place-item
-//review
-// const reviewRate = () => {
-const rateInput = document.querySelector("input[name='rate']");
-const rateFilled = document.querySelector(".rate_input .filled");
-
-if (rateInput) {
-  rateInput.addEventListener("click", (e) => {
-    // console.log("rate", e.target.value);
-    rateFilled.style.width = `${e.target.value * 20}%`;
-  });
-}
-// };
