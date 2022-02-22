@@ -130,9 +130,11 @@ const getData = () => {
         features: [],
       };
       theData.map((place) => {
+        console.log(place);
         let obj = {
           geometry: place.geometry,
           properties: {
+            img: place.img,
             rate: place.rate,
             name: place.name,
           },
@@ -253,15 +255,17 @@ const setMap = (collection) => {
     });
 
     map.on("click", "unclustered-point", (e) => {
+      console.log(e.features[0]);
       const coordinates = e.features[0].geometry.coordinates.slice();
       const name = e.features[0].properties.name;
       const rate = e.features[0].properties.rate;
+      const img = e.features[0].properties.img;
       // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
       //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
       // }
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`${name}<br>$${rate}`)
+        .setHTML(`<img src='${img}'/><br><h2>${name}</h2>`)
         .addTo(map);
     });
 

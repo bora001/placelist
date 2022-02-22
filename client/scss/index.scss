@@ -419,3 +419,14 @@ section {
 
   // background-color: red;
 }
+.mapboxgl-popup-content {
+  // margin: 25px;
+  padding: 15px 5px;
+  img {
+    width: 120px;
+    height: 70px;
+  }
+  h2 {
+    font-size: 13px;
+  }
+}

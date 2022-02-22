@@ -395,4 +395,15 @@ section .form_box .rate_input input[name=rate] {
   background-color: transparent;
 }
 
+.mapboxgl-popup-content {
+  padding: 15px 5px;
+}
+.mapboxgl-popup-content img {
+  width: 120px;
+  height: 70px;
+}
+.mapboxgl-popup-content h2 {
+  font-size: 13px;
+}
+
 /*# sourceMappingURL=index.css.map */
