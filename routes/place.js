@@ -4,6 +4,7 @@ const path = require("path");
 const { User } = require("../models/User");
 const { Place } = require("../models/Place");
 const cookieParser = require("cookie-parser");
+const { Review } = require("../models/Review");
 const cloudinary = require("cloudinary").v2;
 
 // router.get("/", (req, res) => {
@@ -51,6 +52,25 @@ router.post("/:id/comment", (req, res) => {
 });
 
 router.post("/:id/comment/delete", (req, res) => {
-  console.log(req.body);
+  let data = { _id: req.body.commentId };
+
+  Place.findByIdAndUpdate(
+    req.body.placeId,
+    {
+      $pull: {
+        review: req.body.commentId,
+      },
+    },
+    { new: true },
+    function (err, doc) {
+      console.log(JSON.stringify(doc));
+    }
+  );
+  Review.findOneAndDelete(data, function (err, item) {
+    cloudinary.uploader.destroy(item.imgName);
+    return res.status(200).json({
+      success: true,
+    });
+  });
 });
 module.exports = router;

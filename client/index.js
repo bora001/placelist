@@ -371,7 +371,7 @@ const deleteReview = (commentId, id) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          // window.location.href = `/place/${id}`;
+          window.location.href = `/place/${id}`;
         }
       })
       .catch((err) => console.log(err));

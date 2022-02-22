@@ -38,7 +38,6 @@ const placeSchema = mongoose.Schema({
   },
 });
 placeSchema.post("findOneAndDelete", async function (doc) {
-  // console.log(Review);
   if (doc) {
     await Review.deleteMany({
       _id: {

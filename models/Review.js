@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Place } = require("./Place");
 
 const reviewSchema = mongoose.Schema({
   userId: {
