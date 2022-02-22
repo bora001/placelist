@@ -134,6 +134,7 @@ const getData = () => {
         let obj = {
           geometry: place.geometry,
           properties: {
+            id: place._id,
             img: place.img,
             rate: place.rate,
             name: place.name,
@@ -230,10 +231,10 @@ const setMap = (collection) => {
       source: "placelist",
       filter: ["!", ["has", "point_count"]],
       paint: {
-        "circle-color": "#11b4da",
+        "circle-color": "#da1154",
         "circle-radius": 4,
-        "circle-stroke-width": 1,
-        "circle-stroke-color": "#fff",
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#e9bccb",
       },
     });
 
@@ -260,12 +261,15 @@ const setMap = (collection) => {
       const name = e.features[0].properties.name;
       const rate = e.features[0].properties.rate;
       const img = e.features[0].properties.img;
+      const id = e.features[0].properties.id;
       // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
       //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
       // }
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`<img src='${img}'/><br><h2>${name}</h2>`)
+        .setHTML(
+          `<a href='/place/${id}'><img src='${img}'/><br><h2>${name}</h2></a>`
+        )
         .addTo(map);
     });
 

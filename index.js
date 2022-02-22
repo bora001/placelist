@@ -36,6 +36,7 @@ const storage = new CloudinaryStorage({
   },
 });
 const upload = multer({ storage });
+
 //---------------------------------------------------------------------------------------//
 
 //mongodb
@@ -62,6 +63,7 @@ app.use((req, res, next) => {
 
 app.post("/register", (req, res) => {
   const data = { username: req.body.name, password: req.body.password };
+
   const newUser = new User(data);
 
   User.findOne({ username: req.body.name }, function (err, user) {
