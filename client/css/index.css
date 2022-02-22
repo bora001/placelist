@@ -237,15 +237,37 @@ section .form_box .rate_input input[name=rate] {
   margin: 0 auto;
 }
 .section_place .place_box .item_box {
+  position: relative;
   width: 50%;
+  padding: 20px;
 }
-.section_place .place_box .item_box button.del_place {
-  margin-right: 5px;
+.section_place .place_box .item_box .detail_box .txt_box {
+  padding: 20px 10px;
+}
+.section_place .place_box .item_box .detail_box .txt_box h3 {
+  font-size: 28px;
+}
+.section_place .place_box .item_box .detail_box .txt_box p {
+  font-size: 16px;
+}
+.section_place .place_box .item_box .opt_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.section_place .place_box .item_box .opt_box button.del_place {
   font-size: 12px;
-  padding: 5px;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
   cursor: pointer;
   border: none;
   background-color: #f8e2c8;
+}
+.section_place .place_box .item_box .opt_box #map {
+  position: relative;
+  width: 200px;
+  height: 100px;
 }
 .section_place .place_box .review_box {
   width: 50%;

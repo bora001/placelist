@@ -42,12 +42,14 @@ const deleteItem = (result, id) => {
 };
 
 const renderItem = (data) => {
+  renderMap(data.geometry.coordinates);
   // if (data.review) {
   //   // renderReview(data.review);
   // }
   let itemBox = document.querySelector(".section_place .item_box");
 
   let html = `
+        <div class="detail_box">
           <div class="img_box">
             <img
               src=${data.img}
@@ -60,6 +62,7 @@ const renderItem = (data) => {
             <p>${data.rate}</p>
             <p>${data.desc}</p>
           </div>
+        </div>
         `;
   itemBox.insertAdjacentHTML("afterbegin", html);
 };
@@ -140,16 +143,23 @@ const renderReview = (data) => {
   });
 };
 
-//place-item
+const renderMap = (data) => {
+  mapboxgl.accessToken = key;
+  const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v11",
+    center: data,
+    zoom: 11,
+  });
+  new mapboxgl.Marker().setLngLat(data).addTo(map);
+};
+
 //review
-// const reviewRate = () => {
 const rateInput = document.querySelector("input[name='rate']");
 const rateFilled = document.querySelector(".rate_input .filled");
 
 if (rateInput) {
   rateInput.addEventListener("click", (e) => {
-    // console.log("rate", e.target.value);
     rateFilled.style.width = `${e.target.value * 20}%`;
   });
 }
-// };

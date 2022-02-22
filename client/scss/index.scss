@@ -245,22 +245,41 @@ section {
     border: 2px solid red;
     margin: 0 auto;
     .item_box {
+      position: relative;
       width: 50%;
-      .img_box {
-      }
-      .txt_box {
-        h3 {
+      padding: 20px;
+
+      .detail_box {
+        .img_box {
         }
-        p {
+        .txt_box {
+          padding: 20px 10px;
+          h3 {
+            font-size: 28px;
+          }
+          p {
+            font-size: 16px;
+          }
         }
       }
-      button.del_place {
-        margin-right: 5px;
-        font-size: 12px;
-        padding: 5px;
-        cursor: pointer;
-        border: none;
-        background-color: rgb(248, 226, 200);
+      .opt_box {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        button.del_place {
+          font-size: 12px;
+          width: 100px;
+          height: 30px;
+          line-height: 30px;
+          cursor: pointer;
+          border: none;
+          background-color: rgb(248, 226, 200);
+        }
+        #map {
+          position: relative;
+          width: 200px;
+          height: 100px;
+        }
       }
     }
     .review_box {

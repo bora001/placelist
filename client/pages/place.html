@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Place</title>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/css/index.css" />
     <script src="https://www.w3schools.com/lib/w3.js"></script>
   </head>
@@ -13,7 +17,10 @@
     <section class="section_place">
       <div class="place_box">
         <div class="item_box">
-          <button class="del_place">Delete</button>
+          <div class="opt_box">
+            <button class="del_place">Delete</button>
+            <div id="map"></div>
+          </div>
         </div>
         <div class="review_box">
           <div class="review_add">
@@ -67,6 +74,8 @@
       </div>
     </section>
   </body>
+  <script src="../dev.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
   <script src="../js/place.js"></script>
   <script src="../js/index.js"></script>
 </html>
