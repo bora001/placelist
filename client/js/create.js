@@ -5,7 +5,6 @@ const createForm = () => {
     data[v.name] = v.value;
   }
 
-  console.log(data);
   const form = document.querySelector(".form_new");
   const formData = new FormData(form);
   fetch("/create", {

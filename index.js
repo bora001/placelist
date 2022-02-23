@@ -14,6 +14,7 @@ const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
 // const req = require("express/lib/request");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
+const { encode } = require("html-entities");
 
 // multer
 const multer = require("multer");
@@ -115,14 +116,15 @@ app.post("/login", (req, res) => {
 
 app.post("/create", upload.single("img"), (req, res) => {
   let data = {
-    name: req.body.name,
+    name: encode(req.body.name),
     rate: req.body.rate,
-    desc: req.body.desc,
-    address: req.body.location,
+    desc: encode(req.body.desc),
+    address: encode(req.body.location),
     img: req.file.path,
     imgName: req.file.filename,
     writer: "",
   };
+
   User.findByToken(req.cookies.x_auth, (err, user) => {
     data.writer = user._id;
   });
@@ -144,13 +146,17 @@ app.post("/create", upload.single("img"), (req, res) => {
 
 //multer
 
+app.post("/test", (req, res) => {
+  console.log("test", req.body);
+});
+
 app.post("/review", (req, res) => {
   let data = {
     userId: "",
     username: "",
     placeId: req.body.id,
     rate: req.body.rate,
-    comment: req.body.comment,
+    comment: encode(req.body.comment),
   };
   let token = req.body.user;
   console.log(data);
