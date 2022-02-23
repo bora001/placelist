@@ -3,9 +3,9 @@ const createForm = () => {
   let data = {};
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;
-    // console.log((data[v.name] = v.value));
   }
 
+  console.log(data);
   const form = document.querySelector(".form_new");
   const formData = new FormData(form);
   fetch("/create", {
