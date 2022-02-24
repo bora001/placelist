@@ -52,15 +52,18 @@ router.post("/:id/delete", (req, res) => {
 
 router.post("/:id/comment", (req, res) => {
   let id = { _id: req.params.id };
-  if (req.cookies.x_auth) {
-    User.findByToken(req.cookies.x_auth, (err, user) => {
-      let result = user._id.valueOf() == req.body.userId;
-      return res.status(200).json({
-        result,
-        id,
-      });
+  if (!req.cookies.x_auth) {
+    return res.status(200).json({
+      success: false,
     });
   }
+  User.findByToken(req.cookies.x_auth, (err, user) => {
+    let result = user._id.valueOf() == req.body.userId;
+    return res.status(200).json({
+      result,
+      id,
+    });
+  });
 });
 
 router.post("/:id/comment/delete", (req, res) => {

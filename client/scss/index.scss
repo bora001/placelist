@@ -24,7 +24,7 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 15px 25px;
-  background-color: black;
+  background-color: rgba(17, 151, 240, 0.959);
   color: #fff;
   z-index: 999;
   .logo {
@@ -193,6 +193,20 @@ section {
   }
 }
 
+.section_new {
+  .form_box {
+    height: auto;
+
+    input {
+      margin: 10px 0;
+    }
+  }
+  .pre_img {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+
 .section_list {
   overflow-y: scroll;
   .list_box {
@@ -239,10 +253,11 @@ section {
 .section_place {
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
+
   .place_box {
     display: flex;
     width: 80%;
-    border: 2px solid red;
     margin: 0 auto;
     .item_box {
       position: relative;
@@ -251,6 +266,7 @@ section {
 
       .detail_box {
         .img_box {
+          width: 580px;
         }
         .txt_box {
           padding: 20px 10px;
@@ -351,9 +367,8 @@ section {
       }
 
       .review_list {
-        height: 300px;
         padding: 20px 30px;
-        overflow-y: scroll;
+        margin-bottom: 30px;
         .review_item {
           position: relative;
           padding: 10px;

@@ -118,7 +118,6 @@ app.post("/create", upload.single("img"), (req, res) => {
   let data = {
     name: encode(req.body.name),
     rate: req.body.rate,
-    desc: encode(req.body.desc),
     address: encode(req.body.location),
     img: req.file.path,
     imgName: req.file.filename,

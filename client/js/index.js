@@ -26,6 +26,7 @@ const loginCheck = () => {
     const cookie = localStorage.getItem("x_auth");
     if (cookie) {
       loginSet.innerHTML = `
+      <a href="/list">List</a>
       <a href="/create">Post Place</a>
       <a href="/" onclick="logoutE()">logout</a>`;
     } else {
@@ -282,6 +283,15 @@ const setMap = (collection) => {
   });
 };
 
+//rate
+const rateInput = document.querySelector("input[name='rate']");
+const rateFilled = document.querySelector(".rate_input .filled");
+
+if (rateInput) {
+  rateInput.addEventListener("click", (e) => {
+    rateFilled.style.width = `${e.target.value * 20}%`;
+  });
+}
 getData();
 formSubmit();
 loginCheck();

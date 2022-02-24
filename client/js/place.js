@@ -60,7 +60,6 @@ const renderItem = (data) => {
             <h3>${data.name}</h3>
             <p>${data.address}</p>
             <p>${data.rate}</p>
-            <p>${data.desc}</p>
           </div>
         </div>
         `;
@@ -71,6 +70,15 @@ const createReview = () => {
   let data = {};
   let link = window.location.pathname.split("/");
   let user = localStorage.getItem("x_auth");
+
+  if (!user) {
+    modalE(false, "Please login first");
+    setTimeout(() => {
+      window.location.href = "/login";
+    }, 1500);
+    return;
+  }
+
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;
   }
@@ -153,13 +161,3 @@ const renderMap = (data) => {
   });
   new mapboxgl.Marker().setLngLat(data).addTo(map);
 };
-
-//review
-const rateInput = document.querySelector("input[name='rate']");
-const rateFilled = document.querySelector(".rate_input .filled");
-
-if (rateInput) {
-  rateInput.addEventListener("click", (e) => {
-    rateFilled.style.width = `${e.target.value * 20}%`;
-  });
-}
