@@ -1,4 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,900;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 * {
+  font-family: "Source Sans Pro", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -20,16 +24,22 @@ body {
 }
 // nav
 nav {
+  // position: fixed;
   width: 100vw;
   display: flex;
   justify-content: space-between;
   padding: 15px 25px;
-  background-color: rgba(17, 151, 240, 0.959);
-  color: #fff;
+  // background-color: rgb(19, 21, 119);
+  background-color: rgba(190, 190, 190, 0.459);
   z-index: 999;
+
   .logo {
     a {
       color: #fff;
+      color: rgb(19, 21, 119);
+      font-size: 32px;
+      letter-spacing: 2px;
+      font-family: "Lobster", cursive;
     }
   }
 
@@ -37,8 +47,15 @@ nav {
     display: flex;
     align-items: center;
     text-align: center;
+
     a {
       color: #fff;
+      color: rgb(19, 21, 119);
+
+      font-family: "Lobster", cursive;
+
+      font-size: 22px;
+      letter-spacing: 1px;
       width: 100px;
       align-items: center;
     }
@@ -86,7 +103,6 @@ nav {
     }
   }
 }
-
 #map {
   position: relative;
   width: 100%;
@@ -95,13 +111,16 @@ nav {
 section {
   width: 100vw;
   height: 100vh;
+  background-color: rgba(190, 190, 190, 0.164);
+
   .form_box {
     position: relative;
     justify-content: space-between;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(244, 232, 255);
+    background-color: #fff;
+    // background-color: rgba(16, 18, 129, 0.973);
     border-radius: 20px;
     width: 350px;
     height: 450px;
@@ -109,8 +128,27 @@ section {
     display: flex;
     flex-direction: column;
 
+    &:before {
+      position: absolute;
+      top: -20px;
+      right: 10px;
+      z-index: 99;
+      width: 65px;
+      height: 65px;
+      opacity: 1;
+      content: "";
+      background: url("https://cdn.pixabay.com/photo/2017/07/17/13/25/seal-2512363_960_720.png")
+        center/cover no-repeat;
+    }
     h2 {
-      font-size: 28px;
+      font-family: "Lobster", cursive;
+      color: #fff;
+      color: rgba(16, 18, 129, 0.973);
+      // background-color: rgba(16, 18, 129, 0.973);
+      // border: 2px solid red;
+
+      font-size: 32px;
+      letter-spacing: 4px;
       margin-bottom: 10px;
     }
 
@@ -118,7 +156,7 @@ section {
       position: relative;
       border-radius: 5px;
       border: none;
-      box-shadow: 5px 5px 5px rgba(83, 81, 85, 0.384);
+      box-shadow: 5px 5px 5px rgba(83, 81, 85, 0.205);
       letter-spacing: 1px;
       text-indent: 10px;
       height: 25px;
@@ -128,7 +166,7 @@ section {
       }
 
       &:invalid {
-        background-color: rgba(255, 0, 149, 0.26);
+        background-color: rgba(249, 250, 252, 0.938);
         // position: absolute;
         // content: "✅";
       }
@@ -142,7 +180,7 @@ section {
       font-weight: 600;
     }
 
-    button {
+    .btn_submit {
       border: none;
       height: 30px;
       cursor: pointer;
@@ -180,6 +218,15 @@ section {
 }
 
 .section_login {
+  &:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    opacity: 0.9;
+    background: url("https://cdn.pixabay.com/photo/2017/06/14/08/20/map-of-the-world-2401458_960_720.jpg")
+      center / cover no-repeat;
+  }
   .form_login {
     width: 300px;
     height: 250px;
@@ -187,6 +234,15 @@ section {
 }
 
 .section_register {
+  &:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    opacity: 0.9;
+    background: url("https://cdn.pixabay.com/photo/2017/06/14/08/20/map-of-the-world-2401458_960_720.jpg")
+      center / cover no-repeat;
+  }
   .form_register {
     width: 300px;
     height: 250px;
@@ -194,11 +250,25 @@ section {
 }
 
 .section_new {
+  &:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    opacity: 0.9;
+    background: url("https://cdn.pixabay.com/photo/2017/06/14/08/20/map-of-the-world-2401458_960_720.jpg")
+      center / cover no-repeat;
+  }
   .form_box {
     height: auto;
 
     input {
       margin: 10px 0;
+    }
+    label {
+      font-size: 18px;
+      color: #fff;
+      font-weight: 900;
     }
   }
   .pre_img {
@@ -211,29 +281,38 @@ section {
   overflow-y: scroll;
   .list_box {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 100px;
+
     .list_item {
       display: flex;
       align-items: center;
-      height: auto;
+      height: 370px;
+      overflow: hidden;
       margin: 20px;
-      background-color: rgba(231, 198, 223, 0.295);
+      background-color: rgba(228, 228, 230, 0.993);
 
       .img_box {
         width: 50%;
+        width: 800px;
       }
       .txt_box {
+        position: relative;
         width: 50%;
-        padding: 5%;
+        left: -100px;
+        padding: 40px;
         height: auto;
+        background-color: #fff;
+        border-radius: 20px;
         h3 {
-          font-size: 24px;
+          font-size: 28px;
+          letter-spacing: 1px;
         }
         p {
-          font-size: 16px;
+          font-size: 18px;
           line-height: 28px;
         }
         .btn_view {
+          float: right;
           display: block;
           width: 150px;
           line-height: 40px;
@@ -241,7 +320,7 @@ section {
           text-align: center;
           border-radius: 5px;
           color: #fff;
-          background-color: rgb(202, 168, 233);
+          background-color: rgb(26, 28, 155);
           font-size: 16px;
           cursor: pointer;
           box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.26);
@@ -250,6 +329,7 @@ section {
     }
   }
 }
+
 .section_place {
   width: 100%;
   height: 100%;
@@ -289,7 +369,7 @@ section {
           line-height: 30px;
           cursor: pointer;
           border: none;
-          background-color: rgb(248, 226, 200);
+          background-color: rgba(19, 21, 119, 0.11);
         }
         #map {
           position: relative;
@@ -315,14 +395,20 @@ section {
           width: 100%;
           height: 250px;
           flex-direction: column;
+          background-color: rgb(231, 231, 236);
+
           .top_box {
             display: flex;
             align-items: center;
+            h3 {
+              font-size: 24px;
+              color: rgb(19, 21, 119);
+            }
             .rate_input {
               position: relative;
               width: 180px;
               height: 50px;
-              margin-left: 110px;
+              margin-left: 90px;
               font-size: 36px;
               span {
                 position: absolute;
@@ -368,12 +454,13 @@ section {
 
       .review_list {
         padding: 20px 30px;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
         .review_item {
           position: relative;
           padding: 10px;
           margin-bottom: 10px;
-          background-color: antiquewhite;
+          background-color: rgba(19, 21, 119, 0.055);
+
           .review_edit {
             position: absolute;
             top: 10px;
@@ -384,6 +471,7 @@ section {
             p {
               font-size: 12px;
               color: rgb(78, 76, 76);
+
               cursor: pointer;
             }
           }
@@ -442,5 +530,6 @@ section {
   h2 {
     font-size: 13px;
     text-align: center;
+    font-weight: 200;
   }
 }
