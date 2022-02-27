@@ -1,4 +1,5 @@
 //item
+
 const getItem = (id) => {
   fetch(`/place/${id}`, {
     credentials: "include",
@@ -43,6 +44,8 @@ const deleteItem = (result, id) => {
 
 const renderItem = (data) => {
   renderMap(data.geometry.coordinates);
+  let length = data.review.length + 1;
+  let average = (data.rate / length).toFixed(1);
   // if (data.review) {
   //   // renderReview(data.review);
   // }
@@ -57,9 +60,17 @@ const renderItem = (data) => {
             />
           </div>
           <div class="txt_box">
-            <h3>${data.name}</h3>
+            <div class="intro_box">
+              <h3>${data.name}</h3>
+              <div class="rate_input">
+                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="filled"
+                style="width: ${data.rate * 20}%"
+                >&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </div>
+              <p class="current_rate">${average}</p>
+            </div>
             <p>${data.address}</p>
-            <p>${data.rate}</p>
           </div>
         </div>
         `;
@@ -82,6 +93,9 @@ const createReview = () => {
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;
   }
+
+  console.log(data);
+
   let newData = Object.assign({}, data, { id: link[2], user });
   fetch(`/review`, {
     credentials: "include",
@@ -101,13 +115,17 @@ const createReview = () => {
     .catch((err) => console.log(err));
 };
 
-const deleteReview = (commentId, id) => {
-  console.log("delll", commentId, id);
+const deleteReview = (commentId, id, rate) => {
+  let current_rate = document.querySelector(".current_rate").innerText;
 
   let data = {
     placeId: id,
     commentId,
+    rate,
   };
+
+  // let newRate = Number(current_rate) - Number(rate);
+  // data.newRate = newRate;
 
   if (window.confirm("Are you sure you want to delete this comment ?")) {
     fetch(`/place/${id}/comment/delete`, {
@@ -127,8 +145,8 @@ const deleteReview = (commentId, id) => {
       .catch((err) => console.log(err));
   }
 };
+
 const renderReview = (data) => {
-  console.log(data);
   let reviewList = document.querySelector(
     ".section_place .review_box .review_list"
   );
@@ -142,9 +160,9 @@ const renderReview = (data) => {
               </div>
               <div class="review_txt">
                 <h3>${comment.username}</h3>
-                <p>${comment.comment}</p>
+                <p >${comment.comment}</p>
               </div>
-              <button class="del_review">❌</button>
+              <button class="del_review" data-rate=${comment.rate}>❌</button>
             </div>`;
     reviewList.insertAdjacentHTML("afterbegin", html);
     userCheck(comment.userId, comment._id);

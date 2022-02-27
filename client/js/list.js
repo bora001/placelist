@@ -14,6 +14,9 @@ const getList = () => {
 
 const renderList = (data) => {
   for (let item of data) {
+    let length = item.review.length + 1;
+    let average = (item.rate / length).toFixed(1);
+
     const html = `
   <div class="list_item">
           <div class="img_box">
@@ -24,13 +27,20 @@ const renderList = (data) => {
           </div>
           <div class="txt_box">
             <h3>${item.name}</h2>
-            <p>${item.rate}</p>
+            <div class="rate_box">
+              <div class="rate_input">
+                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="filled"  
+                style="width: ${
+                  average * 20
+                }%">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </div>
+            </div>
             <p>${item.address}</p>
             <a href="/place/${item._id}" class="btn_view">View the place</a>
           </div>
         </div>
   `;
-
     listBox.insertAdjacentHTML("beforeend", html);
   }
 };

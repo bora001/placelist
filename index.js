@@ -10,8 +10,6 @@ const { Place } = require("./models/Place");
 const { Review } = require("./models/Review");
 const cookieParser = require("cookie-parser");
 const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
-// const { route } = require("express/lib/application");
-// const req = require("express/lib/request");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
 const { encode } = require("html-entities");
@@ -32,8 +30,6 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "placelist-img",
     allowedFormats: ["jpeg", "jpg", "png"],
-    // format: async (req, file) => "png",
-    // public_id: (req, file) => "computed file name",
   },
 });
 const upload = multer({ storage });
@@ -158,7 +154,7 @@ app.post("/review", (req, res) => {
     comment: encode(req.body.comment),
   };
   let token = req.body.user;
-  console.log(data);
+
   User.findByToken(token, (err, user) => {
     data.userId = user._id;
     data.username = user.username;
@@ -169,6 +165,9 @@ app.post("/review", (req, res) => {
     Place.findOneAndUpdate(
       { _id: req.body.id },
       {
+        $inc: {
+          rate: req.body.rate,
+        },
         $push: {
           review: reviewId,
         },

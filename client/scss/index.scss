@@ -24,12 +24,10 @@ body {
 }
 // nav
 nav {
-  // position: fixed;
   width: 100vw;
   display: flex;
   justify-content: space-between;
   padding: 15px 25px;
-  // background-color: rgb(19, 21, 119);
   background-color: rgba(190, 190, 190, 0.459);
   z-index: 999;
 
@@ -120,7 +118,6 @@ section {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    // background-color: rgba(16, 18, 129, 0.973);
     border-radius: 20px;
     width: 350px;
     height: 450px;
@@ -144,9 +141,6 @@ section {
       font-family: "Lobster", cursive;
       color: #fff;
       color: rgba(16, 18, 129, 0.973);
-      // background-color: rgba(16, 18, 129, 0.973);
-      // border: 2px solid red;
-
       font-size: 32px;
       letter-spacing: 4px;
       margin-bottom: 10px;
@@ -167,8 +161,6 @@ section {
 
       &:invalid {
         background-color: rgba(249, 250, 252, 0.938);
-        // position: absolute;
-        // content: "✅";
       }
     }
 
@@ -185,34 +177,6 @@ section {
       height: 30px;
       cursor: pointer;
       margin-top: 10px;
-    }
-
-    .rate_input {
-      position: relative;
-      width: 180px;
-      height: 50px;
-      font-size: 36px;
-      span {
-        position: absolute;
-        width: 100%;
-        z-index: 1;
-        line-height: 35px;
-        color: rgb(190, 188, 188);
-      }
-      span.filled {
-        width: 50%;
-        overflow: hidden;
-        color: red;
-        z-index: 9;
-      }
-      input[name="rate"] {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 99;
-        opacity: 0;
-        cursor: pointer;
-      }
     }
   }
 }
@@ -267,7 +231,7 @@ section {
     }
     label {
       font-size: 18px;
-      color: #fff;
+      color: rgba(16, 18, 129, 0.973);
       font-weight: 900;
     }
   }
@@ -284,13 +248,13 @@ section {
     margin: 0 auto 100px;
 
     .list_item {
+      position: relative;
       display: flex;
       align-items: center;
       height: 370px;
       overflow: hidden;
       margin: 20px;
       background-color: rgba(228, 228, 230, 0.993);
-
       .img_box {
         width: 50%;
         width: 800px;
@@ -311,6 +275,13 @@ section {
           font-size: 18px;
           line-height: 28px;
         }
+        .rate_box {
+          display: flex;
+          top: -60px;
+          right: -60px;
+          position: absolute;
+        }
+
         .btn_view {
           float: right;
           display: block;
@@ -349,10 +320,28 @@ section {
           width: 580px;
         }
         .txt_box {
-          padding: 20px 10px;
-          h3 {
-            font-size: 28px;
+          padding: 20px 0;
+
+          .intro_box {
+            display: flex;
+            align-items: center;
+            h3 {
+              font-size: 28px;
+            }
+            .rate_input {
+              margin: 0 5px;
+              width: 71px;
+              height: 14px;
+              font-size: 14px;
+              span {
+                line-height: 14px;
+              }
+            }
+            p {
+              font-size: 14px;
+            }
           }
+
           p {
             font-size: 16px;
           }
@@ -418,7 +407,7 @@ section {
                 color: rgb(190, 188, 188);
               }
               span.filled {
-                width: 50%;
+                width: 60%;
                 overflow: hidden;
                 color: red;
                 z-index: 9;
@@ -480,10 +469,8 @@ section {
             display: flex;
             align-items: center;
             margin-bottom: 5px;
-            // position: absolute;
             width: 110px;
             height: 28px;
-            // right: 10px;
             span {
               position: absolute;
               color: rgb(190, 188, 188);
@@ -531,5 +518,33 @@ section {
     font-size: 13px;
     text-align: center;
     font-weight: 200;
+  }
+}
+
+.rate_input {
+  position: relative;
+  width: 180px;
+  height: 50px;
+  font-size: 36px;
+  span {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    line-height: 35px;
+    color: rgb(190, 188, 188);
+  }
+  span.filled {
+    width: 60%;
+    overflow: hidden;
+    color: red;
+    z-index: 9;
+  }
+  input[name="rate"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    opacity: 0;
+    cursor: pointer;
   }
 }

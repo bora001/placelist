@@ -42,6 +42,7 @@ router.post("/:id", (req, res) => {
 
 router.post("/:id/delete", (req, res) => {
   let data = { _id: req.params.id };
+
   Place.findOneAndDelete(data, function (err, item) {
     cloudinary.uploader.destroy(item.imgName);
     return res.status(200).json({
@@ -69,9 +70,13 @@ router.post("/:id/comment", (req, res) => {
 router.post("/:id/comment/delete", (req, res) => {
   let data = { _id: req.body.commentId };
 
+  console.log(req.body);
   Place.findByIdAndUpdate(
     req.body.placeId,
     {
+      $inc: {
+        rate: -req.body.rate,
+      },
       $pull: {
         review: req.body.commentId,
       },
@@ -81,6 +86,7 @@ router.post("/:id/comment/delete", (req, res) => {
       console.log(JSON.stringify(doc));
     }
   );
+
   Review.findOneAndDelete(data, function (err, item) {
     cloudinary.uploader.destroy(item.imgName);
     return res.status(200).json({

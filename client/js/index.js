@@ -168,8 +168,9 @@ const userCheck = (userId, commentId) => {
       if (!data.result) {
         reviewDel.classList.add("off");
       }
-      reviewDel.addEventListener("click", () => {
-        deleteReview(commentId, data.id._id);
+      reviewDel.addEventListener("click", (e) => {
+        let rate = e.target.attributes["data-rate"].value;
+        deleteReview(commentId, data.id._id, rate);
       });
     })
     .catch((err) => console.log(err));
@@ -289,9 +290,11 @@ const rateFilled = document.querySelector(".rate_input .filled");
 
 if (rateInput) {
   rateInput.addEventListener("click", (e) => {
+    console.log("rate!!");
     rateFilled.style.width = `${e.target.value * 20}%`;
   });
 }
+
 getData();
 formSubmit();
 loginCheck();
