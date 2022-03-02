@@ -80,10 +80,28 @@ const renderItem = (data) => {
   itemBox.insertAdjacentHTML("afterbegin", html);
 };
 
-const createReview = () => {
-  let data = {};
+const createReview = async () => {
   let link = window.location.pathname.split("/");
-  // let user = localStorage.getItem("x_auth");
+  let id = link[2];
+  const oldData = {};
+  for (let v of Object.values(formInput)) {
+    oldData[v.name] = v.value;
+  }
+  let newData = Object.assign({}, oldData, { id: link[2] });
+
+  const res = await fetch(`/place/${id}/create/comment`, {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newData),
+  });
+  const data = await res.json();
+  if (data.success) {
+    formReset();
+    window.location.href = `/place/${link[2]}`;
+  }
 
   // if (!user) {
   //   modalE(false, "Please login first");
@@ -92,30 +110,6 @@ const createReview = () => {
   //   }, 1500);
   //   return;
   // }
-
-  for (let v of Object.values(formInput)) {
-    data[v.name] = v.value;
-  }
-
-  console.log(data);
-
-  let newData = Object.assign({}, data, { id: link[2], user });
-  fetch(`/review`, {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newData),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        formReset();
-        window.location.href = `/place/${link[2]}`;
-      }
-    })
-    .catch((err) => console.log(err));
 };
 
 const deleteReview = (commentId, id, rate) => {

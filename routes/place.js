@@ -5,6 +5,7 @@ const { User } = require("../models/User");
 const { Place } = require("../models/Place");
 const cookieParser = require("cookie-parser");
 const { Review } = require("../models/Review");
+const { encode } = require("html-entities");
 const cloudinary = require("cloudinary").v2;
 
 // router.get("/", (req, res) => {
@@ -81,6 +82,46 @@ router.post("/:id/comment", (req, res) => {
   //     id,
   //   });
   // });
+});
+
+router.post("/:id/create/comment", (req, res) => {
+  console.log(req.params.id, "req.params.id");
+  console.log(req.body, "req.body");
+  console.log(req.session.user_id, "session");
+  let data = {
+    userId: "",
+    username: "",
+    placeId: req.params.id,
+    rate: req.body.rate,
+    comment: encode(req.body.comment),
+  };
+  if (req.session.user_id) {
+    User.findById(req.session.user_id, (err, user) => {
+      console.log(user, "user");
+      data.userId = user._id;
+      data.username = user.username;
+      const newReview = new Review(data);
+      const reviewId = newReview._id;
+      console.log(newReview, "newReview");
+      console.log(reviewId, "reviewId");
+      newReview.save();
+      Place.findOneAndUpdate(
+        { _id: req.body.id },
+        {
+          $inc: {
+            rate: req.body.rate,
+          },
+          $push: {
+            review: reviewId,
+          },
+        },
+        function (err, update) {
+          if (err) return res.status(200).json({ success: false, err });
+          return res.status(200).send({ success: true, update });
+        }
+      );
+    });
+  }
 });
 
 router.post("/:id/comment/delete", (req, res) => {

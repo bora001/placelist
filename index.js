@@ -231,41 +231,6 @@ app.post("/test", (req, res) => {
   console.log("test", req.body);
 });
 
-app.post("/review", (req, res) => {
-  let data = {
-    userId: "",
-    username: "",
-    placeId: req.body.id,
-    rate: req.body.rate,
-    comment: encode(req.body.comment),
-  };
-  let token = req.body.user;
-
-  User.findByToken(token, (err, user) => {
-    data.userId = user._id;
-    data.username = user.username;
-    const newReview = new Review(data);
-    const reviewId = newReview._id;
-    newReview.save();
-
-    Place.findOneAndUpdate(
-      { _id: req.body.id },
-      {
-        $inc: {
-          rate: req.body.rate,
-        },
-        $push: {
-          review: reviewId,
-        },
-      },
-      function (err, update) {
-        if (err) return res.status(200).json({ success: false, err });
-        return res.status(200).send({ success: true, update });
-      }
-    );
-  });
-});
-
 app.post("/", (req, res) => {
   Place.find((err, data) => {
     return res.json({
