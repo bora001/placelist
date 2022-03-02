@@ -10,6 +10,7 @@ const getItem = async (id) => {
       },
     });
     const data = await res.json();
+    console.log(data, "getItem data");
     renderItem(data.item);
     renderReview(data.item.review);
     deleteItem(data.writer, data.item._id);
@@ -20,9 +21,12 @@ const getItem = async (id) => {
 
 const deleteItem = (result, id) => {
   const delBtn = document.querySelector(".section_place .del_place");
+  console.log(result, "result");
   if (!result) {
     delBtn.classList.add("off");
   }
+  console.log(delBtn);
+
   delBtn.addEventListener("click", () => {
     if (window.confirm("Are you sure you want to delete this place ?")) {
       fetch(`/place/${id}/delete`, {

@@ -19,9 +19,14 @@ router.get("/:id", (req, res) => {
 
 router.post("/:id", (req, res) => {
   let data = { _id: req.params.id };
-  if (req.cookies.x_auth) {
-    User.findByToken(req.cookies.x_auth, (err, user) => {
+  // if (req.body.userId == req.session.user_id)
+  console.log(req.body, "req.body");
+  console.log(req.session.user_id, "req.session.user_id");
+
+  if (req.session.user_id) {
+    User.findById(req.session.user_id, (err, user) => {
       Place.findOne(data, function (err, item) {
+        console.log(user);
         let writer = user._id.valueOf() == item.writer.valueOf();
         return res.status(200).json({
           success: true,
