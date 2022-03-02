@@ -11,13 +11,9 @@
   <body>
     <div w3-include-html="/pages/nav.html"></div>
     <section class="section_register">
-      <form
-        class="form_register form_box"
-        method="post"
-        onsubmit="return false;"
-      >
+      <form class="form_register form_box" method="POST" action="/register">
         <h2>Register</h2>
-        <input type="text" placeholder="Name" name="name" required />
+        <input type="text" placeholder="UserName" name="username" required />
         <input
           type="password"
           placeholder="password"
@@ -27,7 +23,7 @@
         <input
           type="password"
           placeholder="password confirm"
-          name="password confirm"
+          name="passwordConfirm"
           required
         />
         <input type="submit" class="btn_submit" value="Register" name="type" />

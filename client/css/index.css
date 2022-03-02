@@ -17,7 +17,7 @@ img {
 }
 
 .off {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -31,7 +31,7 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 15px 25px;
-  background-color: rgba(190, 190, 190, 0.459);
+  background: linear-gradient(to bottom, rgba(245, 244, 244, 0.459), rgba(180, 180, 180, 0.459));
   z-index: 999;
 }
 nav .logo a {
@@ -137,7 +137,6 @@ section .form_box:before {
 }
 section .form_box h2 {
   font-family: "Lobster", cursive;
-  color: #fff;
   color: rgba(16, 18, 129, 0.973);
   font-size: 32px;
   letter-spacing: 4px;
@@ -170,6 +169,14 @@ section .form_box .btn_submit {
   height: 30px;
   cursor: pointer;
   margin-top: 10px;
+  background: linear-gradient(to bottom, rgba(245, 244, 244, 0.459), rgba(180, 180, 180, 0.459));
+  box-shadow: none;
+}
+section .form_box .btn_submit:hover {
+  transition: 0.2s;
+  color: #fff;
+  background: transparent;
+  background-color: #1a1c9b;
 }
 
 .section_login:before {
@@ -237,6 +244,7 @@ section .form_box .btn_submit {
   overflow: hidden;
   margin: 20px;
   background-color: rgba(228, 228, 230, 0.993);
+  background: linear-gradient(to bottom, rgba(236, 235, 235, 0.459), rgba(209, 208, 208, 0.459));
 }
 .section_list .list_box .list_item .img_box {
   width: 50%;
@@ -336,6 +344,13 @@ section .form_box .btn_submit {
   cursor: pointer;
   border: none;
   background-color: rgba(19, 21, 119, 0.11);
+  background: linear-gradient(to bottom, rgba(240, 238, 238, 0.459), rgba(223, 221, 221, 0.459));
+}
+.section_place .place_box .item_box .opt_box button.del_place:hover {
+  background: transparent;
+  background-color: rgba(182, 11, 11, 0.911);
+  transition: 0.3s;
+  color: #fff;
 }
 .section_place .place_box .item_box .opt_box #map {
   position: relative;
@@ -360,6 +375,7 @@ section .form_box .btn_submit {
   height: 250px;
   flex-direction: column;
   background-color: #e7e7ec;
+  background: linear-gradient(to bottom, rgba(236, 235, 235, 0.459), rgba(209, 208, 208, 0.459));
 }
 .section_place .place_box .review_box .review_add form .top_box {
   display: flex;
@@ -418,7 +434,7 @@ section .form_box .btn_submit {
   position: relative;
   padding: 10px;
   margin-bottom: 10px;
-  background-color: rgba(19, 21, 119, 0.055);
+  background: linear-gradient(to bottom, rgba(240, 238, 238, 0.459), rgba(223, 221, 221, 0.459));
 }
 .section_place .place_box .review_box .review_list .review_item .review_edit {
   position: absolute;

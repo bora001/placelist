@@ -15,27 +15,93 @@ w3.includeHTML();
 // };
 
 const logoutE = () => {
-  localStorage.removeItem("x_auth");
-  loginCheck();
+  // fetch("/logout", {
+  //   // credentials: "include",
+  //   method: "POST",
+  // });
+  // .then((res) => res.json())
+  // .then((data) => console.log(data));
+  // .then(data =>
+  // if(data.login=='fl'));
+  // localStorage.removeItem("x_auth");
+  // window.location.href = "/";
+  // loginCheck();
 };
 
 //login_check
-const loginCheck = () => {
-  setTimeout(() => {
-    const loginSet = document.querySelector("nav .menu .login_box");
-    const cookie = localStorage.getItem("x_auth");
-    if (cookie) {
-      loginSet.innerHTML = `
-      <a href="/list">List</a>
-      <a href="/create">Post Place</a>
-      <a href="/" onclick="logoutE()">logout</a>`;
-    } else {
-      loginSet.innerHTML = `
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>`;
-    }
-  }, 100);
+const loginCheck = async () => {
+  const res = await fetch("/auth", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Tpe": "application/json",
+    },
+  });
+  const data = await res.json();
+  const loginSet = document.querySelectorAll("nav .menu .login_box");
+
+  if (loginSet && data) {
+    console.log(data);
+    loginSet.forEach((set) => {
+      if (set.classList.contains(`login_${data.login}`)) {
+        set.classList.remove("off");
+      }
+    });
+  }
 };
+// .then((res) => res.json())
+// .then((data) => {
+//   const loginSet = document.querySelectorAll("nav .menu .login_box");
+//   loginSet.forEach((set) => {
+//     if (!set.classList.contains(`login_${data.login}`)) {
+//       set.classList.add("off");
+//       console.log(set);
+//     } else {
+//       set.classList.remove("off");
+//     }
+
+// set.classList.toggle("off");
+//       });
+//     });
+// };
+// const loginCheck = () => {
+// fetch("/auth", {
+//   credentials: "include",
+//   method: "POST",
+//   headers: {
+//     "Content-Tpe": "application/json",
+//   },
+// })
+//   .then((res) => res.json())
+//   .then((data) => {
+//     const loginSet = document.querySelector("nav .menu .login_box");
+//     console.log(data);
+//     if (data.login) {
+//       loginSet.innerHTML = `
+//         <a href="/list">List</a>
+//         <a href="/create">Post Place</a>
+//         <a href="/" onclick="logoutE()">logout</a>`;
+//     } else {
+//       loginSet.innerHTML = `
+//         <a href="/login">Login</a>
+//         <a href="/register">Register</a>`;
+//     }
+//   });
+// setTimeout(() => {
+//   const loginSet = document.querySelector("nav .menu .login_box");
+//   const cookie = localStorage.getItem("x_auth");
+//   if (cookie) {
+//     loginSet.innerHTML = `
+//     <a href="/list">List</a>
+//     <a href="/create">Post Place</a>
+//     <a href="/" onclick="logoutE()">logout</a>`;
+//   } else {
+// loginSet.innerHTML = `
+//       <a href="/login">Login</a>
+//       <a href="/register">Register</a>`;
+//   // }
+// }, 100);
+// };
 
 //form-reset
 const formReset = () => {
@@ -70,18 +136,18 @@ const modalE = (status, msg) => {
 };
 
 //link-Address
-const addressCheck = () => {
-  let link = window.location.pathname.split("/");
-  console.log("addresscheck", link[1]);
-  switch (link[1]) {
-    case "list":
-      getList();
-      break;
-    case "place":
-      getItem(link[2]);
-      break;
-  }
-};
+// const addressCheck = () => {
+//   let link = window.location.pathname.split("/");
+//   console.log("addresscheck", link[1]);
+//   switch (link[1]) {
+//     case "list":
+//       getList();
+//       break;
+//     case "place":
+//       getItem(link[2]);
+//       break;
+//   }
+// };
 
 //formSubmit
 const formSubmit = () => {
@@ -165,6 +231,7 @@ const userCheck = (userId, commentId) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       if (!data.result) {
         reviewDel.classList.add("off");
       }
@@ -290,7 +357,6 @@ const rateFilled = document.querySelector(".rate_input .filled");
 
 if (rateInput) {
   rateInput.addEventListener("click", (e) => {
-    console.log("rate!!");
     rateFilled.style.width = `${e.target.value * 20}%`;
   });
 }
@@ -298,4 +364,4 @@ if (rateInput) {
 getData();
 formSubmit();
 loginCheck();
-addressCheck();
+// addressCheck();

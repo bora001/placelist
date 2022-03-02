@@ -1,5 +1,5 @@
 //item
-
+let link = window.location.pathname.split("/");
 const getItem = (id) => {
   fetch(`/place/${id}`, {
     credentials: "include",
@@ -80,15 +80,15 @@ const renderItem = (data) => {
 const createReview = () => {
   let data = {};
   let link = window.location.pathname.split("/");
-  let user = localStorage.getItem("x_auth");
+  // let user = localStorage.getItem("x_auth");
 
-  if (!user) {
-    modalE(false, "Please login first");
-    setTimeout(() => {
-      window.location.href = "/login";
-    }, 1500);
-    return;
-  }
+  // if (!user) {
+  //   modalE(false, "Please login first");
+  //   setTimeout(() => {
+  //     window.location.href = "/login";
+  //   }, 1500);
+  //   return;
+  // }
 
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;
@@ -116,16 +116,11 @@ const createReview = () => {
 };
 
 const deleteReview = (commentId, id, rate) => {
-  let current_rate = document.querySelector(".current_rate").innerText;
-
   let data = {
     placeId: id,
     commentId,
     rate,
   };
-
-  // let newRate = Number(current_rate) - Number(rate);
-  // data.newRate = newRate;
 
   if (window.confirm("Are you sure you want to delete this comment ?")) {
     fetch(`/place/${id}/comment/delete`, {
@@ -179,3 +174,4 @@ const renderMap = (data) => {
   });
   new mapboxgl.Marker().setLngLat(data).addTo(map);
 };
+getItem(link[2]);

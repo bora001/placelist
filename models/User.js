@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
+const passportMongo = require("passport-local-mongoose");
+const passport = require("passport");
 
 const userSchema = mongoose.Schema({
   username: {
@@ -60,6 +62,6 @@ userSchema.statics.findByToken = function (token, callback) {
     });
   });
 };
-
+userSchema.plugin(passportMongo);
 const User = mongoose.model("User", userSchema);
 module.exports = { User };

@@ -44,3 +44,5 @@ const renderList = (data) => {
     listBox.insertAdjacentHTML("beforeend", html);
   }
 };
+
+getList();

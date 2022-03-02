@@ -1,9 +1,11 @@
 // server
 require("dotenv").config();
 const express = require("express");
+const session = require("express-session");
 const path = require("path");
 const placeRouter = require("./routes/place");
 const app = express();
+const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const { Place } = require("./models/Place");
@@ -19,6 +21,7 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
+//cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_KEY,
@@ -33,6 +36,11 @@ const storage = new CloudinaryStorage({
   },
 });
 const upload = multer({ storage });
+
+//passport
+const passport = require("passport");
+const localPassport = require("passport-local");
+const { Console } = require("console");
 
 //---------------------------------------------------------------------------------------//
 
@@ -58,57 +66,127 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/register", (req, res) => {
-  const data = { username: req.body.name, password: req.body.password };
+app.use(
+  require("express-session")({
+    secret: "typethesecret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+passport.use(new localPassport(User.authenticate()));
 
-  const newUser = new User(data);
+//---------------------------------------------------------------------------------------//
 
-  User.findOne({ username: req.body.name }, function (err, user) {
-    if (user) {
-      if (err) return res.json({ success: false, err });
-      return res
-        .status(404)
-        .json({ success: false, message: "The name is already exist" });
+app.post("/auth", (req, res) => {
+  if (!req.session.user_id) {
+    return res.json({ login: false });
+  }
+  return res.json({ login: true });
+
+  // if (!req.isAuthenticated()) {
+  //   return res.json({ login: false });
+  // }
+  // return res.json({ login: true });
+});
+
+app.post("/logout", (req, res) => {
+  // req.session.user_id = null;
+  // return res.json({ login: false });
+  // return res.redirect("/");
+});
+app.post("/register", async (req, res) => {
+  const { username, password, passwordConfirm } = req.body;
+  console.log(username, password, passwordConfirm);
+  if (password == passwordConfirm) {
+    const userCheck = await User.findOne({ username });
+    if (userCheck) {
+      console.log("The name is already exist");
     } else {
-      if (err) return res.json({ success: false, err });
-      newUser.save((err, userInfo) => {
-        if (err) return res.json({ success: false, err });
-        return res.status(200).json({
-          success: true,
-          message: "Thank you for register!",
-        });
-      });
+      const user = new User({ username, password: hash });
+      await user.save();
+      return res.redirect("/");
     }
-  });
+  } else {
+    console.log("wrong password");
+  }
+
+  res.send(password == passwordConfirm);
+});
+// app.post("/register", (req, res) => {
+//   const data = { username: req.body.name, password: req.body.password };
+
+//   const newUser = new User(data);
+
+//   User.findOne({ username: req.body.name }, function (err, user) {
+//     if (user) {
+//       if (err) return res.json({ success: false, err });
+//       return res
+//         .status(404)
+//         .json({ success: false, message: "The name is already exist" });
+//     } else {
+//       if (err) return res.json({ success: false, err });
+//       newUser.save((err, userInfo) => {
+//         if (err) return res.json({ success: false, err });
+//         return res.status(200).json({
+//           success: true,
+//           message: "Thank you for register!",
+//         });
+//       });
+//     }
+//   });
+// });
+
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  console.log(username, password, "😊😊😊😊");
+  const user = await User.findOne({ username });
+  const validPw = await bcrypt.compare(password, user.password);
+  if (validPw) {
+    req.session.user_id = user._id;
+    // res.send("login success");
+    res.redirect("/");
+  } else {
+    res.redirect("/login");
+  }
 });
 
-app.post("/login", (req, res) => {
-  const data = { username: req.body.name, password: req.body.password };
-  User.findOne({ username: req.body.name }, (err, user) => {
-    if (!user) {
-      return res.json({
-        loginSuccess: false,
-        message: "We can not find the username",
-      });
-    }
-    user.comparePassword(req.body.password, (err, isMatch) => {
-      if (!isMatch)
-        return res.json({
-          success: false,
-          message: "incorrect Password",
-        });
-      user.generateToken((err, user) => {
-        if (err) return res.status(400).send(err);
-        res.cookie("x_auth", user.token);
-        return res.status(200).json({
-          success: true,
-          token: user.token,
-          username: user.username,
-        });
-      });
-    });
-  });
-});
+// app.post("/login", (req, res) => {
+//   const data = { username: req.body.name, password: req.body.password };
+//   User.findOne({ username: req.body.name }, (err, user) => {
+//     if (!user) {
+//       return res.json({
+//         loginSuccess: false,
+//         message: "We can not find the username",
+//       });
+//     }
+//     user.comparePassword(req.body.password, (err, isMatch) => {
+//       if (!isMatch)
+//         return res.json({
+//           success: false,
+//           message: "incorrect Password",
+//         });
+//       user.generateToken((err, user) => {
+//         if (err) return res.status(400).send(err);
+//         req.session.user_id = user.id;
+//         // res.cookie("x_auth", user.token);
+//         // res.cookie("x_auth", user.token, {
+//         //   expires: new Date(Date.now() + 900000),
+//         //   httpOnly: true,
+//         // });
+//         return res.status(200).json({
+//           login: true,
+//           success: true,
+//           token: user.token,
+//           username: user.username,
+//         });
+//       });
+//     });
+//   });
+// });
 
 app.post("/create", upload.single("img"), (req, res) => {
   let data = {
@@ -195,6 +273,13 @@ app.post("/", (req, res) => {
 
 //router
 app.use("/place", placeRouter);
+
+app.get("/secret", (req, res) => {
+  if (!req.session.user_id) {
+    return res.send("hey you didn't login");
+  }
+  res.send("hoho");
+});
 
 app.get("*", (req, res) => {
   const link = req.path.split("/");
