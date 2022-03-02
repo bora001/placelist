@@ -14,39 +14,42 @@ w3.includeHTML();
 //   });
 // };
 
-const logoutE = () => {
-  // fetch("/logout", {
-  //   // credentials: "include",
-  //   method: "POST",
-  // });
-  // .then((res) => res.json())
-  // .then((data) => console.log(data));
-  // .then(data =>
-  // if(data.login=='fl'));
-  // localStorage.removeItem("x_auth");
-  // window.location.href = "/";
-  // loginCheck();
+const logoutE = async () => {
+  try {
+    const res = await fetch("/logout", {
+      // credentials: "include",
+      method: "POST",
+    });
+    const data = await res.json();
+    window.location.href = "/";
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 //login_check
 const loginCheck = async () => {
-  const res = await fetch("/auth", {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Tpe": "application/json",
-    },
-  });
-  const data = await res.json();
-  const loginSet = document.querySelectorAll("nav .menu .login_box");
-
-  if (loginSet && data) {
-    console.log(data);
-    loginSet.forEach((set) => {
-      if (set.classList.contains(`login_${data.login}`)) {
-        set.classList.remove("off");
-      }
+  try {
+    const res = await fetch("/auth", {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Tpe": "application/json",
+      },
     });
+    const data = await res.json();
+    const loginSet = document.querySelectorAll("nav .menu .login_box");
+
+    if (loginSet && data) {
+      console.log(data);
+      loginSet.forEach((set) => {
+        if (set.classList.contains(`login_${data.login}`)) {
+          set.classList.remove("off");
+        }
+      });
+    }
+  } catch (e) {
+    console.log(e);
   }
 };
 // .then((res) => res.json())
@@ -231,14 +234,14 @@ const userCheck = (userId, commentId) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      if (!data.result) {
-        reviewDel.classList.add("off");
-      }
-      reviewDel.addEventListener("click", (e) => {
-        let rate = e.target.attributes["data-rate"].value;
-        deleteReview(commentId, data.id._id, rate);
-      });
+      console.log(data, "this is data");
+      // if (!data.success) {
+      //   reviewDel.classList.add("off");
+      // }
+      // reviewDel.addEventListener("click", (e) => {
+      //   let rate = e.target.attributes["data-rate"].value;
+      //   deleteReview(commentId, data.id._id, rate);
+      // });
     })
     .catch((err) => console.log(err));
 };

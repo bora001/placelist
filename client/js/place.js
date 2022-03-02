@@ -1,20 +1,21 @@
 //item
 let link = window.location.pathname.split("/");
-const getItem = (id) => {
-  fetch(`/place/${id}`, {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      renderItem(data.item);
-      renderReview(data.item.review);
-      deleteItem(data.writer, data.item._id);
-    })
-    .catch((err) => console.log(err));
+const getItem = async (id) => {
+  try {
+    const res = await fetch(`/place/${id}`, {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    renderItem(data.item);
+    renderReview(data.item.review);
+    deleteItem(data.writer, data.item._id);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 const deleteItem = (result, id) => {

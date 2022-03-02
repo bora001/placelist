@@ -94,27 +94,31 @@ app.post("/auth", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  // req.session.user_id = null;
-  // return res.json({ login: false });
-  // return res.redirect("/");
+  req.session.user_id = null;
+  return res.json({ login: false });
+  return res.redirect("/");
 });
 app.post("/register", async (req, res) => {
-  const { username, password, passwordConfirm } = req.body;
-  console.log(username, password, passwordConfirm);
-  if (password == passwordConfirm) {
-    const userCheck = await User.findOne({ username });
-    if (userCheck) {
-      console.log("The name is already exist");
+  try {
+    const { username, password, passwordConfirm } = req.body;
+    console.log(username, password, passwordConfirm);
+    if (password == passwordConfirm) {
+      const userCheck = await User.findOne({ username });
+      if (userCheck) {
+        console.log("The name is already exist");
+      } else {
+        const user = new User({ username, password: hash });
+        await user.save();
+        return res.redirect("/");
+      }
     } else {
-      const user = new User({ username, password: hash });
-      await user.save();
-      return res.redirect("/");
+      console.log("wrong password");
     }
-  } else {
-    console.log("wrong password");
-  }
 
-  res.send(password == passwordConfirm);
+    res.send(password == passwordConfirm);
+  } catch (e) {
+    console.log(e);
+  }
 });
 // app.post("/register", (req, res) => {
 //   const data = { username: req.body.name, password: req.body.password };
@@ -141,16 +145,20 @@ app.post("/register", async (req, res) => {
 // });
 
 app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  console.log(username, password, "😊😊😊😊");
-  const user = await User.findOne({ username });
-  const validPw = await bcrypt.compare(password, user.password);
-  if (validPw) {
-    req.session.user_id = user._id;
-    // res.send("login success");
-    res.redirect("/");
-  } else {
-    res.redirect("/login");
+  try {
+    const { username, password } = req.body;
+    console.log(username, password, "😊😊😊😊");
+    const user = await User.findOne({ username });
+    const validPw = await bcrypt.compare(password, user.password);
+    if (validPw) {
+      req.session.user_id = user._id;
+      // res.send("login success");
+      res.redirect("/");
+    } else {
+      res.redirect("/login");
+    }
+  } catch (e) {
+    console.log(e);
   }
 });
 
