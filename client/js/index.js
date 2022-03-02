@@ -217,33 +217,33 @@ const getData = () => {
     .catch((err) => console.log(err));
 };
 
-const userCheck = (userId, commentId) => {
-  let link = window.location.pathname.split("/");
-  let id = link[2];
-  let reviewDel = document.querySelector(
-    ".section_place .review_box .del_review"
-  );
-  let data = { userId };
-  fetch(`/place/${id}/comment`, {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data, "this is data");
-      // if (!data.success) {
-      //   reviewDel.classList.add("off");
-      // }
-      // reviewDel.addEventListener("click", (e) => {
-      //   let rate = e.target.attributes["data-rate"].value;
-      //   deleteReview(commentId, data.id._id, rate);
-      // });
-    })
-    .catch((err) => console.log(err));
+const userCheck = async (userId, commentId) => {
+  try {
+    let link = window.location.pathname.split("/");
+    let id = link[2];
+    let reviewDel = document.querySelector(
+      ".section_place .review_box .del_review"
+    );
+    let data = { userId };
+    const res = await fetch(`/place/${id}/comment`, {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+    if (!result.success) {
+      reviewDel.classList.add("off");
+    }
+    reviewDel.addEventListener("click", (e) => {
+      let rate = e.target.attributes["data-rate"].value;
+      deleteReview(commentId, data.id._id, rate);
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 //map

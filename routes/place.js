@@ -52,19 +52,30 @@ router.post("/:id/delete", (req, res) => {
 });
 
 router.post("/:id/comment", (req, res) => {
-  let id = { _id: req.params.id };
-  if (!req.cookies.x_auth) {
+  // let id = { _id: req.params.id };
+  if (req.body.userId == req.session.user_id) {
     return res.status(200).json({
-      success: false,
+      success: true,
     });
   }
-  User.findByToken(req.cookies.x_auth, (err, user) => {
-    let result = user._id.valueOf() == req.body.userId;
-    return res.status(200).json({
-      result,
-      id,
-    });
+  return res.status(200).json({
+    success: false,
   });
+  // if (!req.session.user_id) {
+  //   return res.status(200).json({
+  //     success: false,
+  //   });
+  // }
+  // User.findById(req.session.user_id, (err, user) => {
+  //   console.log(user);
+  // });
+  // User.findByToken(req.session.user_id, (err, user) => {
+  //   let result = user._id.valueOf() == req.body.userId;
+  //   return res.status(200).json({
+  //     result,
+  //     id,
+  //   });
+  // });
 });
 
 router.post("/:id/comment/delete", (req, res) => {
