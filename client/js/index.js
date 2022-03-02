@@ -239,7 +239,8 @@ const userCheck = async (userId, commentId) => {
     }
     reviewDel.addEventListener("click", (e) => {
       let rate = e.target.attributes["data-rate"].value;
-      deleteReview(commentId, data.id._id, rate);
+      "index", result;
+      deleteReview(commentId, result.id, rate);
     });
   } catch (e) {
     console.log(e);

@@ -20,13 +20,12 @@ router.get("/:id", (req, res) => {
 router.post("/:id", (req, res) => {
   let data = { _id: req.params.id };
   // if (req.body.userId == req.session.user_id)
-  console.log(req.body, "req.body");
-  console.log(req.session.user_id, "req.session.user_id");
+  // console.log(req.body, "req.body");
+  // console.log(req.session.user_id, "req.session.user_id");
 
   if (req.session.user_id) {
     User.findById(req.session.user_id, (err, user) => {
       Place.findOne(data, function (err, item) {
-        console.log(user);
         let writer = user._id.valueOf() == item.writer.valueOf();
         return res.status(200).json({
           success: true,
@@ -57,10 +56,11 @@ router.post("/:id/delete", (req, res) => {
 });
 
 router.post("/:id/comment", (req, res) => {
-  // let id = { _id: req.params.id };
+  let id = { _id: req.params.id };
   if (req.body.userId == req.session.user_id) {
     return res.status(200).json({
       success: true,
+      id: req.params.id,
     });
   }
   return res.status(200).json({
@@ -85,8 +85,6 @@ router.post("/:id/comment", (req, res) => {
 
 router.post("/:id/comment/delete", (req, res) => {
   let data = { _id: req.body.commentId };
-
-  console.log(req.body);
   Place.findByIdAndUpdate(
     req.body.placeId,
     {
