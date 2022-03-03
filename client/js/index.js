@@ -5,42 +5,6 @@ const formInput = document.querySelectorAll(
 const listBox = document.querySelector(".section_list .list_box");
 const nav = document.querySelector("nav");
 
-let loginStatus = false;
-const loginCheck = async () => {
-  const res = await fetch("/auth", {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Tpe": "application/json",
-    },
-  });
-  const data = await res.json();
-  // const loginSet = document.querySelectorAll("nav .menu .login_box");
-  // if (loginSet && data) {
-  console.log(data, "⛔⛔⛔");
-  // loginSet.forEach((set) => {
-  //   if (set.classList.contains(`login_${data.login}`)) {
-  //     set.classList.remove("off");
-  //   }
-  // });
-  // }
-};
-
-const errCheck = async () => {
-  const res = await fetch("/error", {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Tpe": "application/json",
-    },
-  });
-  const data = await res.json();
-  console.log("error,⛔⛔⛔", data);
-
-  // console.log(data, res, "⛔");
-};
-
-errCheck();
 const logoutE = async () => {
   try {
     const res = await fetch("/logout", {
@@ -298,8 +262,5 @@ if (rateInput) {
   });
 }
 
-setTimeout(() => {
-  loginCheck();
-}, 100);
 getData();
 formSubmit();

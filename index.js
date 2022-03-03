@@ -83,6 +83,7 @@ app.post("/auth", (req, res) => {
 
 app.post("/logout", (req, res) => {
   req.session.user_id = null;
+  loginStatus = false;
   return res.json({ login: false });
 });
 
@@ -116,6 +117,7 @@ app.post("/login", async (req, res) => {
     const validPw = await bcrypt.compare(password, user.password);
     if (validPw) {
       req.session.user_id = user._id;
+      loginStatus = true;
       res.redirect("/");
     } else {
       res.redirect("/login");
@@ -177,14 +179,19 @@ app.post("/", (req, res) => {
 //router
 app.use("/place", placeRouter);
 app.set("views", path.join(__dirname, "/client/pages"));
+app.get("/favicon.ico", (req, res) => res.status(204));
+
 app.get("/", (req, res) => {
-  res.render("index", { num: loginStatus });
+  res.render("index", { loginStatus });
 });
 
+app.get("/place/:id", (req, res) => {
+  res.render("place.ejs", { loginStatus });
+});
 app.get("*", (req, res) => {
   const link = req.path.split("/");
   if (link.length < 3) {
-    res.render(`${req.path}`, { num: 3 });
+    res.render(`${link[1]}`, { loginStatus });
   }
 });
 

@@ -12,10 +12,6 @@ const cloudinary = require("cloudinary").v2;
 // });
 router.use(cookieParser());
 
-router.get("/:id", (req, res) => {
-  res.render("place.ejs");
-});
-
 router.post("/:id", (req, res) => {
   let data = { _id: req.params.id };
 
