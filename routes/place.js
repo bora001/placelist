@@ -7,11 +7,9 @@ const cookieParser = require("cookie-parser");
 const { Review } = require("../models/Review");
 const { encode } = require("html-entities");
 const cloudinary = require("cloudinary").v2;
-
 // router.get("/", (req, res) => {
 //   // res.sendFile(path.join(__dirname + `/../client/pages/place.html`));
 // });
-
 router.use(cookieParser());
 
 router.get("/:id", (req, res) => {
@@ -20,9 +18,6 @@ router.get("/:id", (req, res) => {
 
 router.post("/:id", (req, res) => {
   let data = { _id: req.params.id };
-  // if (req.body.userId == req.session.user_id)
-  // console.log(req.body, "req.body");
-  // console.log(req.session.user_id, "req.session.user_id");
 
   if (req.session.user_id) {
     User.findById(req.session.user_id, (err, user) => {
@@ -67,27 +62,9 @@ router.post("/:id/comment", (req, res) => {
   return res.status(200).json({
     success: false,
   });
-  // if (!req.session.user_id) {
-  //   return res.status(200).json({
-  //     success: false,
-  //   });
-  // }
-  // User.findById(req.session.user_id, (err, user) => {
-  //   console.log(user);
-  // });
-  // User.findByToken(req.session.user_id, (err, user) => {
-  //   let result = user._id.valueOf() == req.body.userId;
-  //   return res.status(200).json({
-  //     result,
-  //     id,
-  //   });
-  // });
 });
 
 router.post("/:id/create/comment", (req, res) => {
-  console.log(req.params.id, "req.params.id");
-  console.log(req.body, "req.body");
-  console.log(req.session.user_id, "session");
   let data = {
     userId: "",
     username: "",
@@ -95,6 +72,10 @@ router.post("/:id/create/comment", (req, res) => {
     rate: req.body.rate,
     comment: encode(req.body.comment),
   };
+  if (!req.session.user_id) {
+    console.log("no login");
+    return res.status(200).send({ success: false });
+  }
   if (req.session.user_id) {
     User.findById(req.session.user_id, (err, user) => {
       console.log(user, "user");

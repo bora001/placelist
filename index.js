@@ -1,7 +1,6 @@
 // server
 require("dotenv").config();
 const express = require("express");
-const session = require("express-session");
 const path = require("path");
 const placeRouter = require("./routes/place");
 const app = express();
@@ -9,13 +8,13 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const { Place } = require("./models/Place");
-const { Review } = require("./models/Review");
 const cookieParser = require("cookie-parser");
 const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
 const { encode } = require("html-entities");
-// multe
+
+// multer
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
@@ -35,11 +34,6 @@ const storage = new CloudinaryStorage({
   },
 });
 const upload = multer({ storage });
-
-//passport
-const passport = require("passport");
-const localPassport = require("passport-local");
-const { Console } = require("console");
 
 //---------------------------------------------------------------------------------------//
 
@@ -72,11 +66,6 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use(passport.initialize());
-app.use(passport.session());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-passport.use(new localPassport(User.authenticate()));
 
 //---------------------------------------------------------------------------------------//
 
@@ -85,18 +74,13 @@ app.post("/auth", (req, res) => {
     return res.json({ login: false });
   }
   return res.json({ login: true });
-
-  // if (!req.isAuthenticated()) {
-  //   return res.json({ login: false });
-  // }
-  // return res.json({ login: true });
 });
 
 app.post("/logout", (req, res) => {
   req.session.user_id = null;
   return res.json({ login: false });
-  return res.redirect("/");
 });
+
 app.post("/register", async (req, res) => {
   try {
     const { username, password, passwordConfirm } = req.body;
@@ -119,29 +103,6 @@ app.post("/register", async (req, res) => {
     console.log(e);
   }
 });
-// app.post("/register", (req, res) => {
-//   const data = { username: req.body.name, password: req.body.password };
-
-//   const newUser = new User(data);
-
-//   User.findOne({ username: req.body.name }, function (err, user) {
-//     if (user) {
-//       if (err) return res.json({ success: false, err });
-//       return res
-//         .status(404)
-//         .json({ success: false, message: "The name is already exist" });
-//     } else {
-//       if (err) return res.json({ success: false, err });
-//       newUser.save((err, userInfo) => {
-//         if (err) return res.json({ success: false, err });
-//         return res.status(200).json({
-//           success: true,
-//           message: "Thank you for register!",
-//         });
-//       });
-//     }
-//   });
-// });
 
 app.post("/login", async (req, res) => {
   try {
@@ -151,7 +112,6 @@ app.post("/login", async (req, res) => {
     const validPw = await bcrypt.compare(password, user.password);
     if (validPw) {
       req.session.user_id = user._id;
-      // res.send("login success");
       res.redirect("/");
     } else {
       res.redirect("/login");
@@ -160,40 +120,6 @@ app.post("/login", async (req, res) => {
     console.log(e);
   }
 });
-
-// app.post("/login", (req, res) => {
-//   const data = { username: req.body.name, password: req.body.password };
-//   User.findOne({ username: req.body.name }, (err, user) => {
-//     if (!user) {
-//       return res.json({
-//         loginSuccess: false,
-//         message: "We can not find the username",
-//       });
-//     }
-//     user.comparePassword(req.body.password, (err, isMatch) => {
-//       if (!isMatch)
-//         return res.json({
-//           success: false,
-//           message: "incorrect Password",
-//         });
-//       user.generateToken((err, user) => {
-//         if (err) return res.status(400).send(err);
-//         req.session.user_id = user.id;
-//         // res.cookie("x_auth", user.token);
-//         // res.cookie("x_auth", user.token, {
-//         //   expires: new Date(Date.now() + 900000),
-//         //   httpOnly: true,
-//         // });
-//         return res.status(200).json({
-//           login: true,
-//           success: true,
-//           token: user.token,
-//           username: user.username,
-//         });
-//       });
-//     });
-//   });
-// });
 
 app.post("/create", upload.single("img"), (req, res) => {
   let data = {

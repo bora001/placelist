@@ -99,10 +99,11 @@ const createReview = async () => {
       body: JSON.stringify(newData),
     });
     const data = await res.json();
-    console.log(data, "✔️✔️✔️✔️✔️✔️");
     if (data.success) {
       formReset();
       window.location.href = `/place/${link[2]}`;
+    } else {
+      window.location.href = "/login";
     }
   } catch (e) {
     console.log(e);

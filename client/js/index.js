@@ -1,18 +1,29 @@
-//register
 const formBtn = document.querySelectorAll(".form_box .btn_submit");
 const formInput = document.querySelectorAll(
   ".form_box input, .form_box textarea"
 );
 const listBox = document.querySelector(".section_list .list_box");
+const nav = document.querySelector("nav");
 w3.includeHTML();
-
-// const inputValidCheck = () => {
-//   formInput.forEach((input) => {
-//     input.addEventListener("invalid", () => {
-//       console.log("invalid", input.validity);
-//     });
-//   });
-// };
+const loginCheck = async () => {
+  const res = await fetch("/auth", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Tpe": "application/json",
+    },
+  });
+  const data = await res.json();
+  const loginSet = document.querySelectorAll("nav .menu .login_box");
+  if (loginSet && data) {
+    console.log(data);
+    loginSet.forEach((set) => {
+      if (set.classList.contains(`login_${data.login}`)) {
+        set.classList.remove("off");
+      }
+    });
+  }
+};
 
 const logoutE = async () => {
   try {
@@ -26,86 +37,6 @@ const logoutE = async () => {
     console.log(e);
   }
 };
-
-//login_check
-const loginCheck = async () => {
-  try {
-    const res = await fetch("/auth", {
-      credentials: "include",
-      method: "POST",
-      headers: {
-        "Content-Tpe": "application/json",
-      },
-    });
-    const data = await res.json();
-    const loginSet = document.querySelectorAll("nav .menu .login_box");
-
-    if (loginSet && data) {
-      console.log(data);
-      loginSet.forEach((set) => {
-        if (set.classList.contains(`login_${data.login}`)) {
-          set.classList.remove("off");
-        }
-      });
-    }
-  } catch (e) {
-    console.log(e);
-  }
-};
-// .then((res) => res.json())
-// .then((data) => {
-//   const loginSet = document.querySelectorAll("nav .menu .login_box");
-//   loginSet.forEach((set) => {
-//     if (!set.classList.contains(`login_${data.login}`)) {
-//       set.classList.add("off");
-//       console.log(set);
-//     } else {
-//       set.classList.remove("off");
-//     }
-
-// set.classList.toggle("off");
-//       });
-//     });
-// };
-// const loginCheck = () => {
-// fetch("/auth", {
-//   credentials: "include",
-//   method: "POST",
-//   headers: {
-//     "Content-Tpe": "application/json",
-//   },
-// })
-//   .then((res) => res.json())
-//   .then((data) => {
-//     const loginSet = document.querySelector("nav .menu .login_box");
-//     console.log(data);
-//     if (data.login) {
-//       loginSet.innerHTML = `
-//         <a href="/list">List</a>
-//         <a href="/create">Post Place</a>
-//         <a href="/" onclick="logoutE()">logout</a>`;
-//     } else {
-//       loginSet.innerHTML = `
-//         <a href="/login">Login</a>
-//         <a href="/register">Register</a>`;
-//     }
-//   });
-// setTimeout(() => {
-//   const loginSet = document.querySelector("nav .menu .login_box");
-//   const cookie = localStorage.getItem("x_auth");
-//   if (cookie) {
-//     loginSet.innerHTML = `
-//     <a href="/list">List</a>
-//     <a href="/create">Post Place</a>
-//     <a href="/" onclick="logoutE()">logout</a>`;
-//   } else {
-// loginSet.innerHTML = `
-//       <a href="/login">Login</a>
-//       <a href="/register">Register</a>`;
-//   // }
-// }, 100);
-// };
-
 //form-reset
 const formReset = () => {
   formInput.forEach((input) => {
@@ -137,20 +68,6 @@ const modalE = (status, msg) => {
     modal.classList.add("off");
   });
 };
-
-//link-Address
-// const addressCheck = () => {
-//   let link = window.location.pathname.split("/");
-//   console.log("addresscheck", link[1]);
-//   switch (link[1]) {
-//     case "list":
-//       getList();
-//       break;
-//     case "place":
-//       getItem(link[2]);
-//       break;
-//   }
-// };
 
 //formSubmit
 const formSubmit = () => {
@@ -365,7 +282,8 @@ if (rateInput) {
   });
 }
 
+setTimeout(() => {
+  loginCheck();
+}, 100);
 getData();
 formSubmit();
-loginCheck();
-// addressCheck();
