@@ -205,10 +205,11 @@ app.post("/create", upload.single("img"), (req, res) => {
     imgName: req.file.filename,
     writer: "",
   };
-
-  User.findByToken(req.cookies.x_auth, (err, user) => {
+  User.findById(req.session.user_id, (err, user) => {
+    // console.log(user);
     data.writer = user._id;
   });
+
   const geoData = geocoder
     .forwardGeocode({
       query: req.body.location,
