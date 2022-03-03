@@ -45,7 +45,7 @@ router.post("/:id", (req, res) => {
   }
 });
 
-router.post("/:id/delete", (req, res) => {
+router.delete("/:id/delete", (req, res) => {
   let data = { _id: req.params.id };
 
   Place.findOneAndDelete(data, function (err, item) {
@@ -124,7 +124,7 @@ router.post("/:id/create/comment", (req, res) => {
   }
 });
 
-router.post("/:id/comment/delete", (req, res) => {
+router.delete("/:id/comment/delete", (req, res) => {
   let data = { _id: req.body.commentId };
   Place.findByIdAndUpdate(
     req.body.placeId,

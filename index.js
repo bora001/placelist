@@ -15,8 +15,7 @@ const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
 const { encode } = require("html-entities");
-
-// multer
+// multe
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");

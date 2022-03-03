@@ -29,7 +29,7 @@ const deleteItem = (result, id) => {
     if (window.confirm("Are you sure you want to delete this place ?")) {
       fetch(`/place/${id}/delete`, {
         credentials: "include",
-        method: "POST",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
@@ -81,28 +81,33 @@ const renderItem = (data) => {
 };
 
 const createReview = async () => {
-  let link = window.location.pathname.split("/");
-  let id = link[2];
-  const oldData = {};
-  for (let v of Object.values(formInput)) {
-    oldData[v.name] = v.value;
-  }
-  let newData = Object.assign({}, oldData, { id: link[2] });
+  try {
+    let link = window.location.pathname.split("/");
+    let id = link[2];
+    const oldData = {};
+    for (let v of Object.values(formInput)) {
+      oldData[v.name] = v.value;
+    }
+    let newData = Object.assign({}, oldData, { id: link[2] });
 
-  const res = await fetch(`/place/${id}/create/comment`, {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newData),
-  });
-  const data = await res.json();
-  if (data.success) {
-    formReset();
-    window.location.href = `/place/${link[2]}`;
+    const res = await fetch(`/place/${id}/create/comment`, {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newData),
+    });
+    const data = await res.json();
+    console.log(data, "✔️✔️✔️✔️✔️✔️");
+    if (data.success) {
+      formReset();
+      window.location.href = `/place/${link[2]}`;
+    }
+  } catch (e) {
+    console.log(e);
+    console.log(JSON.stringify(e));
   }
-
   // if (!user) {
   //   modalE(false, "Please login first");
   //   setTimeout(() => {
@@ -121,7 +126,7 @@ const deleteReview = (commentId, id, rate) => {
   if (window.confirm("Are you sure you want to delete this comment ?")) {
     fetch(`/place/${id}/comment/delete`, {
       credentials: "include",
-      method: "POST",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
