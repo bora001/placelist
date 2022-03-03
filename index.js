@@ -2,6 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const session = require("express-session");
 const placeRouter = require("./routes/place");
 const app = express();
 const bcrypt = require("bcrypt");
@@ -48,6 +49,8 @@ mongoose
 
 //---------------------------------------------------------------------------------------//
 
+app.set("view engine", "ejs");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/client"));
@@ -66,7 +69,6 @@ app.use(
     saveUninitialized: true,
   })
 );
-
 //---------------------------------------------------------------------------------------//
 
 app.post("/auth", (req, res) => {
@@ -74,6 +76,18 @@ app.post("/auth", (req, res) => {
     return res.json({ login: false });
   }
   return res.json({ login: true });
+});
+
+let msg = "hi2";
+
+app.get("/error", (req, res) => {
+  return res.send(msg);
+});
+
+app.post("/error", (req, res) => {
+  // return res.send(msg);
+  // console.log(msg);
+  return res.json({ message: msg });
 });
 
 app.post("/logout", (req, res) => {
@@ -107,7 +121,6 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log(username, password, "😊😊😊😊");
     const user = await User.findOne({ username });
     const validPw = await bcrypt.compare(password, user.password);
     if (validPw) {
@@ -172,20 +185,12 @@ app.post("/", (req, res) => {
 
 //router
 app.use("/place", placeRouter);
-
-app.get("/secret", (req, res) => {
-  if (!req.session.user_id) {
-    return res.send("hey you didn't login");
-  }
-  res.send("hoho");
-});
-
+app.set("views", path.join(__dirname, "/client/pages"));
 app.get("*", (req, res) => {
   const link = req.path.split("/");
   if (link.length < 3) {
-    res.sendFile(path.join(__dirname + `/client/pages/${req.path}.html`));
+    res.render(`${req.path}.ejs`);
   }
-  // res.sendFile(path.join(__dirname + `/client/pages/${req.path}.html`));
 });
 
 app.post("/list", (req, res) => {

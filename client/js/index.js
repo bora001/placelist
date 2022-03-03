@@ -5,6 +5,7 @@ const formInput = document.querySelectorAll(
 const listBox = document.querySelector(".section_list .list_box");
 const nav = document.querySelector("nav");
 w3.includeHTML();
+
 const loginCheck = async () => {
   const res = await fetch("/auth", {
     credentials: "include",
@@ -25,6 +26,21 @@ const loginCheck = async () => {
   }
 };
 
+const errCheck = async () => {
+  const res = await fetch("/error", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Tpe": "application/json",
+    },
+  });
+  const data = await res.json();
+  console.log("error,⛔⛔⛔", data);
+
+  // console.log(data, res, "⛔");
+};
+
+errCheck();
 const logoutE = async () => {
   try {
     const res = await fetch("/logout", {

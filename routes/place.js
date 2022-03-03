@@ -13,7 +13,7 @@ const cloudinary = require("cloudinary").v2;
 router.use(cookieParser());
 
 router.get("/:id", (req, res) => {
-  res.sendFile(path.join(__dirname + `/../client/pages/place.html`));
+  res.render("place.ejs");
 });
 
 router.post("/:id", (req, res) => {
