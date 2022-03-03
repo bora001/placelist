@@ -71,23 +71,14 @@ app.use(
 );
 //---------------------------------------------------------------------------------------//
 
+let loginStatus = false;
 app.post("/auth", (req, res) => {
   if (!req.session.user_id) {
+    loginStatus = false;
     return res.json({ login: false });
   }
+  loginStatus = true;
   return res.json({ login: true });
-});
-
-let msg = "hi2";
-
-app.get("/error", (req, res) => {
-  return res.send(msg);
-});
-
-app.post("/error", (req, res) => {
-  // return res.send(msg);
-  // console.log(msg);
-  return res.json({ message: msg });
 });
 
 app.post("/logout", (req, res) => {
@@ -186,10 +177,14 @@ app.post("/", (req, res) => {
 //router
 app.use("/place", placeRouter);
 app.set("views", path.join(__dirname, "/client/pages"));
+app.get("/", (req, res) => {
+  res.render("index", { num: loginStatus });
+});
+
 app.get("*", (req, res) => {
   const link = req.path.split("/");
   if (link.length < 3) {
-    res.render(`${req.path}.ejs`);
+    res.render(`${req.path}`, { num: 3 });
   }
 });
 

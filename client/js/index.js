@@ -4,8 +4,8 @@ const formInput = document.querySelectorAll(
 );
 const listBox = document.querySelector(".section_list .list_box");
 const nav = document.querySelector("nav");
-w3.includeHTML();
 
+let loginStatus = false;
 const loginCheck = async () => {
   const res = await fetch("/auth", {
     credentials: "include",
@@ -15,15 +15,15 @@ const loginCheck = async () => {
     },
   });
   const data = await res.json();
-  const loginSet = document.querySelectorAll("nav .menu .login_box");
-  if (loginSet && data) {
-    console.log(data);
-    loginSet.forEach((set) => {
-      if (set.classList.contains(`login_${data.login}`)) {
-        set.classList.remove("off");
-      }
-    });
-  }
+  // const loginSet = document.querySelectorAll("nav .menu .login_box");
+  // if (loginSet && data) {
+  console.log(data, "⛔⛔⛔");
+  // loginSet.forEach((set) => {
+  //   if (set.classList.contains(`login_${data.login}`)) {
+  //     set.classList.remove("off");
+  //   }
+  // });
+  // }
 };
 
 const errCheck = async () => {
