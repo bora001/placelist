@@ -16,7 +16,6 @@ const renderList = (data) => {
   for (let item of data) {
     let length = item.review.length + 1;
     let average = (item.rate / length).toFixed(1);
-
     const html = `
   <div class="list_item">
           <div class="img_box">

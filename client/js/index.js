@@ -16,7 +16,6 @@ const loginCheck = async () => {
   const data = await res.json();
   const loginSet = document.querySelectorAll("nav .menu .login_box");
   if (loginSet && data) {
-    console.log(data);
     loginSet.forEach((set) => {
       if (set.classList.contains(`login_${data.login}`)) {
         set.classList.remove("off");
@@ -41,31 +40,6 @@ const logoutE = async () => {
 const formReset = () => {
   formInput.forEach((input) => {
     input.value = "";
-  });
-};
-
-//modal
-const modalE = (status, msg) => {
-  const modal = document.querySelector(".modal");
-  const closeModal = document.querySelector(".modal .btn_close");
-  const modalTitle = document.querySelector(".modal .msg_box .txt_box h3");
-  const modalTxt = document.querySelector(".modal .msg_box .txt_box p");
-
-  if (status) {
-    modalTitle.innerHTML = "Welcome";
-    modalTxt.innerHTML = "✅" + msg;
-    setTimeout(() => {
-      formReset();
-      window.location.href = "/login";
-    }, 1500);
-  } else {
-    modalTitle.innerHTML = "Sorry";
-    modalTxt.innerHTML = "⚠️" + msg;
-  }
-
-  modal.classList.remove("off");
-  closeModal.addEventListener("click", () => {
-    modal.classList.add("off");
   });
 };
 
@@ -246,15 +220,11 @@ const setMap = (collection) => {
     });
 
     map.on("click", "unclustered-point", (e) => {
-      console.log(e.features[0]);
       const coordinates = e.features[0].geometry.coordinates.slice();
       const name = e.features[0].properties.name;
       const rate = e.features[0].properties.rate;
       const img = e.features[0].properties.img;
       const id = e.features[0].properties.id;
-      // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      // }
       new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(

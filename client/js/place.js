@@ -23,7 +23,6 @@ const deleteItem = (result, id) => {
   if (!result) {
     delBtn.classList.add("off");
   }
-  console.log(delBtn);
 
   delBtn.addEventListener("click", () => {
     if (window.confirm("Are you sure you want to delete this place ?")) {
@@ -49,9 +48,6 @@ const renderItem = (data) => {
   renderMap(data.geometry.coordinates);
   let length = data.review.length + 1;
   let average = (data.rate / length).toFixed(1);
-  // if (data.review) {
-  //   // renderReview(data.review);
-  // }
   let itemBox = document.querySelector(".section_place .item_box");
 
   let html = `
@@ -68,7 +64,7 @@ const renderItem = (data) => {
               <div class="rate_input">
                 <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 <span class="filled"
-                style="width: ${data.rate * 20}%"
+                style="width: ${average * 20}%"
                 >&#9733;&#9733;&#9733;&#9733;&#9733;</span>
               </div>
               <p class="current_rate">${average}</p>
@@ -103,19 +99,13 @@ const createReview = async () => {
       formReset();
       window.location.href = `/place/${link[2]}`;
     } else {
+      alert("Please Login");
       window.location.href = "/login";
     }
   } catch (e) {
     console.log(e);
     console.log(JSON.stringify(e));
   }
-  // if (!user) {
-  //   modalE(false, "Please login first");
-  //   setTimeout(() => {
-  //     window.location.href = "/login";
-  //   }, 1500);
-  //   return;
-  // }
 };
 
 const deleteReview = (commentId, id, rate) => {

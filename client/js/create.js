@@ -1,5 +1,4 @@
 const createForm = () => {
-  console.log("create");
   let data = {};
   for (let v of Object.values(formInput)) {
     data[v.name] = v.value;

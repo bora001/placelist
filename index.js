@@ -84,21 +84,22 @@ app.post("/logout", (req, res) => {
 app.post("/register", async (req, res) => {
   try {
     const { username, password, passwordConfirm } = req.body;
-    console.log(username, password, passwordConfirm);
     if (password == passwordConfirm) {
       const userCheck = await User.findOne({ username });
       if (userCheck) {
-        console.log("The name is already exist");
+        return res.send(
+          "<script>alert('The name is already exist');location.href='/register';</script>"
+        );
       } else {
         const user = new User({ username, password: hash });
         await user.save();
         return res.redirect("/");
       }
     } else {
-      console.log("wrong password");
+      return res.send(
+        "<script>alert('Passwords do not match');location.href='/register';</script>"
+      );
     }
-
-    res.send(password == passwordConfirm);
   } catch (e) {
     console.log(e);
   }
@@ -107,15 +108,21 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log(username, password, "😊😊😊😊");
     const user = await User.findOne({ username });
-    const validPw = await bcrypt.compare(password, user.password);
-    if (validPw) {
-      req.session.user_id = user._id;
-      res.redirect("/");
-    } else {
-      res.redirect("/login");
+    if (user) {
+      const validPw = await bcrypt.compare(password, user.password);
+      if (validPw) {
+        req.session.user_id = user._id;
+        res.redirect("/");
+      } else {
+        return res.send(
+          "<script>alert('Incorrect password');location.href='/login';</script>"
+        );
+      }
     }
+    return res.send(
+      "<script>alert('Check your username');location.href='/login';</script>"
+    );
   } catch (e) {
     console.log(e);
   }
@@ -153,10 +160,6 @@ app.post("/create", upload.single("img"), (req, res) => {
 
 //multer
 
-app.post("/test", (req, res) => {
-  console.log("test", req.body);
-});
-
 app.post("/", (req, res) => {
   Place.find((err, data) => {
     return res.json({
@@ -165,10 +168,6 @@ app.post("/", (req, res) => {
     });
   });
 });
-
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname + "/index.html"));
-// });
 
 //router
 app.use("/place", placeRouter);
@@ -185,7 +184,6 @@ app.get("*", (req, res) => {
   if (link.length < 3) {
     res.sendFile(path.join(__dirname + `/client/pages/${req.path}.html`));
   }
-  // res.sendFile(path.join(__dirname + `/client/pages/${req.path}.html`));
 });
 
 app.post("/list", (req, res) => {

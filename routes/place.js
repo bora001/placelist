@@ -7,9 +7,7 @@ const cookieParser = require("cookie-parser");
 const { Review } = require("../models/Review");
 const { encode } = require("html-entities");
 const cloudinary = require("cloudinary").v2;
-// router.get("/", (req, res) => {
-//   // res.sendFile(path.join(__dirname + `/../client/pages/place.html`));
-// });
+
 router.use(cookieParser());
 
 router.get("/:id", (req, res) => {
@@ -73,18 +71,14 @@ router.post("/:id/create/comment", (req, res) => {
     comment: encode(req.body.comment),
   };
   if (!req.session.user_id) {
-    console.log("no login");
     return res.status(200).send({ success: false });
   }
   if (req.session.user_id) {
     User.findById(req.session.user_id, (err, user) => {
-      console.log(user, "user");
       data.userId = user._id;
       data.username = user.username;
       const newReview = new Review(data);
       const reviewId = newReview._id;
-      console.log(newReview, "newReview");
-      console.log(reviewId, "reviewId");
       newReview.save();
       Place.findOneAndUpdate(
         { _id: req.body.id },
