@@ -46,7 +46,7 @@ const deleteItem = (result, id) => {
 
 const renderItem = (data) => {
   renderMap(data.geometry.coordinates);
-  let length = data.review.length + 1;
+  let length = data.review.length;
   let average = (data.rate / length).toFixed(1);
   let itemBox = document.querySelector(".section_place .item_box");
 
@@ -67,7 +67,7 @@ const renderItem = (data) => {
                 style="width: ${average * 20}%"
                 >&#9733;&#9733;&#9733;&#9733;&#9733;</span>
               </div>
-              <p class="current_rate">${average}</p>
+              <p class="current_rate">${average > 0 ? average : ""}</p>
             </div>
             <p>${data.address}</p>
           </div>

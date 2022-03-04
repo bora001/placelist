@@ -137,8 +137,13 @@ app.post("/create", upload.single("img"), (req, res) => {
     imgName: req.file.filename,
     writer: "",
   };
+  if (!req.session.user_id) {
+    return res.status(200).json({
+      success: false,
+    });
+  }
+
   User.findById(req.session.user_id, (err, user) => {
-    // console.log(user);
     data.writer = user._id;
   });
 

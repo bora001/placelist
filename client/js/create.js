@@ -1,23 +1,37 @@
-const createForm = () => {
-  let data = {};
-  for (let v of Object.values(formInput)) {
-    data[v.name] = v.value;
-  }
+const createForm = async () => {
+  const submitBtn = document.querySelector(".btn_submit");
 
   const form = document.querySelector(".form_new");
   const formData = new FormData(form);
-  fetch("/create", {
+  form.addEventListener("submit", (e) => {
+    console.log("sub");
+    const str = "Upload.......";
+    submitBtn.disable = true;
+
+    const count = (word, index) => {
+      setTimeout(() => {
+        submitBtn.value = word;
+      }, 150 * index);
+    };
+
+    for (let i in str) {
+      let s = str.slice(0, Number(i) + 1);
+      count(s, i);
+    }
+  });
+  const res = await fetch("/create", {
     method: "POST",
     body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        formReset();
-        window.location.href = "/";
-      }
-    })
-    .catch((err) => console.log(err));
+  });
+  const data = res.json();
+  if (data.success) {
+    alert("Thank you, We got the new place!");
+    formReset();
+    window.location.href = "/";
+  } else {
+    alert("Please login");
+    window.location.href = "/login";
+  }
 };
 
 const thumbnail = () => {

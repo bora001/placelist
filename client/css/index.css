@@ -126,7 +126,7 @@ section .form_box textarea {
   border-radius: 5px;
   letter-spacing: 1px;
   padding: 7px;
-  font-weight: 600;
+  font-weight: 500;
 }
 section .form_box .btn_submit {
   border: none;
@@ -187,6 +187,7 @@ section .form_box .btn_submit:hover {
   font-size: 18px;
   color: rgba(16, 18, 129, 0.973);
   font-weight: 900;
+  margin: 5px;
 }
 .section_new .pre_img {
   width: 300px;
