@@ -5,6 +5,7 @@ const formInput = document.querySelectorAll(
 const listBox = document.querySelector(".section_list .list_box");
 const nav = document.querySelector("nav");
 w3.includeHTML();
+
 const loginCheck = async () => {
   const res = await fetch("/auth", {
     credentials: "include",
@@ -91,7 +92,6 @@ const getData = () => {
         features: [],
       };
       theData.map((place) => {
-        console.log(place);
         let obj = {
           geometry: place.geometry,
           properties: {

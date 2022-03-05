@@ -36,7 +36,6 @@ const storage = new CloudinaryStorage({
 const upload = multer({ storage });
 
 //---------------------------------------------------------------------------------------//
-
 //mongodb
 mongoose
   .connect(process.env.mongoUrl, {
@@ -64,6 +63,7 @@ app.use(
     secret: "typethesecret",
     resave: true,
     saveUninitialized: true,
+    cookie: { maxAge: 60000 },
   })
 );
 
@@ -164,7 +164,6 @@ app.post("/create", upload.single("img"), (req, res) => {
 });
 
 //multer
-
 app.post("/", (req, res) => {
   Place.find((err, data) => {
     return res.json({
@@ -177,12 +176,11 @@ app.post("/", (req, res) => {
 //router
 app.use("/place", placeRouter);
 
-app.get("/secret", (req, res) => {
-  if (!req.session.user_id) {
-    return res.send("hey you didn't login");
-  }
-  res.send("hoho");
-});
+// app.get("/secret", (req, res) => {
+// if (!req.session.user_id) {
+//   return res.send("hey you didn't login");
+// }
+// });
 
 app.get("*", (req, res) => {
   const link = req.path.split("/");

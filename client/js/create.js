@@ -4,7 +4,6 @@ const createForm = async () => {
   const form = document.querySelector(".form_new");
   const formData = new FormData(form);
   form.addEventListener("submit", (e) => {
-    console.log("sub");
     const str = "Upload.......";
     submitBtn.disable = true;
 
@@ -23,7 +22,7 @@ const createForm = async () => {
     method: "POST",
     body: formData,
   });
-  const data = res.json();
+  const data = await res.json();
   if (data.success) {
     alert("Thank you, We got the new place!");
     formReset();
