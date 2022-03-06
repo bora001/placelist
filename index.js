@@ -13,11 +13,14 @@ const mbxGeo = require("@mapbox/mapbox-sdk/services/geocoding");
 const mbxToken = process.env.mapToken;
 const geocoder = mbxGeo({ accessToken: mbxToken });
 const { encode } = require("html-entities");
+const mongoStore = require("connect-mongo");
 
 // multer
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const req = require("express/lib/request");
+const session = require("express-session");
 
 //cloudinary
 cloudinary.config({
@@ -59,11 +62,15 @@ app.use((req, res, next) => {
 });
 
 app.use(
-  require("express-session")({
+  session({
     secret: "typethesecret",
     resave: true,
     saveUninitialized: true,
     cookie: { maxAge: 60000 },
+    store: new mongoStore({
+      url: process.env.mongoUrl,
+      touchAfter: 24 * 60 * 60,
+    }),
   })
 );
 
