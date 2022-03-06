@@ -103,7 +103,7 @@ const getData = () => {
         };
         collection.features.push(obj);
       });
-      setMap(collection);
+      setMap(collection, data.mapToken);
     })
     .catch((err) => console.log(err));
 };
@@ -139,7 +139,7 @@ const userCheck = async (userId, commentId) => {
 };
 
 //map
-const setMap = (collection) => {
+const setMap = (collection, key) => {
   mapboxgl.accessToken = key;
   const map = new mapboxgl.Map({
     container: "map",
@@ -148,7 +148,6 @@ const setMap = (collection) => {
     zoom: 3,
   });
   map.addControl(new mapboxgl.NavigationControl());
-
   map.on("load", () => {
     map.addSource("placelist", {
       type: "geojson",
@@ -157,7 +156,6 @@ const setMap = (collection) => {
       clusterMaxZoom: 14,
       clusterRadius: 50,
     });
-
     map.addLayer({
       id: "clusters",
       type: "circle",
@@ -176,7 +174,6 @@ const setMap = (collection) => {
         "circle-radius": ["step", ["get", "point_count"], 20, 100, 30, 750, 40],
       },
     });
-
     map.addLayer({
       id: "cluster-count",
       type: "symbol",
@@ -188,7 +185,6 @@ const setMap = (collection) => {
         "text-size": 12,
       },
     });
-
     map.addLayer({
       id: "unclustered-point",
       type: "circle",
@@ -201,7 +197,6 @@ const setMap = (collection) => {
         "circle-stroke-color": "#e9bccb",
       },
     });
-
     map.on("click", "clusters", (e) => {
       const features = map.queryRenderedFeatures(e.point, {
         layers: ["clusters"],
@@ -211,14 +206,12 @@ const setMap = (collection) => {
         .getSource("placelist")
         .getClusterExpansionZoom(clusterId, (err, zoom) => {
           if (err) return;
-
           map.easeTo({
             center: features[0].geometry.coordinates,
             zoom: zoom,
           });
         });
     });
-
     map.on("click", "unclustered-point", (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
       const name = e.features[0].properties.name;
@@ -232,7 +225,6 @@ const setMap = (collection) => {
         )
         .addTo(map);
     });
-
     map.on("mouseenter", "clusters", () => {
       map.getCanvas().style.cursor = "pointer";
     });

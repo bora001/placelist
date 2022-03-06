@@ -2,5 +2,4 @@
 /node_modules
 /.parcel-cache
 /client/node_modules
-/client/dev.js
 .env

@@ -10,7 +10,8 @@ const getItem = async (id) => {
       },
     });
     const data = await res.json();
-    renderItem(data.item);
+
+    renderItem(data.item, data.key);
     renderReview(data.item.review);
     deleteItem(data.writer, data.item._id);
   } catch (e) {
@@ -44,8 +45,8 @@ const deleteItem = (result, id) => {
   });
 };
 
-const renderItem = (data) => {
-  renderMap(data.geometry.coordinates);
+const renderItem = (data, key) => {
+  renderMap(data.geometry.coordinates, key);
   let length = data.review.length;
   let average = (data.rate / length).toFixed(1);
   let itemBox = document.querySelector(".section_place .item_box");
@@ -156,7 +157,7 @@ const renderReview = (data) => {
   });
 };
 
-const renderMap = (data) => {
+const renderMap = (data, key) => {
   mapboxgl.accessToken = key;
   const map = new mapboxgl.Map({
     container: "map",

@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/:id", (req, res) => {
   let data = { _id: req.params.id };
-
+  let key = process.env.mapToken;
   if (req.session.user_id) {
     User.findById(req.session.user_id, (err, user) => {
       Place.findOne(data, function (err, item) {
@@ -25,6 +25,7 @@ router.post("/:id", (req, res) => {
           success: true,
           item,
           writer,
+          key,
         });
       }).populate("review");
     });
@@ -33,6 +34,7 @@ router.post("/:id", (req, res) => {
       return res.status(200).json({
         success: true,
         item,
+        key,
       });
     }).populate("review");
   }

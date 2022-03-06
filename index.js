@@ -68,7 +68,7 @@ app.use(
     saveUninitialized: true,
     cookie: { maxAge: 60000 },
     store: new mongoStore({
-      url: process.env.mongoUrl,
+      mongoUrl: process.env.mongoUrl,
       touchAfter: 24 * 60 * 60,
     }),
   })
@@ -172,10 +172,13 @@ app.post("/create", upload.single("img"), (req, res) => {
 
 //multer
 app.post("/", (req, res) => {
+  let mapToken = process.env.mapToken;
+  // console.log(process.env.mapToken, "🎈");
   Place.find((err, data) => {
     return res.json({
       success: true,
       data,
+      mapToken,
     });
   });
 });
