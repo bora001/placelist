@@ -891,12 +891,12 @@ section .form_box .btn_submit:hover {
 @media all and (max-width: 767px) {
   nav {
     width: 100vw;
-    padding: 1.9557vw 3.2595vw;
+    padding: 3vw 3.2595vw;
     background: linear-gradient(to bottom, rgba(245, 244, 244, 0.459), rgba(180, 180, 180, 0.459));
   }
   nav .logo a {
     color: #131577;
-    font-size: 4.1721vw;
+    font-size: 6vw;
     letter-spacing: 0.2608vw;
     font-family: "Lobster", cursive;
   }
@@ -906,13 +906,13 @@ section .form_box .btn_submit:hover {
   nav .menu a {
     color: #131577;
     font-family: "Lobster", cursive;
-    font-size: 2.8683vw;
+    font-size: 4vw;
     letter-spacing: 0.1304vw;
     width: 13.0378vw;
     align-items: center;
   }
   nav .menu .login_box a {
-    width: 13.0378vw;
+    width: 15vw;
   }
 
   #map {
@@ -931,38 +931,39 @@ section .form_box .btn_submit:hover {
     transform: translate(-50%, -50%);
     border-radius: 2.6076vw;
     width: 45.6323vw;
-    height: 58.6701vw;
-    padding: 2.6076vw;
+    height: auto;
+    padding: 6vw;
     flex-direction: column;
   }
   section .form_box:before {
     top: -2.6076vw;
     right: 1.3038vw;
-    width: 8.4746vw;
-    height: 8.4746vw;
+    width: 12vw;
+    height: 12vw;
     opacity: 1;
     background: url("https://cdn.pixabay.com/photo/2017/07/17/13/25/seal-2512363_960_720.png") center/cover no-repeat;
   }
   section .form_box h2 {
     font-family: "Lobster", cursive;
     color: rgba(16, 18, 129, 0.973);
-    font-size: 4.1721vw;
+    font-size: 8vw;
     letter-spacing: 0.5215vw;
     margin-bottom: 1.3038vw;
   }
   section .form_box input {
+    font-size: 4vw;
     border-radius: 0.6519vw;
     border: none;
-    box-shadow: 0.6519vw 0.6519vw 0.6519vw rgba(83, 81, 85, 0.205);
+    box-shadow: none;
     letter-spacing: 0.1304vw;
-    text-indent: 1.3038vw;
-    height: 3.2595vw;
+    text-indent: 3vw;
+    height: 9vw;
   }
   section .form_box input[type=file] {
     box-shadow: none;
   }
   section .form_box input:invalid {
-    background-color: rgba(249, 250, 252, 0.938);
+    background: rgba(230, 229, 229, 0.596);
   }
   section .form_box textarea {
     border: none;
@@ -971,18 +972,14 @@ section .form_box .btn_submit:hover {
     padding: 0.9126vw;
   }
   section .form_box .btn_submit {
+    font-size: 4vw;
     border: none;
-    height: 3.9113vw;
+    height: 8vw;
     cursor: pointer;
     margin-top: 1.3038vw;
-    background: linear-gradient(to bottom, rgba(245, 244, 244, 0.459), rgba(180, 180, 180, 0.459));
-    box-shadow: none;
-    font-size: 2.086vw;
-  }
-  section .form_box .btn_submit:hover {
-    transition: 0.2s;
-    background: transparent;
+    color: #fff;
     background-color: #1a1c9b;
+    box-shadow: none;
   }
 
   .section_login:before {
@@ -992,8 +989,8 @@ section .form_box .btn_submit:hover {
     background: url("https://cdn.pixabay.com/photo/2017/06/14/08/20/map-of-the-world-2401458_960_720.jpg") center/cover no-repeat;
   }
   .section_login .form_login {
-    width: 39.1134vw;
-    height: 32.5945vw;
+    width: 68vw;
+    height: 68vw;
   }
 
   .section_register:before {
@@ -1003,8 +1000,8 @@ section .form_box .btn_submit:hover {
     background: url("https://cdn.pixabay.com/photo/2017/06/14/08/20/map-of-the-world-2401458_960_720.jpg") center/cover no-repeat;
   }
   .section_register .form_register {
-    width: 39.1134vw;
-    height: 32.5945vw;
+    width: 68vw;
+    height: 68vw;
   }
 
   .section_new:before {
@@ -1015,22 +1012,23 @@ section .form_box .btn_submit:hover {
   }
   .section_new .form_box {
     height: auto;
+    width: 68vw;
   }
   .section_new .form_box input {
-    font-size: 2.1vw;
     margin: 1.3038vw 0;
   }
   .section_new .form_box input[type=file] {
     height: auto;
+    margin: 1vw auto;
   }
   .section_new .form_box label {
-    font-size: 2.5vw;
+    font-size: 5vw;
     color: rgba(16, 18, 129, 0.973);
     margin: 0.6519vw;
   }
   .section_new .pre_img {
-    width: 39.1134vw;
-    margin: 0 auto;
+    width: 56vw;
+    margin: 2vw auto;
   }
 
   .section_list {
@@ -1088,8 +1086,8 @@ section .form_box .btn_submit:hover {
     overflow-y: scroll;
   }
   .section_place .place_box {
-    width: 80%;
-    margin: 0 auto;
+    width: 90%;
+    margin: 5vw auto;
     flex-direction: column;
   }
   .section_place .place_box .item_box {
@@ -1106,45 +1104,41 @@ section .form_box .btn_submit:hover {
     align-items: center;
   }
   .section_place .place_box .item_box .detail_box .txt_box .intro_box h3 {
-    font-size: 3.6506vw;
+    font-size: 5.5vw;
     margin-right: 1vw;
   }
   .section_place .place_box .item_box .detail_box .txt_box .intro_box .rate_input {
     margin: 0 0.6519vw;
-    width: 9.2568vw;
-    height: 1.8253vw;
-    font-size: 1.8253vw;
+    width: 17vw;
+    height: 3.4vw;
+    font-size: 3.4vw;
   }
   .section_place .place_box .item_box .detail_box .txt_box .intro_box .rate_input span {
-    line-height: 1.8253vw;
+    line-height: 3.4vw;
   }
   .section_place .place_box .item_box .detail_box .txt_box .intro_box p {
-    font-size: 1.8253vw;
+    font-size: 3vw;
   }
   .section_place .place_box .item_box .detail_box .txt_box p {
-    font-size: 2.086vw;
+    font-size: 3vw;
   }
   .section_place .place_box .item_box .opt_box {
+    margin-bottom: 3vw;
     align-items: flex-end;
   }
   .section_place .place_box .item_box .opt_box button.del_place {
     font-size: 1.5645vw;
     width: 13.0378vw;
-    height: 3.9113vw;
-    line-height: 3.9113vw;
+    height: 4vw;
+    line-height: 4vw;
     cursor: pointer;
     border: none;
-    background-color: rgba(19, 21, 119, 0.11);
-    background: linear-gradient(to bottom, rgba(240, 238, 238, 0.459), rgba(223, 221, 221, 0.459));
-  }
-  .section_place .place_box .item_box .opt_box button.del_place:hover {
-    background: transparent;
-    background-color: rgba(182, 11, 11, 0.911);
-    transition: 0.3s;
+    background: rgba(182, 11, 11, 0.911);
+    color: #fff;
   }
   .section_place .place_box .item_box .opt_box #map {
-    width: 26.0756vw;
-    height: 13.0378vw;
+    width: 30vw;
+    height: 15vw;
   }
   .section_place .place_box .review_box {
     flex-direction: column-reverse;
@@ -1160,8 +1154,8 @@ section .form_box .btn_submit:hover {
     left: 0;
     transform: none;
     width: 100%;
-    height: 32.5945vw;
-    margin-bottom: 10vw;
+    height: 40vw;
+    margin-bottom: 13vw;
     flex-direction: column;
     background-color: #e7e7ec;
     background: linear-gradient(to bottom, rgba(236, 235, 235, 0.459), rgba(209, 208, 208, 0.459));
@@ -1170,7 +1164,7 @@ section .form_box .btn_submit:hover {
     align-items: center;
   }
   .section_place .place_box .review_box .review_add form .top_box h3 {
-    font-size: 3.1291vw;
+    font-size: 4vw;
     color: #131577;
   }
   .section_place .place_box .review_box .review_add form .top_box .rate_input {
@@ -1193,6 +1187,9 @@ section .form_box .btn_submit:hover {
     opacity: 0;
     cursor: pointer;
   }
+  .section_place .place_box .review_box .review_add form .bottom_box {
+    margin-top: 3vw;
+  }
   .section_place .place_box .review_box .review_add form .bottom_box textarea {
     padding: 5%;
     width: 100%;
@@ -1200,13 +1197,17 @@ section .form_box .btn_submit:hover {
   }
   .section_place .place_box .review_box .review_add form .bottom_box input[type=submit] {
     width: 30%;
+    text-indent: 0;
+    height: 15%;
+    text-align: center;
     margin: 0 auto;
-    top: 75%;
-    right: 10%;
+    top: 72%;
+    right: 7%;
+    font-size: 2.5vw;
     cursor: pointer;
   }
   .section_place .place_box .review_box .review_list {
-    padding: 2.6076vw 3.9113vw;
+    padding: 0vw;
     margin-bottom: 6.5189vw;
   }
   .section_place .place_box .review_box .review_list .review_item {
@@ -1220,7 +1221,7 @@ section .form_box .btn_submit:hover {
     width: 9.1265vw;
   }
   .section_place .place_box .review_box .review_list .review_item .review_edit p {
-    font-size: 1.5645vw;
+    font-size: 2vw;
     color: #4e4c4c;
     cursor: pointer;
   }
@@ -1238,13 +1239,13 @@ section .form_box .btn_submit:hover {
     width: 20%;
   }
   .section_place .place_box .review_box .review_list .review_item .review_txt {
-    padding: 0.6519vw;
+    padding: 2vw;
   }
   .section_place .place_box .review_box .review_list .review_item .review_txt h3 {
-    font-size: 2.086vw;
+    font-size: 3.2vw;
   }
   .section_place .place_box .review_box .review_list .review_item .review_txt p {
-    margin: 1.9557vw;
+    margin: 3vw;
     font-size: 2.086vw;
   }
   .section_place .place_box .review_box .review_list .review_item .del_review {
@@ -1255,14 +1256,18 @@ section .form_box .btn_submit:hover {
   }
 
   .mapboxgl-popup-content {
-    padding: 1.9557vw 0.6519vw;
+    padding: 8vw 2.5vw 2vw !important;
   }
   .mapboxgl-popup-content img {
-    width: 15.6454vw;
-    height: 9.1265vw;
+    width: 25vw;
+    height: 18vw;
   }
   .mapboxgl-popup-content h2 {
-    font-size: 1.6949vw;
+    font-size: 3.5vw;
+  }
+  .mapboxgl-popup-content .mapboxgl-popup-close-button {
+    font-size: 7vw;
+    margin: 0 2vw;
   }
 
   .rate_input {
