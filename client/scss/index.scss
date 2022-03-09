@@ -64,10 +64,15 @@ nav {
     }
     .login_box {
       display: flex;
+      justify-content: space-between;
+      width: 220px;
+
       a {
         display: inline-block;
-        width: 100px;
       }
+    }
+    .login_box.login_true {
+      width: 320px;
     }
   }
 }
@@ -77,6 +82,7 @@ nav {
   width: 100%;
   height: 100%;
 }
+
 section {
   width: 100vw;
   height: 100vh;
@@ -229,6 +235,7 @@ section {
   }
 }
 
+<<<<<<< HEAD
 .section_list {
   overflow-y: scroll;
   .list_box {
@@ -518,6 +525,8 @@ section {
   }
 }
 
+=======
+>>>>>>> cc0e973 (fix : css overall)
 .mapboxgl-popup-content {
   padding: 15px 5px;
   img {
@@ -533,17 +542,27 @@ section {
 
 .rate_input {
   position: relative;
-  width: 180px;
-  height: 50px;
+  display: table;
+  // width: 180px;
+  // height: 50px;
   font-size: 36px;
+<<<<<<< HEAD
   span {
     position: absolute;
     width: 100%;
+=======
+  p {
+>>>>>>> cc0e973 (fix : css overall)
     z-index: 1;
-    line-height: 35px;
     color: rgb(190, 188, 188);
   }
+<<<<<<< HEAD
   span.filled {
+=======
+  p.filled {
+    position: absolute;
+    top: 0;
+>>>>>>> cc0e973 (fix : css overall)
     width: 60%;
     overflow: hidden;
     color: red;
@@ -590,9 +609,16 @@ section {
         align-items: center;
       }
       .login_box {
+        display: flex;
+        justify-content: space-between;
+        width: 16vw;
+
         a {
-          width: 6.9444vw;
+          display: inline-block;
         }
+      }
+      .login_box.login_true {
+        width: 24vw;
       }
     }
   }
@@ -737,6 +763,7 @@ section {
     }
   }
 
+<<<<<<< HEAD
   .section_list {
     overflow-y: scroll;
     .list_box {
@@ -981,6 +1008,8 @@ section {
     }
   }
 
+=======
+>>>>>>> cc0e973 (fix : css overall)
   .mapboxgl-popup-content {
     padding: 1.0417vw 0.3472vw;
     img {
@@ -991,6 +1020,7 @@ section {
       font-size: 0.9028vw;
     }
   }
+<<<<<<< HEAD
 
   .rate_input {
     width: 12.5vw;
@@ -1011,6 +1041,8 @@ section {
       cursor: pointer;
     }
   }
+=======
+>>>>>>> cc0e973 (fix : css overall)
 }
 @media all and (max-width: 767px) {
   // nav
@@ -1039,13 +1071,18 @@ section {
         font-family: "Lobster", cursive;
         font-size: 4vw;
         letter-spacing: 0.1304vw;
-        width: 13.0378vw;
         align-items: center;
       }
       .login_box {
+        display: flex;
+        justify-content: space-between;
+        width: 30vw;
         a {
-          width: 15vw;
+          display: inline-block;
         }
+      }
+      .login_box.login_true {
+        width: 54vw;
       }
     }
   }
@@ -1096,6 +1133,7 @@ section {
         height: 9vw;
 
         &[type="file"] {
+          width: 100%;
           box-shadow: none;
         }
 
@@ -1125,9 +1163,10 @@ section {
   }
 
   .section_login {
+    height: 100vh;
     &:before {
       width: 100%;
-      height: 100%;
+      height: 100vh;
       opacity: 0.9;
       background: url("https://cdn.pixabay.com/photo/2017/06/14/08/20/map-of-the-world-2401458_960_720.jpg")
         center / cover no-repeat;
@@ -1141,7 +1180,7 @@ section {
   .section_register {
     &:before {
       width: 100%;
-      height: 100%;
+      height: 100vh;
       opacity: 0.9;
       background: url("https://cdn.pixabay.com/photo/2017/06/14/08/20/map-of-the-world-2401458_960_720.jpg")
         center / cover no-repeat;
@@ -1153,9 +1192,10 @@ section {
   }
 
   .section_new {
+    overflow: scroll;
     &:before {
       width: 100%;
-      height: 100%;
+      height: 100vh;
       opacity: 0.9;
       background: url("https://cdn.pixabay.com/photo/2017/06/14/08/20/map-of-the-world-2401458_960_720.jpg")
         center / cover no-repeat;
@@ -1183,6 +1223,7 @@ section {
     }
   }
 
+<<<<<<< HEAD
   .section_list {
     overflow-y: scroll;
     .list_box {
@@ -1428,6 +1469,8 @@ section {
     }
   }
 
+=======
+>>>>>>> cc0e973 (fix : css overall)
   .mapboxgl-popup-content {
     padding: 8vw 2.5vw 2vw !important;
     img {
@@ -1442,6 +1485,7 @@ section {
       margin: 0 2vw;
     }
   }
+<<<<<<< HEAD
 
   .rate_input {
     width: 23.4681vw;
@@ -1463,4 +1507,6 @@ section {
       cursor: pointer;
     }
   }
+=======
+>>>>>>> cc0e973 (fix : css overall)
 }
