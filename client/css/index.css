@@ -290,7 +290,7 @@ section .form_box .btn_submit:hover {
   height: 14px;
   font-size: 14px;
 }
-.section_place .place_box .item_box .detail_box .txt_box .intro_box .rate_input span {
+.section_place .place_box .item_box .detail_box .txt_box .intro_box .rate_input p {
   line-height: 14px;
 }
 .section_place .place_box .item_box .detail_box .txt_box .intro_box p {
@@ -360,14 +360,14 @@ section .form_box .btn_submit:hover {
   margin-left: 90px;
   font-size: 36px;
 }
-.section_place .place_box .review_box .review_add form .top_box .rate_input span {
+.section_place .place_box .review_box .review_add form .top_box .rate_input p {
   position: absolute;
   width: 100%;
   z-index: 1;
   line-height: 35px;
   color: #bebcbc;
 }
-.section_place .place_box .review_box .review_add form .top_box .rate_input span.filled {
+.section_place .place_box .review_box .review_add form .top_box .rate_input p.filled {
   width: 60%;
   overflow: hidden;
   color: red;
@@ -425,14 +425,14 @@ section .form_box .btn_submit:hover {
   width: 110px;
   height: 28px;
 }
-.section_place .place_box .review_box .review_list .review_item .review_rate span {
+.section_place .place_box .review_box .review_list .review_item .review_rate p {
   position: absolute;
   color: #bebcbc;
   font-size: 22px;
   text-align: center;
   z-index: 1;
 }
-.section_place .place_box .review_box .review_list .review_item .review_rate span.filled {
+.section_place .place_box .review_box .review_list .review_item .review_rate p.filled {
   color: red;
   width: 20%;
   overflow: hidden;
@@ -475,14 +475,14 @@ section .form_box .btn_submit:hover {
   height: 50px;
   font-size: 36px;
 }
-.rate_input span {
+.rate_input p {
   position: absolute;
   width: 100%;
   z-index: 1;
   line-height: 35px;
   color: #bebcbc;
 }
-.rate_input span.filled {
+.rate_input p.filled {
   width: 60%;
   overflow: hidden;
   color: red;
@@ -722,7 +722,7 @@ section .form_box .btn_submit:hover {
     height: 0.9722vw;
     font-size: 0.9722vw;
   }
-  .section_place .place_box .item_box .detail_box .txt_box .intro_box .rate_input span {
+  .section_place .place_box .item_box .detail_box .txt_box .intro_box .rate_input p {
     line-height: 0.9722vw;
   }
   .section_place .place_box .item_box .detail_box .txt_box .intro_box p {
@@ -782,12 +782,12 @@ section .form_box .btn_submit:hover {
     margin-left: 6.25vw;
     font-size: 2.5vw;
   }
-  .section_place .place_box .review_box .review_add form .top_box .rate_input span {
+  .section_place .place_box .review_box .review_add form .top_box .rate_input p {
     width: 100%;
     line-height: 2.4306vw;
     color: #bebcbc;
   }
-  .section_place .place_box .review_box .review_add form .top_box .rate_input span.filled {
+  .section_place .place_box .review_box .review_add form .top_box .rate_input p.filled {
     width: 60%;
   }
   .section_place .place_box .review_box .review_add form .top_box .rate_input input[name=rate] {
@@ -833,11 +833,11 @@ section .form_box .btn_submit:hover {
     width: 7.6389vw;
     height: 1.9444vw;
   }
-  .section_place .place_box .review_box .review_list .review_item .review_rate span {
+  .section_place .place_box .review_box .review_list .review_item .review_rate p {
     color: #bebcbc;
     font-size: 1.5278vw;
   }
-  .section_place .place_box .review_box .review_list .review_item .review_rate span.filled {
+  .section_place .place_box .review_box .review_list .review_item .review_rate p.filled {
     width: 20%;
   }
   .section_place .place_box .review_box .review_list .review_item .review_txt {
@@ -873,12 +873,12 @@ section .form_box .btn_submit:hover {
     height: 3.4722vw;
     font-size: 2.5vw;
   }
-  .rate_input span {
+  .rate_input p {
     width: 100%;
     line-height: 2.4306vw;
     color: #bebcbc;
   }
-  .rate_input span.filled {
+  .rate_input p.filled {
     width: 60%;
   }
   .rate_input input[name=rate] {
@@ -1113,7 +1113,7 @@ section .form_box .btn_submit:hover {
     height: 3.4vw;
     font-size: 3.4vw;
   }
-  .section_place .place_box .item_box .detail_box .txt_box .intro_box .rate_input span {
+  .section_place .place_box .item_box .detail_box .txt_box .intro_box .rate_input p {
     line-height: 3.4vw;
   }
   .section_place .place_box .item_box .detail_box .txt_box .intro_box p {
@@ -1173,12 +1173,12 @@ section .form_box .btn_submit:hover {
     margin-left: 11.734vw;
     font-size: 4.6936vw;
   }
-  .section_place .place_box .review_box .review_add form .top_box .rate_input span {
+  .section_place .place_box .review_box .review_add form .top_box .rate_input p {
     width: 100%;
     line-height: 4.5632vw;
     color: #bebcbc;
   }
-  .section_place .place_box .review_box .review_add form .top_box .rate_input span.filled {
+  .section_place .place_box .review_box .review_add form .top_box .rate_input p.filled {
     width: 60%;
   }
   .section_place .place_box .review_box .review_add form .top_box .rate_input input[name=rate] {
@@ -1231,11 +1231,11 @@ section .form_box .btn_submit:hover {
     width: 14.3416vw;
     height: 3.6506vw;
   }
-  .section_place .place_box .review_box .review_list .review_item .review_rate span {
+  .section_place .place_box .review_box .review_list .review_item .review_rate p {
     color: #bebcbc;
     font-size: 2.8683vw;
   }
-  .section_place .place_box .review_box .review_list .review_item .review_rate span.filled {
+  .section_place .place_box .review_box .review_list .review_item .review_rate p.filled {
     width: 20%;
   }
   .section_place .place_box .review_box .review_list .review_item .review_txt {
@@ -1275,12 +1275,12 @@ section .form_box .btn_submit:hover {
     height: 6.5189vw;
     font-size: 4.6936vw;
   }
-  .rate_input span {
+  .rate_input p {
     width: 100%;
     line-height: 4.5632vw;
     color: #bebcbc;
   }
-  .rate_input span.filled {
+  .rate_input p.filled {
     width: 60%;
   }
   .rate_input input[name=rate] {

@@ -326,7 +326,7 @@ section {
               width: 71px;
               height: 14px;
               font-size: 14px;
-              span {
+              p {
                 line-height: 14px;
               }
             }
@@ -407,14 +407,14 @@ section {
               height: 50px;
               margin-left: 90px;
               font-size: 36px;
-              span {
+              p {
                 position: absolute;
                 width: 100%;
                 z-index: 1;
                 line-height: 35px;
                 color: rgb(190, 188, 188);
               }
-              span.filled {
+              p.filled {
                 width: 60%;
                 overflow: hidden;
                 color: red;
@@ -481,14 +481,14 @@ section {
             margin-bottom: 5px;
             width: 110px;
             height: 28px;
-            span {
+            p {
               position: absolute;
               color: rgb(190, 188, 188);
               font-size: 22px;
               text-align: center;
               z-index: 1;
             }
-            span.filled {
+            p.filled {
               color: red;
               width: 20%;
               overflow: hidden;
@@ -536,14 +536,14 @@ section {
   width: 180px;
   height: 50px;
   font-size: 36px;
-  span {
+  p {
     position: absolute;
     width: 100%;
     z-index: 1;
     line-height: 35px;
     color: rgb(190, 188, 188);
   }
-  span.filled {
+  p.filled {
     width: 60%;
     overflow: hidden;
     color: red;
@@ -820,7 +820,7 @@ section {
                 width: 4.9306vw;
                 height: 0.9722vw;
                 font-size: 0.9722vw;
-                span {
+                p {
                   line-height: 0.9722vw;
                 }
               }
@@ -891,12 +891,12 @@ section {
                 height: 3.4722vw;
                 margin-left: 6.25vw;
                 font-size: 2.5vw;
-                span {
+                p {
                   width: 100%;
                   line-height: 2.4306vw;
                   color: rgb(190, 188, 188);
                 }
-                span.filled {
+                p.filled {
                   width: 60%;
                 }
                 input[name="rate"] {
@@ -951,11 +951,11 @@ section {
               margin-bottom: 0.3472vw;
               width: 7.6389vw;
               height: 1.9444vw;
-              span {
+              p {
                 color: rgb(190, 188, 188);
                 font-size: 1.5278vw;
               }
-              span.filled {
+              p.filled {
                 width: 20%;
               }
             }
@@ -996,12 +996,12 @@ section {
     width: 12.5vw;
     height: 3.4722vw;
     font-size: 2.5vw;
-    span {
+    p {
       width: 100%;
       line-height: 2.4306vw;
       color: rgb(190, 188, 188);
     }
-    span.filled {
+    p.filled {
       width: 60%;
     }
     input[name="rate"] {
@@ -1265,7 +1265,7 @@ section {
                 width: 17vw;
                 height: 3.4vw;
                 font-size: 3.4vw;
-                span {
+                p {
                   line-height: 3.4vw;
                 }
               }
@@ -1331,13 +1331,13 @@ section {
                 height: 6.5189vw;
                 margin-left: 11.734vw;
                 font-size: 4.6936vw;
-                span {
+                p {
                   width: 100%;
 
                   line-height: 4.5632vw;
                   color: rgb(190, 188, 188);
                 }
-                span.filled {
+                p.filled {
                   width: 60%;
                 }
                 input[name="rate"] {
@@ -1398,11 +1398,11 @@ section {
               margin-bottom: 0.6519vw;
               width: 14.3416vw;
               height: 3.6506vw;
-              span {
+              p {
                 color: rgb(190, 188, 188);
                 font-size: 2.8683vw;
               }
-              span.filled {
+              p.filled {
                 width: 20%;
               }
             }
@@ -1447,13 +1447,13 @@ section {
     width: 23.4681vw;
     height: 6.5189vw;
     font-size: 4.6936vw;
-    span {
+    p {
       width: 100%;
 
       line-height: 4.5632vw;
       color: rgb(190, 188, 188);
     }
-    span.filled {
+    p.filled {
       width: 60%;
     }
     input[name="rate"] {
