@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/place.css" />
     <script src="https://www.w3schools.com/lib/w3.js"></script>
   </head>
   <body>
@@ -19,11 +20,11 @@
         <div class="item_box">
           <div class="opt_box">
             <div id="map"></div>
-            <button class="del_place">Delete</button>
+            <button class="del_place off">Delete</button>
           </div>
         </div>
         <div class="review_box">
-          <div class="review_add">
+          <div class="review_add off">
             <form action="" class="form_box" onsubmit="return false">
               <div class="top_box">
                 <h3>Leave a Review</h3>
@@ -52,22 +53,7 @@
             </form>
           </div>
 
-          <div class="review_list">
-            <!-- <div class="review_item">
-              <div class="review_rate">
-                <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-                <p class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-              </div>
-              <div class="review_edit">
-                <p>Edit</p>
-                <p>Delete</p>
-              </div>
-              <div class="review_txt">
-                <h3>username</h3>
-                <p>comment</p>
-              </div>
-            </div> -->
-          </div>
+          <div class="review_list"></div>
         </div>
       </div>
     </section>

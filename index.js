@@ -120,7 +120,7 @@ app.post("/login", async (req, res) => {
       const validPw = await bcrypt.compare(password, user.password);
       if (validPw) {
         req.session.user_id = user._id;
-        res.redirect("/");
+        return res.redirect("/");
       } else {
         return res.send(
           "<script>alert('Incorrect password');location.href='/login';</script>"
@@ -131,7 +131,7 @@ app.post("/login", async (req, res) => {
       "<script>alert('Check your username');location.href='/login';</script>"
     );
   } catch (e) {
-    console.log(e);
+    console.log(e, "login");
   }
 });
 

@@ -21,8 +21,8 @@ const getItem = async (id) => {
 
 const deleteItem = (result, id) => {
   const delBtn = document.querySelector(".section_place .del_place");
-  if (!result) {
-    delBtn.classList.add("off");
+  if (result) {
+    delBtn.classList.remove("off");
   }
 
   delBtn.addEventListener("click", () => {
@@ -140,12 +140,12 @@ const renderReview = (data) => {
   );
   data.map((comment) => {
     const html = `<div class="review_item">
-              <div class="review_rate">
+              <div class="rate_input">
                 <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-                <p style="width:${
-                  comment.rate * 20
-                }%"class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-              </div>
+                <p class="filled"
+                style="width: ${comment.rate * 20}%"
+                >&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+              </div>          
               <div class="review_txt">
                 <h3>${comment.username}</h3>
                 <p >${comment.comment}</p>
@@ -155,6 +155,11 @@ const renderReview = (data) => {
     reviewList.insertAdjacentHTML("afterbegin", html);
     userCheck(comment.userId, comment._id);
   });
+  let reviewForm = document.querySelector(
+    ".section_place .review_box .review_add"
+  );
+
+  reviewForm.classList.remove("off");
 };
 
 const renderMap = (data, key) => {
