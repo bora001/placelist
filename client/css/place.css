@@ -235,6 +235,9 @@
     font-size: 1.6667vw;
     color: #131577;
   }
+  .section_place .place_box .review_box .review_add form .top_box .rate_input {
+    font-size: 3vw;
+  }
   .section_place .place_box .review_box .review_add form .top_box .rate_input input {
     top: 0;
   }

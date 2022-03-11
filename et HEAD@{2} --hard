@@ -1,0 +1,40 @@
+[33m5e93cb5[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/heroku[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31mheroku/main[m[33m, [m[1;32mheroku[m[33m)[m HEAD@{0}: checkout: moving from heroku to main
+[33m5e93cb5[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/heroku[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31mheroku/main[m[33m, [m[1;32mheroku[m[33m)[m HEAD@{1}: checkout: moving from main to heroku
+[33m5e93cb5[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/heroku[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31mheroku/main[m[33m, [m[1;32mheroku[m[33m)[m HEAD@{2}: commit: heroku
+[33ma9d473c[m HEAD@{3}: commit: heroku
+[33m04a3089[m HEAD@{4}: commit: heroku
+[33m6ac203c[m HEAD@{5}: commit: heroku
+[33m3a99619[m HEAD@{6}: commit (merge): change/fix scss overall
+[33mb51dae1[m HEAD@{7}: reset: moving to HEAD
+[33mb51dae1[m HEAD@{8}: checkout: moving from master to main
+[33mcc0e973[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{9}: reset: moving to HEAD
+[33mcc0e973[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{10}: checkout: moving from main to master
+[33mb51dae1[m HEAD@{11}: rebase (abort): updating HEAD
+[33mb51dae1[m HEAD@{12}: rebase (abort): updating HEAD
+[33mb51dae1[m HEAD@{13}: reset: moving to HEAD
+[33mb51dae1[m HEAD@{14}: checkout: moving from master to main
+[33mcc0e973[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{15}: checkout: moving from main to master
+[33mb51dae1[m HEAD@{16}: checkout: moving from master to main
+[33mcc0e973[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{17}: checkout: moving from main to master
+[33mb51dae1[m HEAD@{18}: checkout: moving from master to main
+[33mcc0e973[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{19}: checkout: moving from main to master
+[33mb51dae1[m HEAD@{20}: checkout: moving from main to main
+[33mb51dae1[m HEAD@{21}: checkout: moving from b51dae1a855b7f588014428fbc543043474af935 to main
+[33mb51dae1[m HEAD@{22}: reset: moving to b51dae1
+[33mcc0e973[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{23}: rebase (start): checkout master
+[33mb51dae1[m HEAD@{24}: reset: moving to b51dae1a855b7f588014428fbc543043474af935
+[33mb51dae1[m HEAD@{25}: reset: moving to HEAD^
+[33m66e5427[m HEAD@{26}: reset: moving to HEAD
+[33m66e5427[m HEAD@{27}: pull: Merge made by the 'recursive' strategy.
+[33mb51dae1[m HEAD@{28}: commit: mobile css
+[33m8c0b88d[m HEAD@{29}: reset: moving to HEAD~2
+[33m643393f[m HEAD@{30}: commit: csds:fox
+[33m37118f5[m HEAD@{31}: reset: moving to HEAD
+[33m37118f5[m HEAD@{32}: reset: moving to HEAD
+[33m37118f5[m HEAD@{33}: commit (cherry-pick): fix : css overall
+[33m8c0b88d[m HEAD@{34}: checkout: moving from master to main
+[33mcc0e973[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{35}: commit: fix : css overall
+[33m9284b3f[m[33m ([m[1;31mheroku/heroku[m[33m, [m[1;32mD-[m[33m)[m HEAD@{36}: checkout: moving from heroku to master
+[33m9284b3f[m[33m ([m[1;31mheroku/heroku[m[33m, [m[1;32mD-[m[33m)[m HEAD@{37}: commit: heroku
+[33m8c0b88d[m HEAD@{38}: checkout: moving from main to heroku
+[33m8c0b88d[m HEAD@{39}: clone: from https://github.com/bora001/placelist.git

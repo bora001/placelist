@@ -14,6 +14,7 @@ const getItem = async (id) => {
     renderItem(data.item, data.key);
     renderReview(data.item.review);
     deleteItem(data.writer, data.item._id);
+    document.title = `Placelist - ${data.item.name}`;
   } catch (e) {
     console.log(e);
   }

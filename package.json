@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon index.js\" \"npm start --prefix client\"",
-    "build": "parcel build index.html"
+    "start": "concurrently \"nodemon index.js\""
   },
   "repository": {
     "type": "git",
