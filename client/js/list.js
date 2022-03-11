@@ -28,11 +28,11 @@ const renderList = (data) => {
             <h3>${item.name}</h2>
             <div class="rate_box">
               <div class="rate_input">
-                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                <span class="filled"  
+                <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                <p class="filled"  
                 style="width: ${
                   average * 20
-                }%">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                }%">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
               </div>
             </div>
             <p>${item.address}</p>

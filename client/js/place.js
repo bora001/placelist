@@ -63,10 +63,10 @@ const renderItem = (data, key) => {
             <div class="intro_box">
               <h3>${data.name}</h3>
               <div class="rate_input">
-                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                <span class="filled"
+                <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                <p class="filled"
                 style="width: ${average * 20}%"
-                >&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                >&#9733;&#9733;&#9733;&#9733;&#9733;</p>
               </div>
               <p class="current_rate">${average > 0 ? average : ""}</p>
             </div>
@@ -140,21 +140,12 @@ const renderReview = (data) => {
   );
   data.map((comment) => {
     const html = `<div class="review_item">
-<<<<<<< HEAD
-              <div class="review_rate">
-                <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                <span style="width:${
-                  comment.rate * 20
-                }%"class="filled">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-              </div>
-=======
               <div class="rate_input">
                 <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                 <p class="filled"
                 style="width: ${comment.rate * 20}%"
                 >&#9733;&#9733;&#9733;&#9733;&#9733;</p>
               </div>          
->>>>>>> cc0e973 (fix : css overall)
               <div class="review_txt">
                 <h3>${comment.username}</h3>
                 <p >${comment.comment}</p>

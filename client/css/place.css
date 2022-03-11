@@ -337,13 +337,7 @@
     line-height: 3.9113vw;
     cursor: pointer;
     border: none;
-    background-color: rgba(19, 21, 119, 0.11);
-    background: linear-gradient(to bottom, rgba(240, 238, 238, 0.459), rgba(223, 221, 221, 0.459));
-  }
-  .section_place .place_box .item_box .opt_box button.del_place:hover {
-    background: transparent;
     background-color: rgba(182, 11, 11, 0.911);
-    transition: 0.3s;
   }
   .section_place .place_box .item_box .opt_box #map {
     width: 26.0756vw;
