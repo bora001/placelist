@@ -1,4 +1,5 @@
 # Javascript - Placelist
+- Post and Share Place Information and Leave a Review with the rate of place
 - Register, Login by using MongoDB, Bcrypt, Jsonwebtoken
 - Get Map from Mapbox
 - Upload Image into Cloudinary
