@@ -3,8 +3,7 @@
 - MongoDB, Bcrypt, Jsonwebtoken를 이용한 회원가입,로그인
 - Cloudinary를 사용하여 이미지업로드
 - PlaceList 프로젝트 Heroku에 배포
-
-
+<hr />
 - Post and Share Place Information and Leave a Review with the rate of place
 - Register, Login by using MongoDB, Bcrypt, Jsonwebtoken
 - Get Map from Mapbox
